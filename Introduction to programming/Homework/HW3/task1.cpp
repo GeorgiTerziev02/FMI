@@ -12,7 +12,6 @@
 */
 
 #include <iostream>
-
 using namespace std;
 
 size_t strLength(const char str[]) {
