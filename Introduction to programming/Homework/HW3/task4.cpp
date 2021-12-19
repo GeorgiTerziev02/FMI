@@ -12,7 +12,6 @@
 */
 
 #include <iostream>
-
 using namespace std;
 
 int longestSubstrWithUniqueSymbolsLength(const char str[]) {
