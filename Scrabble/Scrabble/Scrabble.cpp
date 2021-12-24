@@ -85,6 +85,57 @@ void returnToMainMenu() {
 void displaySettings(int &lettersCount, int &roundsCount, int &shufflesAvailable) {
 	clearConsole();
 
+	cout << "Current settings:" << endl;
+	cout << "Available letters count: " << lettersCount << endl;
+	cout << "Rounds count: " << roundsCount << endl;
+	cout << "Available shuffles: " << shufflesAvailable << endl;
+	cout << "Enter 0 start editing the values" << endl;
+	cout << "Enter -1 to return to main menu" << endl;
+
+	int inputCode = -2;
+	
+	while (true) {
+		cin >> inputCode;
+
+		if (inputCode == -1) {
+			returnToMainMenu();
+			break;
+		}
+
+		if (inputCode == 0) {
+			cout << "Enter new letters count (number between 1 and 26): ";
+			int newLettersCount = -1;
+			while (newLettersCount < 1 || newLettersCount > 26)
+			{
+				cin >> newLettersCount;
+			}
+
+			lettersCount = newLettersCount;
+
+			cout << "Enter new rounds count (number greater or equal to 1): ";
+			int newRoundsCount = -1;
+			while (newRoundsCount < 1)
+			{
+				cin >> newRoundsCount;
+			}
+
+			roundsCount = newRoundsCount;
+
+			cout << "Enter new shuffles count  (number greater or equal to 1): ";
+			int newShufflesCount = -1;
+			while (newShufflesCount < 1)
+			{
+				cin >> newShufflesCount;
+			}
+
+			shufflesAvailable = newShufflesCount;
+
+			cout << "The new values were successfully set (Enter any number to return to main menu)" << endl;
+			cin >> inputCode;
+			returnToMainMenu();
+			break;
+		}
+	}
 }
 
 void addNewWord() {
