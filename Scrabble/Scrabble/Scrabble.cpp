@@ -77,7 +77,7 @@ void displayMainMenu() {
 	cout << "Please enter number 1-4" << endl;
 }
 
-void startGame() {
+void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 
 }
 
@@ -202,7 +202,7 @@ int main()
 {
 	int lettersCount = DEFAULT_LETTERS_COUNT;
 	int roundsCount = DEFAULT_ROUNDS_COUNT;
-	int availableSchuffles = DEFAULT_ROUNDS_SHUFFLES;
+	int availableShuffles = DEFAULT_ROUNDS_SHUFFLES;
 
 	int currentRound = 0;
 
@@ -216,8 +216,8 @@ int main()
 		cin >> inputNumber;
 		switch (inputNumber)
 		{
-		case 1: startGame(); break;
-		case 2: displaySettings(lettersCount, roundsCount, availableSchuffles); break;
+		case 1: startGame(lettersCount, roundsCount, availableShuffles); break;
+		case 2: displaySettings(lettersCount, roundsCount, availableShuffles); break;
 		case 3: displayAddNewWord(); break;
 		case 4: return 0; break;
 		default: continue; break;
