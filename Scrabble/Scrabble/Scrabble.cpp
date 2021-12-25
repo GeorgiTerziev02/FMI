@@ -1,6 +1,8 @@
 #include <iostream>
 #include <stdlib.h>		// srand
 #include<time.h>		// time
+#include<sstream>		// stream
+#include<fstream>		// files
 
 using namespace std;
 
@@ -8,6 +10,8 @@ const int DEFAULT_LETTERS_COUNT = 10;
 const int DEFAULT_ROUNDS_COUNT = 5;
 const int DEFAULT_ROUNDS_SHUFFLES = 2;
 const int LETTERS_COUNT = 26;
+const int LOWERCASE_A_ASCII_CODE = 97;
+const int LOWERCASE_Z_ASCII_CODE = 122;
 
 void clearConsole() {
 	system("cls");
@@ -145,11 +149,51 @@ void displaySettings(int& lettersCount, int& roundsCount, int& shufflesAvailable
 	}
 }
 
-void addNewWord() {
-	clearConsole();
-	printSeparatorLine();
+bool isWordValid(string word) {
+	if (word.length() < 1) {
+		return false;
+	}
+
+	for (size_t i = 0; i < word.length(); i++) {
+		int asciiCode = (int)word[i];
+		if (asciiCode < LOWERCASE_A_ASCII_CODE || asciiCode > LOWERCASE_Z_ASCII_CODE) {
+			return false;
+		}
+	}
+
+	return true;
 }
 
+// TODO: add sorting
+void addWordToFile(string word) {
+	ofstream wordsFile;
+	wordsFile.open("words.txt", std::fstream::app);
+
+	wordsFile << word << "\n";
+
+	wordsFile.close();
+}
+
+void displayAddNewWord() {
+	clearConsole();
+	printSeparatorLine();
+
+	string newWord;
+
+	while (true)
+	{
+		cout << "Enter new word (consisting only of lowercase letters): " << endl;
+		getline(cin, newWord);
+
+		if (isWordValid(newWord)) {
+			addWordToFile(newWord);
+			returnToMainMenu();
+			break;
+		}
+	}
+}
+
+// not working???
 void quit() {
 	system("exit");
 }
@@ -174,8 +218,8 @@ int main()
 		{
 		case 1: startGame(); break;
 		case 2: displaySettings(lettersCount, roundsCount, availableSchuffles); break;
-		case 3: addNewWord(); break;
-		case 4: quit(); break;
+		case 3: displayAddNewWord(); break;
+		case 4: return 0; break;
 		default: continue; break;
 		}
 	}
