@@ -78,7 +78,44 @@ void displayMainMenu() {
 }
 
 void startGame(int lettersCount, int roundsCount, int availableShuffles) {
+	clearConsole();
+	int points = 0;
 
+	while (roundsCount != 0) {
+		printSeparatorLine();
+
+		int* letters = generateRandomLetters(lettersCount);
+		cout << "Available letters: ";
+		for (size_t i = 0; i < lettersCount; i++) {
+			cout << (char)('a' + letters[i] - 1) << " ";
+		}
+
+		cout << endl;
+
+		cout << "Enter word!";
+
+		// to block the console for test purposes
+		int a = 0;
+		cin >> a;
+
+		// if word == 0 - shuffle if available
+
+		// check if word consists only of the letters above
+
+		// check if word is found in dictionary
+		  // Yes - next round + increment points
+		  // No - ???
+
+
+		roundsCount--;
+		clearConsole();
+	}
+
+	// print result
+	cout << "Your result is " << points << " (Enter any number to return to main menu)" << endl;
+	int inputCode;
+	cin >> inputCode;
+	returnToMainMenu();
 }
 
 void returnToMainMenu() {
