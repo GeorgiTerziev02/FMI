@@ -13,13 +13,21 @@ const int LETTERS_COUNT = 26;
 const int LOWERCASE_A_ASCII_CODE = 97;
 const int LOWERCASE_Z_ASCII_CODE = 122;
 
+const char HEADER_SEPARATOR = '=';
+
+void printSeparatorLine() {
+	for (size_t i = 0; i < 25; i++)
+		cout << HEADER_SEPARATOR;
+	cout << endl;
+}
+
 void clearConsole() {
 	system("cls");
 }
 
 void resetArray(int* arr, int length) {
 	for (size_t i = 0; i < length; i++)
-		arr[i] = NULL;
+		arr[i] = 0;
 }
 
 int generateRandomInteger(int minValue, int maxValue) {
@@ -41,26 +49,13 @@ int* generateRandomLetters(int count) {
 		// TODO: return the array of all letters
 	}
 
-	// TODO: improve it (not optimal)
 	while (count > 0) {
 		int letter = generateRandomInteger(0, 27);
-		if (lettersArray[letter] != NULL) {
-
-			lettersArray[letter] = 1;
-			count--;
-		}
+		lettersArray[letter]++;
+		count--;
 	}
 
 	return lettersArray;
-}
-
-
-const char HEADER_SEPARATOR = '=';
-
-void printSeparatorLine() {
-	for (size_t i = 0; i < 25; i++)
-		cout << HEADER_SEPARATOR;
-	cout << endl;
 }
 
 void displayMainMenu() {
@@ -77,37 +72,93 @@ void displayMainMenu() {
 	cout << "Please enter number 1-4" << endl;
 }
 
-void startGame(int lettersCount, int roundsCount, int availableShuffles) {
+int* convertWordToIntegerArray(string word) {
+	int* wordArray = new int[LETTERS_COUNT];
+	resetArray(wordArray, LETTERS_COUNT);
+
+	for (size_t i = 0; i < word.length(); i++) {
+		wordArray[(int)word[i] - LOWERCASE_A_ASCII_CODE]++;
+	}
+
+	return wordArray;
+}
+
+// the whole alphabet is the size of the arrays, otherwise we should pass the length as well
+bool areWordArraysEqual(int* arr1, int* arr2) {
+	for (size_t i = 0; i < LETTERS_COUNT; i++) {
+		if (arr1[i] != arr2[i]) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
+void returnToMainMenu() {
 	clearConsole();
+	displayMainMenu();
+}
+
+void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int points = 0;
+	int remainingTries = 3;
 
 	while (roundsCount != 0) {
+		clearConsole();
 		printSeparatorLine();
 
 		int* letters = generateRandomLetters(lettersCount);
 		cout << "Available letters: ";
-		for (size_t i = 0; i < lettersCount; i++) {
-			cout << (char)('a' + letters[i] - 1) << " ";
+		for (size_t i = 0; i < LETTERS_COUNT; i++) {
+			if (letters[i] == 1) {
+				cout << (char)(LOWERCASE_A_ASCII_CODE + letters[i]) << " ";
+			}
+			//cout << letters[i];
 		}
 
 		cout << endl;
 
-		cout << "Enter word!";
+		cout << "Enter word!: ";
 
-		// to block the console for test purposes
-		int a = 0;
-		cin >> a;
+		string inputWord;
+		getline(cin, inputWord);
 
 		// if word == 0 - shuffle if available
+		if (inputWord == "0") {
+			if (availableShuffles > 0) {
+				availableShuffles--;
+				delete[] letters;
+				continue;
+			}
+
+			cout << "No shuffles available!" << endl;
+		}
 
 		// check if word consists only of the letters above
+		int* wordArray = convertWordToIntegerArray(inputWord);
+		if (!areWordArraysEqual(letters, wordArray)) {
+			if (remainingTries != 0) {
+				remainingTries--;
+				cout << "Invalid word. Remaining tries: " << endl;
+			}
+			else {
+				roundsCount--;
+			}
+			delete[] letters;
+			delete[] wordArray;
+			continue;
+		}
 
 		// check if word is found in dictionary
 		  // Yes - next round + increment points
+		  points += inputWord.size();
 		  // No - ???
+		
 
-
+		delete[] letters;
+		delete[] wordArray;
 		roundsCount--;
+		remainingTries = 3;
 		clearConsole();
 	}
 
@@ -116,11 +167,6 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int inputCode;
 	cin >> inputCode;
 	returnToMainMenu();
-}
-
-void returnToMainMenu() {
-	clearConsole();
-	displayMainMenu();
 }
 
 void displaySettings(int& lettersCount, int& roundsCount, int& shufflesAvailable) {
