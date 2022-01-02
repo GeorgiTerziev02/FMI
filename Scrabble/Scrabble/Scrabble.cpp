@@ -25,6 +25,14 @@ void clearConsole() {
 	system("cls");
 }
 
+void clearInputBuffer() {
+	// because of using both getline and cin we have to cin.ignore;
+	// cin leaves the newline character in the stream which will be read as input from the getline
+	cin.clear();
+	cin.sync();
+	cin.ignore();
+}
+
 void resetArray(int* arr, int length) {
 	for (size_t i = 0; i < length; i++)
 		arr[i] = 0;
@@ -51,9 +59,12 @@ int* generateRandomLetters(int count) {
 
 	while (count > 0) {
 		int letter = generateRandomInteger(0, 27);
+		cout << letter << endl;
 		lettersArray[letter]++;
 		count--;
 	}
+
+	printSeparatorLine();
 
 	return lettersArray;
 }
@@ -102,6 +113,8 @@ void returnToMainMenu() {
 void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int points = 0;
 	int remainingTries = 3;
+	
+	clearInputBuffer();
 
 	while (roundsCount != 0) {
 		clearConsole();
@@ -118,7 +131,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 
 		cout << endl;
 
-		cout << "Enter word!: ";
+		cout << "Enter word!: " << endl;
 
 		string inputWord;
 		getline(cin, inputWord);
@@ -262,6 +275,8 @@ void displayAddNewWord() {
 	printSeparatorLine();
 
 	string newWord;
+
+	clearInputBuffer();
 
 	while (true)
 	{
