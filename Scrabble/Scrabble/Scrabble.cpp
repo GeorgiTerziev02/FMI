@@ -71,7 +71,7 @@ int* generateRandomLetters(int count) {
 	}
 
 	while (count > 0) {
-		int letter = generateRandomInteger(0, 27);
+		int letter = generateRandomInteger(0, 26);
 		lettersArray[letter]++;
 		count--;
 	}
@@ -104,6 +104,7 @@ int* convertWordToIntegerArray(string word) {
 	return wordArray;
 }
 
+// check if array consists only of the given letters
 // the whole alphabet is the size of the arrays, otherwise we should pass the length as well
 bool isWordArrayLower(int* arr1, int* arr2) {
 	for (size_t i = 0; i < LETTERS_COUNT; i++) {
@@ -199,7 +200,6 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		  // Yes - next round + increment points
 		points += inputWord.size();
 		// No - ???
-
 
 		delete[] letters;
 		delete[] wordArray;
