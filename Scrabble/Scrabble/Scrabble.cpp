@@ -43,8 +43,6 @@ int generateRandomInteger(int minValue, int maxValue) {
 		return 0;
 	}
 
-	srand(time(0));
-
 	return (rand() % (maxValue - minValue)) + minValue;
 }
 
@@ -59,12 +57,9 @@ int* generateRandomLetters(int count) {
 
 	while (count > 0) {
 		int letter = generateRandomInteger(0, 27);
-		cout << letter << endl;
 		lettersArray[letter]++;
 		count--;
 	}
-
-	printSeparatorLine();
 
 	return lettersArray;
 }
@@ -123,10 +118,12 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		int* letters = generateRandomLetters(lettersCount);
 		cout << "Available letters: ";
 		for (size_t i = 0; i < LETTERS_COUNT; i++) {
-			if (letters[i] == 1) {
-				cout << (char)(LOWERCASE_A_ASCII_CODE + letters[i]) << " ";
+			if (letters[i] >= 1) {
+				// in case you have the letter more than one time
+				for (size_t j = 0; j < letters[i]; j++) {
+					cout << (char)(LOWERCASE_A_ASCII_CODE + i) << " ";
+				}
 			}
-			//cout << letters[i];
 		}
 
 		cout << endl;
@@ -298,6 +295,9 @@ void quit() {
 
 int main()
 {
+	// srand should not be in the loop where you are generating random numbers
+	srand(time(NULL));
+
 	int lettersCount = DEFAULT_LETTERS_COUNT;
 	int roundsCount = DEFAULT_ROUNDS_COUNT;
 	int availableShuffles = DEFAULT_ROUNDS_SHUFFLES;
