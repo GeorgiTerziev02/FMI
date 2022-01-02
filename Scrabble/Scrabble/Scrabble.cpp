@@ -121,6 +121,27 @@ void returnToMainMenu() {
 	displayMainMenu();
 }
 
+bool isWordInDictionary(string word) {
+	ifstream wordsFile;
+	wordsFile.open("words.txt", std::fstream::app);
+
+	if (wordsFile.is_open()) {
+		string line;
+
+		while (getline(wordsFile, line))
+		{
+			cout << line << endl;
+			if (line == word) {
+				return true;
+			}
+		}
+
+		wordsFile.close();
+	}
+
+	return false;
+}
+
 void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int points = 0;
 	int remainingTries = 3;
@@ -131,6 +152,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 
 	while (roundsCount != 0) {
 		printSeparatorLine();
+		cout << "Your points so far " << points << endl;
 		cout << "Round " << currentRound << endl;
 
 		int* letters = generateRandomLetters(lettersCount);
@@ -162,7 +184,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		}
 
 		if (!isWordValid(inputWord)) {
-			if (remainingTries != 0) {
+			if (remainingTries > 1) {
 				remainingTries--;
 				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
 			}
@@ -180,7 +202,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		// check if word consists only of the letters above
 		int* wordArray = convertWordToIntegerArray(inputWord);
 		if (!isWordArrayLower(wordArray, letters)) {
-			if (remainingTries != 0) {
+			if (remainingTries > 1) {
 				remainingTries--;
 				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
 			}
@@ -197,9 +219,19 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		}
 
 		// check if word is found in dictionary
-		  // Yes - next round + increment points
-		points += inputWord.size();
-		// No - ???
+		if (isWordInDictionary(inputWord)) {
+			// Yes - next round + increment points
+			points += inputWord.length();
+		}
+		else {
+			// TODO: Discuss
+			// No ????
+			cout << "You word was not found in the dictionary! Please try again!" << endl;
+
+			delete[] letters;
+			delete[] wordArray;
+			continue;
+		}
 
 		delete[] letters;
 		delete[] wordArray;
@@ -280,6 +312,7 @@ void displaySettings(int& lettersCount, int& roundsCount, int& shufflesAvailable
 }
 
 // TODO: add sorting
+// TODO: check if word is already in file
 void addWordToFile(string word) {
 	ofstream wordsFile;
 	wordsFile.open("words.txt", std::fstream::app);
