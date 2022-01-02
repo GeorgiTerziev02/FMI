@@ -46,6 +46,21 @@ int generateRandomInteger(int minValue, int maxValue) {
 	return (rand() % (maxValue - minValue)) + minValue;
 }
 
+bool isWordValid(string word) {
+	if (word.length() < 1) {
+		return false;
+	}
+
+	for (size_t i = 0; i < word.length(); i++) {
+		int asciiCode = (int)word[i];
+		if (asciiCode < LOWERCASE_A_ASCII_CODE || asciiCode > LOWERCASE_Z_ASCII_CODE) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 // returns array with value = 1 on the index of a letter
 int* generateRandomLetters(int count) {
 	int* lettersArray = new int[LETTERS_COUNT];
@@ -90,9 +105,9 @@ int* convertWordToIntegerArray(string word) {
 }
 
 // the whole alphabet is the size of the arrays, otherwise we should pass the length as well
-bool areWordArraysEqual(int* arr1, int* arr2) {
+bool isWordArrayLower(int* arr1, int* arr2) {
 	for (size_t i = 0; i < LETTERS_COUNT; i++) {
-		if (arr1[i] != arr2[i]) {
+		if (arr1[i] > arr2[i]) {
 			return false;
 		}
 	}
@@ -108,12 +123,14 @@ void returnToMainMenu() {
 void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int points = 0;
 	int remainingTries = 3;
-	
+	int currentRound = 1;
+
+	clearConsole();
 	clearInputBuffer();
 
 	while (roundsCount != 0) {
-		clearConsole();
 		printSeparatorLine();
+		cout << "Round " << currentRound << endl;
 
 		int* letters = generateRandomLetters(lettersCount);
 		cout << "Available letters: ";
@@ -127,7 +144,6 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		}
 
 		cout << endl;
-
 		cout << "Enter word!: " << endl;
 
 		string inputWord;
@@ -144,16 +160,36 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 			cout << "No shuffles available!" << endl;
 		}
 
-		// check if word consists only of the letters above
-		int* wordArray = convertWordToIntegerArray(inputWord);
-		if (!areWordArraysEqual(letters, wordArray)) {
+		if (!isWordValid(inputWord)) {
 			if (remainingTries != 0) {
 				remainingTries--;
-				cout << "Invalid word. Remaining tries: " << endl;
+				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
 			}
 			else {
 				roundsCount--;
+				currentRound++;
+				remainingTries = 3;
+				clearConsole();
 			}
+
+			delete[] letters;
+			continue;
+		}
+
+		// check if word consists only of the letters above
+		int* wordArray = convertWordToIntegerArray(inputWord);
+		if (!isWordArrayLower(wordArray, letters)) {
+			if (remainingTries != 0) {
+				remainingTries--;
+				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
+			}
+			else {
+				roundsCount--;
+				currentRound++;
+				remainingTries = 3;
+				clearConsole();
+			}
+
 			delete[] letters;
 			delete[] wordArray;
 			continue;
@@ -161,13 +197,14 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 
 		// check if word is found in dictionary
 		  // Yes - next round + increment points
-		  points += inputWord.size();
-		  // No - ???
-		
+		points += inputWord.size();
+		// No - ???
+
 
 		delete[] letters;
 		delete[] wordArray;
 		roundsCount--;
+		currentRound++;
 		remainingTries = 3;
 		clearConsole();
 	}
@@ -240,21 +277,6 @@ void displaySettings(int& lettersCount, int& roundsCount, int& shufflesAvailable
 			break;
 		}
 	}
-}
-
-bool isWordValid(string word) {
-	if (word.length() < 1) {
-		return false;
-	}
-
-	for (size_t i = 0; i < word.length(); i++) {
-		int asciiCode = (int)word[i];
-		if (asciiCode < LOWERCASE_A_ASCII_CODE || asciiCode > LOWERCASE_Z_ASCII_CODE) {
-			return false;
-		}
-	}
-
-	return true;
 }
 
 // TODO: add sorting
