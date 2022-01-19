@@ -15,6 +15,7 @@ const int LOWERCASE_Z_ASCII_CODE = 122;
 
 const char HEADER_SEPARATOR = '=';
 
+// Visualize a separator line in the console 
 void printSeparatorLine() {
 	for (size_t i = 0; i < 25; i++)
 		cout << HEADER_SEPARATOR;
@@ -25,19 +26,26 @@ void clearConsole() {
 	system("cls");
 }
 
+// Remove all error flags and characters from the input buffer
 void clearInputBuffer() {
 	// because of using both getline and cin we have to cin.ignore;
 	// cin leaves the newline character in the stream which will be read as input from the getline
+
+	// clears errors flags from the cin
 	cin.clear();
+	// discard unread characters from the input buffer
 	cin.sync();
+	// discard characters from the input buffer
 	cin.ignore();
 }
 
+// Set all values in the array to 0
 void resetArray(int* arr, int length) {
 	for (size_t i = 0; i < length; i++)
 		arr[i] = 0;
 }
 
+// Generate random integer in the given range
 int generateRandomInteger(int minValue, int maxValue) {
 	if (maxValue < minValue) {
 		return 0;
@@ -46,6 +54,7 @@ int generateRandomInteger(int minValue, int maxValue) {
 	return (rand() % (maxValue - minValue)) + minValue;
 }
 
+// Check if all characters in the word are lowercase
 bool isWordValid(string word) {
 	if (word.length() < 1) {
 		return false;
@@ -61,14 +70,11 @@ bool isWordValid(string word) {
 	return true;
 }
 
-// returns array with value = 1 on the index of a letter
+// Returns array with indexes - alphabet letter
+// and values - count of the used letter
 int* generateRandomLetters(int count) {
 	int* lettersArray = new int[LETTERS_COUNT];
 	resetArray(lettersArray, LETTERS_COUNT);
-
-	if (count >= LETTERS_COUNT) {
-		// TODO: return the array of all letters
-	}
 
 	while (count > 0) {
 		int letter = generateRandomInteger(0, 26);
@@ -79,6 +85,7 @@ int* generateRandomLetters(int count) {
 	return lettersArray;
 }
 
+// Visualize Main Menu in the console
 void displayMainMenu() {
 	printSeparatorLine();
 
@@ -93,6 +100,8 @@ void displayMainMenu() {
 	cout << "Please enter number 1-4" << endl;
 }
 
+// Generate array with indexes - alphabet letter
+// and values - count of the used letter
 int* convertWordToIntegerArray(string word) {
 	int* wordArray = new int[LETTERS_COUNT];
 	resetArray(wordArray, LETTERS_COUNT);
@@ -116,11 +125,13 @@ bool isWordArrayLower(int* arr1, int* arr2) {
 	return true;
 }
 
+// Clear console and visualize main menu
 void returnToMainMenu() {
 	clearConsole();
 	displayMainMenu();
 }
 
+// Check if string is in txt file
 bool isWordInDictionary(string word) {
 	ifstream wordsFile;
 	wordsFile.open("words.txt", std::fstream::app);
@@ -142,6 +153,7 @@ bool isWordInDictionary(string word) {
 	return false;
 }
 
+// Start game
 void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int points = 0;
 	int remainingTries = 3;
@@ -167,7 +179,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		}
 
 		cout << endl;
-		cout << "Enter word!: " << endl;
+		cout << "Enter word: " << endl;
 
 		string inputWord;
 		getline(cin, inputWord);
@@ -248,6 +260,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	returnToMainMenu();
 }
 
+// Visualize settings menu and show option for editing values
 void displaySettings(int& lettersCount, int& roundsCount, int& shufflesAvailable) {
 	clearConsole();
 	printSeparatorLine();
@@ -313,6 +326,7 @@ void displaySettings(int& lettersCount, int& roundsCount, int& shufflesAvailable
 
 // TODO: add sorting
 // TODO: check if word is already in file
+// Add given string to txt file
 void addWordToFile(string word) {
 	ofstream wordsFile;
 	wordsFile.open("words.txt", std::fstream::app);
@@ -322,6 +336,7 @@ void addWordToFile(string word) {
 	wordsFile.close();
 }
 
+// Visualize add new word screen and show input for new word
 void displayAddNewWord() {
 	clearConsole();
 	printSeparatorLine();
@@ -341,11 +356,6 @@ void displayAddNewWord() {
 			break;
 		}
 	}
-}
-
-// not working???
-void quit() {
-	system("exit");
 }
 
 int main()
