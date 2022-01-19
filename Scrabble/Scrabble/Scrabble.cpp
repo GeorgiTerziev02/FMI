@@ -1,3 +1,18 @@
+/**
+*
+* Solution to course project # 7
+* Introduction to programming course
+* Faculty of Mathematics and Informatics of Sofia University
+* Winter semester 2021/2022
+*
+* @author Georgi Terziev
+* @idnumber 3MI0600090
+* @compiler VC
+*
+* Main file - Start of the console program
+*
+*/
+
 #include <iostream>
 #include <stdlib.h>		// srand
 #include<time.h>		// time
@@ -9,15 +24,17 @@ using namespace std;
 const int DEFAULT_LETTERS_COUNT = 10;
 const int DEFAULT_ROUNDS_COUNT = 5;
 const int DEFAULT_ROUNDS_SHUFFLES = 2;
+const int DEFAULT_REMAINING_TRIES = 3;
 const int LETTERS_COUNT = 26;
 const int LOWERCASE_A_ASCII_CODE = 97;
 const int LOWERCASE_Z_ASCII_CODE = 122;
 
 const char HEADER_SEPARATOR = '=';
+const int HEADER_SEPARATOR_LENGTH = 25;
 
 // Visualize a separator line in the console 
 void printSeparatorLine() {
-	for (size_t i = 0; i < 25; i++)
+	for (size_t i = 0; i < HEADER_SEPARATOR_LENGTH; i++)
 		cout << HEADER_SEPARATOR;
 	cout << endl;
 }
@@ -77,7 +94,7 @@ int* generateRandomLetters(int count) {
 	resetArray(lettersArray, LETTERS_COUNT);
 
 	while (count > 0) {
-		int letter = generateRandomInteger(0, 26);
+		int letter = generateRandomInteger(0, LETTERS_COUNT);
 		lettersArray[letter]++;
 		count--;
 	}
@@ -156,7 +173,7 @@ bool isWordInDictionary(string word) {
 // Start game
 void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int points = 0;
-	int remainingTries = 3;
+	int remainingTries = DEFAULT_REMAINING_TRIES;
 	int currentRound = 1;
 
 	clearConsole();
@@ -181,6 +198,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		cout << endl;
 		cout << "Enter word: " << endl;
 
+		// check if user have already entered the word
 		string inputWord;
 		getline(cin, inputWord);
 
@@ -203,7 +221,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 			else {
 				roundsCount--;
 				currentRound++;
-				remainingTries = 3;
+				remainingTries = DEFAULT_REMAINING_TRIES;
 				clearConsole();
 			}
 
@@ -221,7 +239,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 			else {
 				roundsCount--;
 				currentRound++;
-				remainingTries = 3;
+				remainingTries = DEFAULT_REMAINING_TRIES;
 				clearConsole();
 			}
 
@@ -249,7 +267,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		delete[] wordArray;
 		roundsCount--;
 		currentRound++;
-		remainingTries = 3;
+		remainingTries = DEFAULT_REMAINING_TRIES;
 		clearConsole();
 	}
 
@@ -288,7 +306,7 @@ void displaySettings(int& lettersCount, int& roundsCount, int& shufflesAvailable
 		if (inputCode == 0) {
 			cout << "Enter new letters count" << endl;
 			int newLettersCount = -1;
-			while (newLettersCount < 1 || newLettersCount > 26)
+			while (newLettersCount < 1 || newLettersCount > LETTERS_COUNT)
 			{
 				cout << "Please enter number between 1 and 26:" << endl;
 				cin >> newLettersCount;
