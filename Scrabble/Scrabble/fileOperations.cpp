@@ -26,7 +26,6 @@ bool isWordInDictionary(string word) {
 }
 
 // TODO: add sorting
-// TODO: check if word is already in file
 // Add given string to txt file
 void addWordToFile(string word) {
 	ofstream wordsFile;

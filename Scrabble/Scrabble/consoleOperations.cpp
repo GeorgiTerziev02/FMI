@@ -11,6 +11,7 @@ void printSeparatorLine() {
 	cout << endl;
 }
 
+// Clear console
 void clearConsole() {
 	cout << "\033[;H"; // Moves cursor to the top left
 	cout << "\033[J"; // Clears the console

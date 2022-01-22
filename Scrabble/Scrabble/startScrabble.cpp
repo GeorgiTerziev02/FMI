@@ -197,7 +197,6 @@ void addNewWord() {
 	}
 }
 
-
 // Start the game
 void startScrabble() {
 	// srand should not be in the loop where you are generating random numbers
