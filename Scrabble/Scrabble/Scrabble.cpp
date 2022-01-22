@@ -376,8 +376,8 @@ void displayAddNewWord() {
 	}
 }
 
-int main()
-{
+// Start the game
+void StartScrabble() {
 	// srand should not be in the loop where you are generating random numbers
 	srand(time(NULL));
 
@@ -400,10 +400,14 @@ int main()
 		case 1: startGame(lettersCount, roundsCount, availableShuffles); break;
 		case 2: displaySettings(lettersCount, roundsCount, availableShuffles); break;
 		case 3: displayAddNewWord(); break;
-		case 4: return 0; break;
+		case 4: return; break;
 		default: continue; break;
 		}
 	}
+}
 
+int main()
+{
+	StartScrabble();
 	return 0;
 }
