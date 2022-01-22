@@ -143,14 +143,14 @@
     <ClCompile Include="fileOperations.cpp" />
     <ClCompile Include="helperFunctions.cpp" />
     <ClCompile Include="Scrabble.cpp" />
-    <ClCompile Include="startGame.cpp" />
+    <ClCompile Include="startScrabble.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="consoleOperations.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="fileOperations.h" />
     <ClInclude Include="helperFunctions.h" />
-    <ClInclude Include="startGame.h" />
+    <ClInclude Include="startScrabble.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

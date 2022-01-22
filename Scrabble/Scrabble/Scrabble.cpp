@@ -13,11 +13,11 @@
 *
 */
 
-#include "startGame.h"
+#include "startScrabble.h"
 using namespace std;
 
 int main()
 {
-	startGame();
+	startScrabble();
 	return 0;
 }

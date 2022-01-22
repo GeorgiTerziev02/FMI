@@ -1,4 +1,4 @@
-#include "startGame.h"
+#include "startScrabble.h"
 #include "consoleOperations.h"
 #include "constants.h"
 #include "fileOperations.h"
@@ -224,7 +224,7 @@ void displayAddNewWord() {
 
 
 // Start the game
-void startGame() {
+void startScrabble() {
 	// srand should not be in the loop where you are generating random numbers
 	srand(time(NULL));
 
