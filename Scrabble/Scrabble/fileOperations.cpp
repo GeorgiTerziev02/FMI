@@ -30,7 +30,7 @@ bool isWordInDictionary(string word) {
 // Add given string to txt file
 void addWordToFile(string word) {
 	ofstream wordsFile;
-	if (!isWordInDictionary(word))
+	if (isWordInDictionary(word))
 	{
 		return;
 	}
