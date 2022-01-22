@@ -1,3 +1,18 @@
+/**
+*
+* Solution to course project # 7
+* Introduction to programming course
+* Faculty of Mathematics and Informatics of Sofia University
+* Winter semester 2021/2022
+*
+* @author Georgi Terziev
+* @idnumber 3MI0600090
+* @compiler VC
+*
+* Cpp file with the implementation of functions that are needed for the logic of the application
+*
+*/
+
 #include "helperFunctions.h"
 #include "constants.h"
 #include <stdlib.h>		// srand
