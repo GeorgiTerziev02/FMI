@@ -27,3 +27,34 @@ void clearInputBuffer() {
 	// discard characters from the input buffer
 	cin.ignore();
 }
+
+// Visualize Main Menu in the console
+void displayMainMenu() {
+	printSeparatorLine();
+
+	cout << "Welcome to Scrabble" << endl;
+	cout << "1 - Start new game" << endl;
+	cout << "2 - Settings" << endl;
+	cout << "3 - Add new word" << endl;
+	cout << "4 - Quit" << endl;
+
+	printSeparatorLine();
+
+	cout << "Please enter number 1-4" << endl;
+}
+
+// Visualize Settings in the console
+void displaySettings(const int& lettersCount, const int& roundsCount, const int& shufflesAvailable) {
+	printSeparatorLine();
+
+	cout << "Current settings:" << endl;
+	cout << "Available letters count: " << lettersCount << endl;
+	cout << "Rounds count: " << roundsCount << endl;
+	cout << "Available shuffles: " << shufflesAvailable << endl;
+
+	printSeparatorLine();
+
+	cout << "Enter 0 start editing the values" << endl;
+	cout << "Enter -1 to return to main menu" << endl;
+
+}
