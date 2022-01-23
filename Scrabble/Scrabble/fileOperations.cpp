@@ -29,8 +29,7 @@ bool isWordInDictionary(string word) {
 	if (wordsFile.is_open()) {
 		string line;
 
-		while (getline(wordsFile, line))
-		{
+		while (getline(wordsFile, line)) {
 			if (line == word) {
 				return true;
 			}
@@ -46,8 +45,7 @@ bool isWordInDictionary(string word) {
 // Add given string to txt file
 void addWordToFile(string word) {
 	ofstream wordsFile;
-	if (isWordInDictionary(word))
-	{
+	if (isWordInDictionary(word)) {
 		return;
 	}
 

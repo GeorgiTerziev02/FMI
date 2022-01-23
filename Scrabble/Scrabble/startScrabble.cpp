@@ -45,8 +45,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		cout << "Your points so far " << points << endl;
 		cout << "Round " << currentRound << endl;
 
-		if (shouldGetNewLetters)
-		{
+		if (shouldGetNewLetters) {
 			delete[] letters;
 			letters = generateRandomLetters(lettersCount);
 		}
@@ -148,8 +147,7 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 
 	while (true) {
 		getline(cin, inputCodeString);
-		if (!isInputInteger(inputCodeString))
-		{
+		if (!isInputInteger(inputCodeString)) {
 			continue;
 		}
 
@@ -164,12 +162,11 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 			cout << "Enter new letters count" << endl;
 			string input;
 			int newLettersCount = -1;
-			while (newLettersCount < 1 || newLettersCount > LETTERS_COUNT)
-			{
+			while (newLettersCount < 1 || newLettersCount > LETTERS_COUNT) {
 				cout << "Please enter number between 1 and 26:" << endl;
 				getline(cin, input);
-				if (isInputInteger(input))
-				{
+
+				if (isInputInteger(input)) {
 					newLettersCount = intParse(input);
 				}
 			}
@@ -178,12 +175,11 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 
 			cout << "Enter new rounds count" << endl;
 			int newRoundsCount = -1;
-			while (newRoundsCount < 1)
-			{
+			while (newRoundsCount < 1) {
 				cout << "Please enter number greater or equal to 1:" << endl;
 				getline(cin, input);
-				if (isInputInteger(input))
-				{
+
+				if (isInputInteger(input)) {
 					newRoundsCount = intParse(input);
 				}
 			}
@@ -192,12 +188,11 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 
 			cout << "Enter new shuffles count" << endl;
 			int newShufflesCount = -1;
-			while (newShufflesCount < 1)
-			{
+			while (newShufflesCount < 1) {
 				cout << "Please enter number greater or equal to 1:" << endl;
 				getline(cin, input);
-				if (isInputInteger(input))
-				{
+
+				if (isInputInteger(input)) {
 					newShufflesCount = intParse(input);
 				}
 			}
@@ -220,8 +215,7 @@ void addNewWord() {
 	string newWord;
 	//clearInputBuffer();
 
-	while (true)
-	{
+	while (true) {
 		cout << "Enter new word (consisting only of lowercase letters): " << endl;
 		getline(cin, newWord);
 
@@ -252,8 +246,7 @@ void startScrabble() {
 	while (true) {
 		getline(cin, input);
 
-		if (isInputInteger(input))
-		{
+		if (isInputInteger(input)) {
 			int inputNumber = intParse(input);
 			switch (inputNumber)
 			{
@@ -264,8 +257,7 @@ void startScrabble() {
 			default: cout << "Please enter number 1-4" << endl; break;
 			}
 		}
-		else
-		{
+		else {
 			cout << "Please enter number 1-4" << endl;
 		}
 	}
