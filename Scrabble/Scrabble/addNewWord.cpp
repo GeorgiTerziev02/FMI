@@ -27,13 +27,30 @@ void addNewWord() {
 
 	string newWord;
 	//clearInputBuffer();
+	cout << "Enter 0 to return to main menu" << endl;
 
 	while (true) {
 		cout << "Enter new word (consisting only of lowercase letters): " << endl;
 		getline(cin, newWord);
 
+		if (newWord == "0") {
+			returnToMainMenu();
+			break;
+		}
+
 		if (isWordValid(newWord)) {
+			if (isWordInDictionary(newWord)) {
+				cout << "Word is already in the dictionary!" << endl;
+				continue;
+			}
+
 			addWordToFile(newWord);
+
+			cout << "The word was added to dictionary successfully (Press enter to return to main menu)" << endl;
+			// just to block console
+			string input;
+			getline(cin, input);
+
 			returnToMainMenu();
 			break;
 		}

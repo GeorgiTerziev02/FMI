@@ -45,9 +45,6 @@ bool isWordInDictionary(string word) {
 // Add given string to txt file
 void addWordToFile(string word) {
 	ofstream wordsFile;
-	if (isWordInDictionary(word)) {
-		return;
-	}
 
 	wordsFile.open(DICTIONARY_PATH, std::fstream::app);
 	wordsFile << word << "\n";
