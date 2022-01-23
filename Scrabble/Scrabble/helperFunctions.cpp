@@ -91,3 +91,48 @@ bool isWordValid(string word) {
 
 	return true;
 }
+
+// Check if string is a valid integer
+bool isInputInteger(string str) {
+	int length = str.length();
+	if (length < 1)
+	{
+		return false;
+	}
+
+	int index = str[0] == DASH_SYMBOL ? 1 : 0;
+
+	// input is "-"
+	if (index == length)
+	{
+		return false;
+	}
+
+	for (;index < length; index++)
+	{
+		if (str[index] < ZERO_DIGIT_SYMBOL || str[index] > NINE_DIGIT_SYMBOL)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+// Parse string to integer
+int intParse(string str) {
+	if (str.length() < 1)
+	{
+		return 0;
+	}
+
+	int index = str[0] == DASH_SYMBOL ? 1 : 0;
+
+	int result = 0;
+	for (; index < str.length(); index++)
+	{
+		result = result * 10 + (str[index] - ZERO_DIGIT_SYMBOL);
+	}
+
+	return str[0] == DASH_SYMBOL ? -result : result;
+}

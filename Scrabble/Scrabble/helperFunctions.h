@@ -33,4 +33,8 @@ int* convertWordToIntegerArray(string word);
 bool isWordArrayLower(int* arr1, int* arr2);
 // Check if all characters in the word are lowercase
 bool isWordValid(string word);
+// Check if string is a valid integer
+bool isInputInteger(string str);
+// Parse string to integer
+int intParse(string str);
 #endif //SCRABBLE_HELPER_FUNCTIONS

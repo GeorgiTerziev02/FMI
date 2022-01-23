@@ -34,8 +34,8 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	int remainingTries = DEFAULT_REMAINING_TRIES;
 	int currentRound = 1;
 
+	//clearInputBuffer();
 	clearConsole();
-	clearInputBuffer();
 
 	while (roundsCount != 0) {
 		printSeparatorLine();
@@ -130,9 +130,9 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	}
 
 	// print result
-	cout << "Your result is " << points << " (Enter any number to return to main menu)" << endl;
-	int inputCode;
-	cin >> inputCode;
+	cout << "Your result is " << points << " (Press enter to return to main menu)" << endl;
+	string input;
+	getline(cin, input);
 	returnToMainMenu();
 }
 
@@ -142,9 +142,16 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 	displaySettings(lettersCount, roundsCount, shufflesAvailable);
 
 	int inputCode = -2;
+	string inputCodeString;
 
 	while (true) {
-		cin >> inputCode;
+		getline(cin, inputCodeString);
+		if (!isInputInteger(inputCodeString))
+		{
+			continue;
+		}
+
+		inputCode = intParse(inputCodeString);
 
 		if (inputCode == -1) {
 			returnToMainMenu();
@@ -153,11 +160,16 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 
 		if (inputCode == 0) {
 			cout << "Enter new letters count" << endl;
+			string input;
 			int newLettersCount = -1;
 			while (newLettersCount < 1 || newLettersCount > LETTERS_COUNT)
 			{
 				cout << "Please enter number between 1 and 26:" << endl;
-				cin >> newLettersCount;
+				getline(cin, input);
+				if (isInputInteger(input))
+				{
+					newLettersCount = intParse(input);
+				}
 			}
 
 			lettersCount = newLettersCount;
@@ -167,7 +179,11 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 			while (newRoundsCount < 1)
 			{
 				cout << "Please enter number greater or equal to 1:" << endl;
-				cin >> newRoundsCount;
+				getline(cin, input);
+				if (isInputInteger(input))
+				{
+					newRoundsCount = intParse(input);
+				}
 			}
 
 			roundsCount = newRoundsCount;
@@ -177,13 +193,17 @@ void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable)
 			while (newShufflesCount < 1)
 			{
 				cout << "Please enter number greater or equal to 1:" << endl;
-				cin >> newShufflesCount;
+				getline(cin, input);
+				if (isInputInteger(input))
+				{
+					newShufflesCount = intParse(input);
+				}
 			}
 
 			shufflesAvailable = newShufflesCount;
 
-			cout << "The new values were successfully set (Enter any number to return to main menu)" << endl;
-			cin >> inputCode;
+			cout << "The new values were successfully set (Press enter to return to main menu)" << endl;
+			getline(cin, input);
 			returnToMainMenu();
 			break;
 		}
@@ -196,8 +216,7 @@ void addNewWord() {
 	printSeparatorLine();
 
 	string newWord;
-
-	clearInputBuffer();
+	//clearInputBuffer();
 
 	while (true)
 	{
@@ -227,17 +246,26 @@ void startScrabble() {
 
 	displayMainMenu();
 
-	int inputNumber = 0;
+	string input;
 
 	while (true) {
-		cin >> inputNumber;
-		switch (inputNumber)
+		getline(cin, input);
+
+		if (isInputInteger(input))
 		{
-		case 1: startGame(lettersCount, roundsCount, availableShuffles); break;
-		case 2: changeSettings(lettersCount, roundsCount, availableShuffles); break;
-		case 3: addNewWord(); break;
-		case 4: return; break;
-		default: continue; break;
+			int inputNumber = intParse(input);
+			switch (inputNumber)
+			{
+			case 1: startGame(lettersCount, roundsCount, availableShuffles); break;
+			case 2: changeSettings(lettersCount, roundsCount, availableShuffles); break;
+			case 3: addNewWord(); break;
+			case 4: return; break;
+			default: cout << "Please enter number 1-4" << endl; break;
+			}
+		}
+		else 
+		{
+			cout << "Please enter number 1-4" << endl;
 		}
 	}
 }

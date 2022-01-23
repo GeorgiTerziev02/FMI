@@ -28,4 +28,8 @@ const int LOWERCASE_Z_ASCII_CODE = 122;
 const char HEADER_SEPARATOR = '=';
 const int HEADER_SEPARATOR_LENGTH = 25;
 
+const char ZERO_DIGIT_SYMBOL = '0';
+const char NINE_DIGIT_SYMBOL = '9';
+const char DASH_SYMBOL = '-';
+
 #endif //SCRABBLE_CONSTANTS_H
