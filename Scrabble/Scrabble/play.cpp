@@ -46,7 +46,7 @@ void play(int lettersCount, int roundsCount, int availableShuffles) {
 		}
 
 		displayAvailableLetters(letters);
-
+		cout << "Enter 0 to shuffle letters" << endl;
 		cout << "Enter word consisting of lowercase characters: " << endl;
 
 		// check if user have already entered the word
