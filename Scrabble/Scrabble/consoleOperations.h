@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Header file with functions manipulating the console ui
+* <Header file with functions manipulating the console ui>
 *
 */
 

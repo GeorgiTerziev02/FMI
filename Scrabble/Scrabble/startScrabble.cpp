@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Cpp file setting up the game functionalities
+* <Cpp file setting up the game functionalities>
 *
 */
 

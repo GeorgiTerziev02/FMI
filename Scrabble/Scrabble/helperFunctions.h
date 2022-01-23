@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Header file with helper functions that are needed for implementing the logic of the application
+* <Header file with helper functions that are needed for implementing the logic of the application>
 *
 */
 

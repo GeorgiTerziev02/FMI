@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Cpp file with the implementation of the add new word functionality
+* <Cpp file with the implementation of the add new word functionality>
 *
 */
 

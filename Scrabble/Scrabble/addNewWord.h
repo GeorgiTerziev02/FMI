@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Header file for the add new word functionality
+* <Header file for the add new word functionality>
 *
 */
 

@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Cpp file with the implementation of functions that are needed for the logic of the application
+* <Cpp file with the implementation of functions that are needed for the logic of the application>
 *
 */
 

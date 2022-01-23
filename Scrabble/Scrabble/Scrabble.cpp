@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Main file - Start of the console program
+* <Main file - Start of the console program>
 *
 */
 

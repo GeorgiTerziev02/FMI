@@ -9,7 +9,7 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Header file with constants that are used in the project
+* <Header file with constants that are used in the project>
 *
 */
 
