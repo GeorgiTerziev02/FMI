@@ -26,4 +26,6 @@ void clearInputBuffer();
 void displayMainMenu();
 // Visualize Settings in the console
 void displaySettings(const int& lettersCount, const int& roundsCount, const int& shufflesAvailable);
+// Visualize all available letters in the console
+void displayAvailableLetters(const int* const letters);
 #endif //SCRABBLE_CONSOLE_OPERATIONS_H

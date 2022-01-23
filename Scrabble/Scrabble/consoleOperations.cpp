@@ -71,3 +71,18 @@ void displaySettings(const int& lettersCount, const int& roundsCount, const int&
 	cout << "Enter 0 to start editing the values" << endl;
 	cout << "Enter -1 to return to main menu" << endl;
 }
+
+// Visualize all available letters in the console
+void displayAvailableLetters(const int* const letters) {
+	cout << "Available letters: ";
+	for (size_t i = 0; i < LETTERS_COUNT; i++) {
+		if (letters[i] >= 1) {
+			// in case you have the letter more than one time
+			for (size_t j = 0; j < letters[i]; j++) {
+				cout << (char)(LOWERCASE_A_ASCII_CODE + i) << " ";
+			}
+		}
+	}
+
+	cout << endl;
+}

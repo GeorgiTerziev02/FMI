@@ -51,17 +51,8 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 			letters = generateRandomLetters(lettersCount);
 		}
 
-		cout << "Available letters: ";
-		for (size_t i = 0; i < LETTERS_COUNT; i++) {
-			if (letters[i] >= 1) {
-				// in case you have the letter more than one time
-				for (size_t j = 0; j < letters[i]; j++) {
-					cout << (char)(LOWERCASE_A_ASCII_CODE + i) << " ";
-				}
-			}
-		}
+		displayAvailableLetters(letters);
 
-		cout << endl;
 		cout << "Enter word consisting of lowercase characters: " << endl;
 
 		// check if user have already entered the word
