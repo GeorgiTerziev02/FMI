@@ -86,3 +86,9 @@ void displayAvailableLetters(const int* const letters) {
 
 	cout << endl;
 }
+
+// Clear console and visualize main menu
+void returnToMainMenu() {
+	clearConsole();
+	displayMainMenu();
+}

@@ -9,13 +9,12 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Header file for the function that sets up the game functionalities
+* Header file for the play functionality
 *
 */
 
 #pragma once
-#ifndef SCRABBLE_START_GAME_H
-#define SCRABBLE_START_GAME_H
-// Start the game
-void startScrabble();
-#endif //SCRABBLE_START_GAME_H
+#ifndef SCRABBLE_PLAY_H
+// Start playing Scrabble game
+void play(int lettersCount, int roundsCount, int availableShuffles);
+#endif //SCRABBLE_PLAY_H

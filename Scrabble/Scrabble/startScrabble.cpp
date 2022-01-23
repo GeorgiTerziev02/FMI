@@ -9,223 +9,20 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Cpp file with the function that starts the game
+* Cpp file setting up the game functionalities
 *
 */
 
 #include "startScrabble.h"
-#include "consoleOperations.h"
 #include "constants.h"
-#include "fileOperations.h"
+#include "consoleOperations.h"
 #include "helperFunctions.h"
+#include "play.h"
+#include "changeSettings.h"
+#include "addNewWord.h"
 #include <iostream>
 
 using namespace std;
-
-// Clear console and visualize main menu
-void returnToMainMenu() {
-	clearConsole();
-	displayMainMenu();
-}
-
-// Start game
-void startGame(int lettersCount, int roundsCount, int availableShuffles) {
-	int points = 0;
-	int remainingTries = DEFAULT_REMAINING_TRIES;
-	int currentRound = 1;
-
-	//clearInputBuffer();
-	clearConsole();
-
-	int* letters = generateRandomLetters(lettersCount);
-	bool shouldGetNewLetters = false;
-
-	while (roundsCount != 0) {
-		printSeparatorLine();
-		cout << "Your points so far " << points << endl;
-		cout << "Round " << currentRound << endl;
-
-		if (shouldGetNewLetters) {
-			delete[] letters;
-			letters = generateRandomLetters(lettersCount);
-		}
-
-		displayAvailableLetters(letters);
-
-		cout << "Enter word consisting of lowercase characters: " << endl;
-
-		// check if user have already entered the word
-		string inputWord;
-		getline(cin, inputWord);
-
-		// if word == 0 - shuffle if available
-		if (inputWord == "0") {
-			if (availableShuffles > 0) {
-				availableShuffles--;
-				shouldGetNewLetters = true;
-				continue;
-			}
-
-			cout << "No shuffles available!" << endl;
-			shouldGetNewLetters = false;
-			continue;
-		}
-
-		// check if word is valid (contains only lowercase characters)
-		if (!isWordValid(inputWord)) {
-			if (remainingTries > 1) {
-				remainingTries--;
-				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
-				shouldGetNewLetters = false;
-			}
-			else {
-				roundsCount--;
-				currentRound++;
-				remainingTries = DEFAULT_REMAINING_TRIES;
-				shouldGetNewLetters = true;
-				clearConsole();
-			}
-
-			continue;
-		}
-
-		// check if word consists only of the letters above
-		int* wordArray = convertWordToIntegerArray(inputWord);
-		if (!isWordArrayLower(wordArray, letters)) {
-			if (remainingTries > 1) {
-				remainingTries--;
-				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
-				shouldGetNewLetters = false;
-			}
-			else {
-				roundsCount--;
-				currentRound++;
-				shouldGetNewLetters = true;
-				remainingTries = DEFAULT_REMAINING_TRIES;
-				clearConsole();
-			}
-
-			delete[] wordArray;
-			continue;
-		}
-
-		// check if word is found in dictionary
-		if (isWordInDictionary(inputWord)) {
-			// Yes - next round + increment points
-			points += inputWord.length();
-		}
-		else {
-			cout << "You word was not found in the dictionary! Please try again!" << endl;
-			shouldGetNewLetters = false;
-			delete[] wordArray;
-			continue;
-		}
-
-		delete[] wordArray;
-		roundsCount--;
-		shouldGetNewLetters = true;
-		currentRound++;
-		remainingTries = DEFAULT_REMAINING_TRIES;
-		clearConsole();
-	}
-
-	delete[] letters;
-	// print result
-	cout << "Your result is " << points << " (Press enter to return to main menu)" << endl;
-	string input;
-	getline(cin, input);
-	returnToMainMenu();
-}
-
-// Visualize settings menu and show option for editing values
-void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable) {
-	clearConsole();
-	displaySettings(lettersCount, roundsCount, shufflesAvailable);
-
-	int inputCode = -2;
-	string inputCodeString;
-
-	while (true) {
-		getline(cin, inputCodeString);
-		if (!isInputInteger(inputCodeString)) {
-			continue;
-		}
-
-		inputCode = intParse(inputCodeString);
-
-		if (inputCode == -1) {
-			returnToMainMenu();
-			break;
-		}
-
-		if (inputCode == 0) {
-			cout << "Enter new letters count" << endl;
-			string input;
-			int newLettersCount = -1;
-			while (newLettersCount < 1 || newLettersCount > LETTERS_COUNT) {
-				cout << "Please enter number between 1 and 26:" << endl;
-				getline(cin, input);
-
-				if (isInputInteger(input)) {
-					newLettersCount = intParse(input);
-				}
-			}
-
-			lettersCount = newLettersCount;
-
-			cout << "Enter new rounds count" << endl;
-			int newRoundsCount = -1;
-			while (newRoundsCount < 1) {
-				cout << "Please enter number greater or equal to 1:" << endl;
-				getline(cin, input);
-
-				if (isInputInteger(input)) {
-					newRoundsCount = intParse(input);
-				}
-			}
-
-			roundsCount = newRoundsCount;
-
-			cout << "Enter new shuffles count" << endl;
-			int newShufflesCount = -1;
-			while (newShufflesCount < 1) {
-				cout << "Please enter number greater or equal to 1:" << endl;
-				getline(cin, input);
-
-				if (isInputInteger(input)) {
-					newShufflesCount = intParse(input);
-				}
-			}
-
-			shufflesAvailable = newShufflesCount;
-
-			cout << "The new values were successfully set (Press enter to return to main menu)" << endl;
-			getline(cin, input);
-			returnToMainMenu();
-			break;
-		}
-	}
-}
-
-// Visualize add new word screen and show input for new word
-void addNewWord() {
-	clearConsole();
-	printSeparatorLine();
-
-	string newWord;
-	//clearInputBuffer();
-
-	while (true) {
-		cout << "Enter new word (consisting only of lowercase letters): " << endl;
-		getline(cin, newWord);
-
-		if (isWordValid(newWord)) {
-			addWordToFile(newWord);
-			returnToMainMenu();
-			break;
-		}
-	}
-}
 
 // Start the game
 void startScrabble() {
@@ -250,7 +47,7 @@ void startScrabble() {
 			int inputNumber = intParse(input);
 			switch (inputNumber)
 			{
-			case 1: startGame(lettersCount, roundsCount, availableShuffles); break;
+			case 1: play(lettersCount, roundsCount, availableShuffles); break;
 			case 2: changeSettings(lettersCount, roundsCount, availableShuffles); break;
 			case 3: addNewWord(); break;
 			case 4: return; break;

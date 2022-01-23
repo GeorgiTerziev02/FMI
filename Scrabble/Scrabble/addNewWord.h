@@ -9,13 +9,13 @@
 * @idnumber 3MI0600090
 * @compiler VC
 *
-* Header file for the function that sets up the game functionalities
+* Header file for the add new word functionality
 *
 */
 
 #pragma once
-#ifndef SCRABBLE_START_GAME_H
-#define SCRABBLE_START_GAME_H
-// Start the game
-void startScrabble();
-#endif //SCRABBLE_START_GAME_H
+
+#ifndef SCRABBLE_ADD_NEW_WORD_H
+// Visualize add new word screen and show input for new word
+void addNewWord();
+#endif //SCRABBLE_ADD_NEW_WORD_H

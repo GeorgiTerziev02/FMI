@@ -28,4 +28,6 @@ void displayMainMenu();
 void displaySettings(const int& lettersCount, const int& roundsCount, const int& shufflesAvailable);
 // Visualize all available letters in the console
 void displayAvailableLetters(const int* const letters);
+// Clear console and visualize main menu
+void returnToMainMenu();
 #endif //SCRABBLE_CONSOLE_OPERATIONS_H

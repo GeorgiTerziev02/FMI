@@ -139,17 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="addNewWord.cpp" />
+    <ClCompile Include="changeSettings.cpp" />
     <ClCompile Include="consoleOperations.cpp" />
     <ClCompile Include="fileOperations.cpp" />
     <ClCompile Include="helperFunctions.cpp" />
+    <ClCompile Include="play.cpp" />
     <ClCompile Include="Scrabble.cpp" />
     <ClCompile Include="startScrabble.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="addNewWord.h" />
+    <ClInclude Include="changeSettings.h" />
     <ClInclude Include="consoleOperations.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="fileOperations.h" />
     <ClInclude Include="helperFunctions.h" />
+    <ClInclude Include="play.h" />
     <ClInclude Include="startScrabble.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

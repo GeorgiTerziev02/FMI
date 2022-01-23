@@ -30,6 +30,15 @@
     <ClCompile Include="helperFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="changeSettings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="addNewWord.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="play.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="startScrabble.h">
@@ -45,6 +54,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="helperFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="changeSettings.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="addNewWord.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="play.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
