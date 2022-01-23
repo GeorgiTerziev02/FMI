@@ -263,7 +263,7 @@ void startScrabble() {
 			default: cout << "Please enter number 1-4" << endl; break;
 			}
 		}
-		else 
+		else
 		{
 			cout << "Please enter number 1-4" << endl;
 		}

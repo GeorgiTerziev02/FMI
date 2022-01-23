@@ -108,7 +108,7 @@ bool isInputInteger(string str) {
 		return false;
 	}
 
-	for (;index < length; index++)
+	for (; index < length; index++)
 	{
 		if (str[index] < ZERO_DIGIT_SYMBOL || str[index] > NINE_DIGIT_SYMBOL)
 		{

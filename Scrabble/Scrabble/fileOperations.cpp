@@ -19,10 +19,12 @@
 
 using namespace std;
 
+const char DICTIONARY_PATH[] = "words.txt";
+
 // Check if string is in txt file
 bool isWordInDictionary(string word) {
 	ifstream wordsFile;
-	wordsFile.open("words.txt", std::fstream::app);
+	wordsFile.open(DICTIONARY_PATH, std::fstream::app);
 
 	if (wordsFile.is_open()) {
 		string line;
@@ -49,9 +51,7 @@ void addWordToFile(string word) {
 		return;
 	}
 
-	wordsFile.open("words.txt", std::fstream::app);
-
+	wordsFile.open(DICTIONARY_PATH, std::fstream::app);
 	wordsFile << word << "\n";
-
 	wordsFile.close();
 }

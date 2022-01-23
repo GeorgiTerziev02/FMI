@@ -70,5 +70,4 @@ void displaySettings(const int& lettersCount, const int& roundsCount, const int&
 
 	cout << "Enter 0 to start editing the values" << endl;
 	cout << "Enter -1 to return to main menu" << endl;
-
 }
