@@ -37,12 +37,20 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 	//clearInputBuffer();
 	clearConsole();
 
+	int* letters = generateRandomLetters(lettersCount);
+	bool shouldGetNewLetters = false;
+
 	while (roundsCount != 0) {
 		printSeparatorLine();
 		cout << "Your points so far " << points << endl;
 		cout << "Round " << currentRound << endl;
 
-		int* letters = generateRandomLetters(lettersCount);
+		if (shouldGetNewLetters)
+		{
+			delete[] letters;
+			letters = generateRandomLetters(lettersCount);
+		}
+
 		cout << "Available letters: ";
 		for (size_t i = 0; i < LETTERS_COUNT; i++) {
 			if (letters[i] >= 1) {
@@ -54,7 +62,7 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		}
 
 		cout << endl;
-		cout << "Enter word: " << endl;
+		cout << "Enter word consisting of lowercase characters: " << endl;
 
 		// check if user have already entered the word
 		string inputWord;
@@ -64,26 +72,30 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 		if (inputWord == "0") {
 			if (availableShuffles > 0) {
 				availableShuffles--;
-				delete[] letters;
+				shouldGetNewLetters = true;
 				continue;
 			}
 
 			cout << "No shuffles available!" << endl;
+			shouldGetNewLetters = false;
+			continue;
 		}
 
+		// check if word is valid (contains only lowercase characters)
 		if (!isWordValid(inputWord)) {
 			if (remainingTries > 1) {
 				remainingTries--;
 				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
+				shouldGetNewLetters = false;
 			}
 			else {
 				roundsCount--;
 				currentRound++;
 				remainingTries = DEFAULT_REMAINING_TRIES;
+				shouldGetNewLetters = true;
 				clearConsole();
 			}
 
-			delete[] letters;
 			continue;
 		}
 
@@ -93,15 +105,16 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 			if (remainingTries > 1) {
 				remainingTries--;
 				cout << "Invalid word. Remaining tries: " << remainingTries << endl;
+				shouldGetNewLetters = false;
 			}
 			else {
 				roundsCount--;
 				currentRound++;
+				shouldGetNewLetters = true;
 				remainingTries = DEFAULT_REMAINING_TRIES;
 				clearConsole();
 			}
 
-			delete[] letters;
 			delete[] wordArray;
 			continue;
 		}
@@ -112,23 +125,21 @@ void startGame(int lettersCount, int roundsCount, int availableShuffles) {
 			points += inputWord.length();
 		}
 		else {
-			// TODO: Discuss
-			// No ????
 			cout << "You word was not found in the dictionary! Please try again!" << endl;
-
-			delete[] letters;
+			shouldGetNewLetters = false;
 			delete[] wordArray;
 			continue;
 		}
 
-		delete[] letters;
 		delete[] wordArray;
 		roundsCount--;
+		shouldGetNewLetters = true;
 		currentRound++;
 		remainingTries = DEFAULT_REMAINING_TRIES;
 		clearConsole();
 	}
 
+	delete[] letters;
 	// print result
 	cout << "Your result is " << points << " (Press enter to return to main menu)" << endl;
 	string input;
@@ -241,7 +252,6 @@ void startScrabble() {
 	int availableShuffles = DEFAULT_ROUNDS_SHUFFLES;
 
 	int currentRound = 0;
-
 	int points = 0;
 
 	displayMainMenu();
