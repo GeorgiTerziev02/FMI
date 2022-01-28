@@ -31,6 +31,7 @@ bool isWordInDictionary(string word) {
 
 		while (getline(wordsFile, line)) {
 			if (line == word) {
+				wordsFile.close();
 				return true;
 			}
 		}
