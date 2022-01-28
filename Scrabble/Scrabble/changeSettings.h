@@ -14,8 +14,5 @@
 */
 
 #pragma once
-
-#ifndef SCRABBLE_CHANGE_SETTINGS_H
 // Visualize settings menu and show option for editing values
 void changeSettings(int& lettersCount, int& roundsCount, int& shufflesAvailable);
-#endif //SCRABBLE_CHANGE_SETTINGS_H

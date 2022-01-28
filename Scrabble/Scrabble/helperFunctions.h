@@ -17,7 +17,6 @@
 using namespace std;
 
 #pragma once
-#ifndef SCRABBLE_HELPER_FUNCTIONS
 // Set all values in the array to 0
 void resetArray(int* arr, int length);
 // Generate random integer in the given range
@@ -37,4 +36,3 @@ bool isWordValid(string word);
 bool isInputInteger(string str);
 // Parse string to integer
 int intParse(string str);
-#endif //SCRABBLE_HELPER_FUNCTIONS

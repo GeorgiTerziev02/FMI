@@ -14,9 +14,6 @@
 */
 
 #pragma once
-#ifndef SCRABBLE_CONSTANTS_H
-#define SCRABBLE_CONSTANTS_H
-
 const int DEFAULT_LETTERS_COUNT = 10;
 const int DEFAULT_ROUNDS_COUNT = 5;
 const int DEFAULT_ROUNDS_SHUFFLES = 2;
@@ -31,5 +28,3 @@ const int HEADER_SEPARATOR_LENGTH = 25;
 const char ZERO_DIGIT_SYMBOL = '0';
 const char NINE_DIGIT_SYMBOL = '9';
 const char DASH_SYMBOL = '-';
-
-#endif //SCRABBLE_CONSTANTS_H

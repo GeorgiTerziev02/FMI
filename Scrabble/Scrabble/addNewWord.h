@@ -14,8 +14,5 @@
 */
 
 #pragma once
-
-#ifndef SCRABBLE_ADD_NEW_WORD_H
 // Visualize add new word screen and show input for new word
 void addNewWord();
-#endif //SCRABBLE_ADD_NEW_WORD_H

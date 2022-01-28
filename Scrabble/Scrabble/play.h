@@ -14,7 +14,5 @@
 */
 
 #pragma once
-#ifndef SCRABBLE_PLAY_H
 // Start playing Scrabble game
 void play(int lettersCount, int roundsCount, int availableShuffles);
-#endif //SCRABBLE_PLAY_H

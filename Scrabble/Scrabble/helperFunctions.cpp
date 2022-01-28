@@ -46,6 +46,7 @@ int* generateRandomLetters(int count) {
 		lettersArray[letter]++;
 		count--;
 	}
+	// TODO: check for vowels
 
 	return lettersArray;
 }
