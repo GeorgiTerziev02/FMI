@@ -41,7 +41,7 @@ bool strCmp(const char* str1, const char* str2) {
 	return true;
 }
 
-char* subStr(const char* str, const int startIndex, const int endIndex) {
+char* subStr(const char* str, const int& startIndex, const int& endIndex) {
 	int resultSize = endIndex - startIndex + 2;
 	char* result = new char[resultSize];
 
@@ -51,7 +51,7 @@ char* subStr(const char* str, const int startIndex, const int endIndex) {
 		return result;
 	}
 
-	for (size_t i = 0; i < resultSize; i++)
+	for (size_t i = 0; i < resultSize - 1; i++)
 	{
 		result[i] = str[startIndex + i];
 	}
@@ -111,7 +111,7 @@ void printOffers() {
 	myFile.close();
 }
 
-void filterOffers(const char* filePath, long long minSalary) {
+void filterOffers(const char* filePath, const long long& minSalary) {
 	ifstream myFile(filePath, std::ios::binary);
 
 	if (!myFile.is_open())
