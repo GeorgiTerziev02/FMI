@@ -1,18 +1,18 @@
 <student>
+	<name>test<\name>
+	<fn>2<\fn>
+	<age>33<\age>
+	<gender>Male<\gender>
+	<email>ivan@abv.bg<\email>
+	<grade>5.99<\grade>
+<\student>
+
+<student>
 	<name>Filip Filchev<\name>
 	<fn>3<\fn>
 	<age>33<\age>
 	<gender>Male<\gender>
 	<email>ivan432@abv.bg<\email>
 	<grade>6<\grade>
-<\student>
-
-<student>
-	<name>test<\name>
-	<fn>2<\fn>
-	<age>33<\age>
-	<gender>Male<\gender>
-	<email>ivan@abv.bg<\email>
-	<grade>4.32<\grade>
 <\student>
 
