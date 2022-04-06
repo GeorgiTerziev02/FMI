@@ -5,7 +5,7 @@
 MagicCard::MagicCard() {
 }
 
-MagicCard::MagicCard(char* name, char* effect, MagicCardType type) {
+MagicCard::MagicCard(const char* name, const char* effect, const MagicCardType type) {
 	strcpy(this->name, name);
 	strcpy(this->effect, effect);
 	this->type = type;

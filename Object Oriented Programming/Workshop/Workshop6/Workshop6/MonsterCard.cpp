@@ -9,7 +9,7 @@ MonsterCard::MonsterCard()
 	defPoints = 0;
 }
 
-MonsterCard::MonsterCard(char* name, int attPoints, int defPoints) {
+MonsterCard::MonsterCard(const char* name, const int attPoints, const int defPoints) {
 	strcpy(this->name, name);
 	this->attPoints = attPoints;
 	this->defPoints = defPoints;

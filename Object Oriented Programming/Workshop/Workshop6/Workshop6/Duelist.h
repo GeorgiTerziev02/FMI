@@ -12,7 +12,7 @@ private:
 
 public:
 	Duelist();
-	Duelist(char* name, const Deck& deck);
+	Duelist(const char* name, const Deck& deck);
 	Duelist(const Duelist& duelist);
 	Duelist& operator=(const Duelist& duelist);
 	~Duelist();

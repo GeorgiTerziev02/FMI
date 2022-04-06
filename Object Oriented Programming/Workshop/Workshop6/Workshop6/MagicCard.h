@@ -3,7 +3,7 @@
 const short MAX_NAME_SIZE = 26;
 const short MAX_EFFECT_SIZE = 101;
 
-enum MagicCardType {
+enum class MagicCardType {
 	trap,
 	buff,
 	spell
@@ -17,7 +17,7 @@ private:
 	MagicCardType type;
 public:
 	MagicCard();
-	MagicCard(char* name, char* effect, MagicCardType type);
+	MagicCard(const char* name, const char* effect, const MagicCardType type);
 	MagicCard(const MagicCard& magicCard);
 	MagicCard& operator=(const MagicCard& magicCard);
 	~MagicCard();

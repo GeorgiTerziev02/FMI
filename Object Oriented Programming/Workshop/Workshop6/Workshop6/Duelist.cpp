@@ -6,7 +6,7 @@
 Duelist::Duelist() {
 }
 
-Duelist::Duelist(char* name, const Deck& deck) {
+Duelist::Duelist(const char* name, const Deck& deck) {
 	this->name = new char[strlen(name) + 1];
 	strcpy(this->name, name);
 	this->deck = deck;

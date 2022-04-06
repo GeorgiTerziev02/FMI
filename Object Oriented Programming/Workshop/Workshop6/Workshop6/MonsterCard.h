@@ -11,7 +11,7 @@ private:
 
 public:
 	MonsterCard();
-	MonsterCard(char* name, int attPoints, int defPoints);
+	MonsterCard(const char* name, const int attPoints, const int defPoints);
 	MonsterCard(const MonsterCard& monster);
 	MonsterCard& operator=(const MonsterCard& monster);
 	~MonsterCard();
