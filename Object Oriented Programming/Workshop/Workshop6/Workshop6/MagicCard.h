@@ -10,7 +10,7 @@ enum class MagicCardType {
 };
 
 class MagicCard
-{
+{	
 private:
 	char name[MAX_NAME_SIZE];
 	char effect[MAX_EFFECT_SIZE];

@@ -12,9 +12,7 @@ MagicCard::MagicCard(const char* name, const char* effect, const MagicCardType t
 }
 
 MagicCard::MagicCard(const MagicCard& magicCard) {
-	strcpy(name, magicCard.name);
-	strcpy(effect, magicCard.effect);
-	type = magicCard.type;
+	copy(magicCard);
 }
 
 MagicCard& MagicCard::operator=(const MagicCard& magicCard) {

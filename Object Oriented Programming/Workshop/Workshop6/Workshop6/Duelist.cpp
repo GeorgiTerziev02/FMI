@@ -13,9 +13,7 @@ Duelist::Duelist(const char* name, const Deck& deck) {
 }
 
 Duelist::Duelist(const Duelist& duelist) {
-	name = new char[strlen(duelist.name) + 1];
-	strcpy(name, duelist.name);
-	deck = duelist.deck;
+	copy(duelist);
 }
 
 Duelist& Duelist::operator=(const Duelist& duelist) {

@@ -15,15 +15,11 @@ MonsterCard::MonsterCard(const char* name, const int attPoints, const int defPoi
 	this->defPoints = defPoints;
 }
 
-MonsterCard::MonsterCard(const MonsterCard& monster)
-{
-	strcpy(name, monster.name);
-	attPoints = monster.attPoints;
-	defPoints = monster.defPoints;
+MonsterCard::MonsterCard(const MonsterCard& monster) {
+	copy(monster);
 }
 
-MonsterCard& MonsterCard::operator=(const MonsterCard& monster)
-{
+MonsterCard& MonsterCard::operator=(const MonsterCard& monster) {
 	if (this != &monster)
 	{
 		strcpy(name, monster.name);

@@ -8,17 +8,7 @@ Deck::Deck() {
 }
 
 Deck::Deck(const Deck& deck) {
-	monsterCardsSize = deck.monsterCardsSize;
-	for (size_t i = 0; i < deck.monsterCardsSize; i++)
-	{
-		monsterCards[i] = deck.monsterCards[i];
-	}
-
-	magicCardsSize = deck.magicCardsSize;
-	for (size_t i = 0; i < deck.magicCardsSize; i++)
-	{
-		magicCards[i] = deck.magicCards[i];
-	}
+	copy(deck);
 }
 
 Deck& Deck::operator=(const Deck& deck) {
