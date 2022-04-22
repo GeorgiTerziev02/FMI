@@ -46,7 +46,7 @@ void Grade::copy(const Grade& other) {
 	strcpy(task, other.task);
 
 	from = new char[strlen(other.from) + 1];
-	strcpy(task, other.from);
+	strcpy(from, other.from);
 }
 
 void Grade::free() {

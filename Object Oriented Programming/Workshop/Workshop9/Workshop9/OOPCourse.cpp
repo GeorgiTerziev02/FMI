@@ -6,6 +6,16 @@ OOPCourse::OOPCourse(const char* lName, const char* a1Name) {
 	assistants[0] = Assistant(a1Name);
 }
 
+OOPCourse::OOPCourse(const char* lName, const char* a1Name, const char* a2Name) {
+	assistants[1] = Assistant(a2Name);
+	OOPCourse(lName, a1Name);
+}
+
+OOPCourse::OOPCourse(const char* lName, const char* a1Name, const char* a2Name, const char* a3Name) {
+	assistants[2] = Assistant(a3Name);
+	OOPCourse(lName, a1Name, a2Name);
+}
+
 bool OOPCourse::addStudent(const char* name, const int fn) {
 	if (studentsSize >= STUDENTS_MAX_SIZE) return false;
 
@@ -14,16 +24,16 @@ bool OOPCourse::addStudent(const char* name, const int fn) {
 }
 
 bool OOPCourse::addGrade(const int fn, const char* task, const short grade, const char* from) {
-	Student student = getStudentByFn(fn);
-	return student.addGrade(Grade(grade, task, from));
+	Student* student = getStudentByFn(fn);
+	return (*student).addGrade(Grade(grade, task, from));
 }
 
-Student& OOPCourse::getStudentByFn(const int fn) {
+Student* OOPCourse::getStudentByFn(const int fn) {
 	for (size_t i = 0; i < studentsSize; i++)
 	{
 		if ((*students[i]).getFn() == fn)
 		{
-			return *students[i];
+			return students[i];
 		}
 	}
 
@@ -51,7 +61,7 @@ bool OOPCourse::removeStudent(const int fn) {
 	return true;
 }
 
-double OOPCourse::getAverageGradePerTask(const char* task) {
+double OOPCourse::getAverageForCourse() const {
 	int count = 0;
 	double sum = 0;
 
@@ -62,19 +72,15 @@ double OOPCourse::getAverageGradePerTask(const char* task) {
 
 		for (size_t i = 0; i < gradesCount; i++)
 		{
-			if (strcmp(grades[i].getTask(), task))
-			{
-				sum += grades[i].getGrade();
-				count++;
-			}
+			sum += grades[i].getGrade();
+			count++;
 		}
 	}
 
-	// TODO: check division by 0
-	return sum / count;
+	return count == 0 ? 0 : sum / count;
 }
 
-double OOPCourse::getAverageFromTeacher(const char* from) {
+double OOPCourse::getAverageGradePerTask(const char* task) const {
 	int count = 0;
 	double sum = 0;
 
@@ -85,7 +91,7 @@ double OOPCourse::getAverageFromTeacher(const char* from) {
 
 		for (size_t i = 0; i < gradesCount; i++)
 		{
-			if (strcmp(grades[i].getFrom(), from))
+			if (strcmp(grades[i].getTask(), task) == 0)
 			{
 				sum += grades[i].getGrade();
 				count++;
@@ -93,6 +99,27 @@ double OOPCourse::getAverageFromTeacher(const char* from) {
 		}
 	}
 
-	// TODO: check division by 0
-	return sum / count;
+	return count == 0 ? 0 : sum / count;
+}
+
+double OOPCourse::getAverageFromTeacher(const char* from) const {
+	int count = 0;
+	double sum = 0;
+
+	for (size_t i = 0; i < studentsSize; i++)
+	{
+		const Grade* grades = (*students[i]).getGrades();
+		short gradesCount = (*students[i]).getGradesCount();
+
+		for (size_t i = 0; i < gradesCount; i++)
+		{
+			if (strcmp(grades[i].getFrom(), from) == 0)
+			{
+				sum += grades[i].getGrade();
+				count++;
+			}
+		}
+	}
+
+	return count == 0 ? 0 : sum / count;
 }

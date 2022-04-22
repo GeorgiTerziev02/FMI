@@ -15,17 +15,20 @@ class OOPCourse
 public:
 	OOPCourse() = default;
 	OOPCourse(const char* lName, const char* a1Name);
+	OOPCourse(const char* lName, const char* a1Name, const char* a2Name);
+	OOPCourse(const char* lName, const char* a1Name, const char* a2Name, const char* a3Name);
 	// TODO:
 	OOPCourse(const OOPCourse& other) = default;
 	OOPCourse& operator=(const OOPCourse& other) = default;
 	~OOPCourse() = default;
 
-	Student& getStudentByFn(const int fn);
+	Student* getStudentByFn(const int fn);
 
 	bool addStudent(const char* name, const int fn);
 	bool addGrade(const int fn, const char* task, const short grade, const char* from);
 	bool removeStudent(const int fn);
-	double getAverageGradePerTask(const char* task);
-	double getAverageFromTeacher(const char* from);
+	double getAverageForCourse() const;
+	double getAverageGradePerTask(const char* task) const;
+	double getAverageFromTeacher(const char* from) const;
 };
 
