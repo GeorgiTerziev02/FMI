@@ -2,17 +2,17 @@
 class Grade
 {
 private:
-	short grade;
+	double grade;
 	char* task;
 	char* from;
 public:
 	Grade();
-	Grade(const short grade, const char* task, const char* from);
+	Grade(const double grade, const char* task, const char* from);
 	Grade(const Grade& other);
 	Grade& operator=(const Grade& other);
 	~Grade();
 
-	short getGrade() const;
+	double getGrade() const;
 	const char* getTask() const;
 	const char* getFrom() const;
 private:

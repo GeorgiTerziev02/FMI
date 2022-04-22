@@ -23,7 +23,7 @@ bool OOPCourse::addStudent(const char* name, const int fn) {
 	return true;
 }
 
-bool OOPCourse::addGrade(const int fn, const char* task, const short grade, const char* from) {
+bool OOPCourse::addGrade(const int fn, const char* task, const double grade, const char* from) {
 	Student* student = getStudentByFn(fn);
 	return (*student).addGrade(Grade(grade, task, from));
 }

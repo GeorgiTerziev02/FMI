@@ -12,7 +12,7 @@ Grade::Grade() {
 	from[0] = '\0';
 }
 
-Grade::Grade(const short grade, const char* task, const char* from) {
+Grade::Grade(const double grade, const char* task, const char* from) {
 	this->grade = grade;
 
 	this->task = new char[strlen(task) + 1];
@@ -54,7 +54,7 @@ void Grade::free() {
 	delete[] from;
 }
 
-short Grade::getGrade() const {
+double Grade::getGrade() const {
 	return grade;
 }
 

@@ -25,7 +25,7 @@ public:
 	Student* getStudentByFn(const int fn);
 
 	bool addStudent(const char* name, const int fn);
-	bool addGrade(const int fn, const char* task, const short grade, const char* from);
+	bool addGrade(const int fn, const char* task, const double grade, const char* from);
 	bool removeStudent(const int fn);
 	double getAverageForCourse() const;
 	double getAverageGradePerTask(const char* task) const;
