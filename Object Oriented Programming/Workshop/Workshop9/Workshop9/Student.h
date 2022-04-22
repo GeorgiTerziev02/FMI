@@ -1,7 +1,7 @@
 #pragma once
 #include "Grade.h"
 
-const int MAX_GRADES_SIZE = 20;
+const int MAX_GRADES_SIZE = 7;
 
 class Student
 {
@@ -20,9 +20,10 @@ public:
 	int getFn() const;
 	const char* getName() const;
 	const Grade* getGrades() const;
-	const short getGradesCount() const;
+	short getGradesCount() const;
 
 	bool addGrade(const Grade& grade);
+	bool editGrade(const Grade& grade);
 private:
 	void copy(const Student& student);
 	void free();

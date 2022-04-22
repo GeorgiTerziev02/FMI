@@ -61,13 +61,38 @@ const Grade* Student::getGrades() const {
 	return grades;
 }
 
-const short Student::getGradesCount() const {
+short Student::getGradesCount() const {
 	return gradesCount;
 }
 
 bool Student::addGrade(const Grade& grade) {
 	if (gradesCount >= MAX_GRADES_SIZE) return false;
 
+	for (size_t i = 0; i < gradesCount; i++)
+	{
+		if (strcmp(grades[i].getTask(), grade.getTask()) == 0)
+		{
+			return false;
+		}
+	}
+
 	grades[gradesCount++] = grade;
+	return true;
+}
+
+bool Student::editGrade(const Grade& grade) {
+	int gradeIndex = -1;
+	for (size_t i = 0; i < gradesCount; i++)
+	{
+		if (strcmp(grades[i].getTask(), grade.getTask()) == 0)
+		{
+			gradeIndex = i;
+			break;
+		}
+	}
+
+	if (gradeIndex == -1) return false;
+
+	grades[gradeIndex].setGrade(grade.getGrade());
 	return true;
 }

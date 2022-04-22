@@ -28,7 +28,12 @@ bool OOPCourse::addGrade(const int fn, const char* task, const double grade, con
 	return (*student).addGrade(Grade(grade, task, from));
 }
 
-Student* OOPCourse::getStudentByFn(const int fn) {
+bool OOPCourse::editGrade(const int fn, const char* task, const double grade, const char* from) {
+	Student* student = getStudentByFn(fn);
+	return (*student).editGrade(Grade(grade, task, from));
+}
+
+Student* OOPCourse::getStudentByFn(const int fn) const {
 	for (size_t i = 0; i < studentsSize; i++)
 	{
 		if ((*students[i]).getFn() == fn)

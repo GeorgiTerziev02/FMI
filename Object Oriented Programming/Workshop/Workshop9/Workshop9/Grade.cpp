@@ -65,3 +65,7 @@ const char* Grade::getTask() const {
 const char* Grade::getFrom() const {
 	return from;
 }
+
+void Grade::setGrade(const double grade) {
+	this->grade = grade;
+}

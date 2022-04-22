@@ -17,18 +17,19 @@ public:
 	OOPCourse(const char* lName, const char* a1Name);
 	OOPCourse(const char* lName, const char* a1Name, const char* a2Name);
 	OOPCourse(const char* lName, const char* a1Name, const char* a2Name, const char* a3Name);
-	// TODO:
 	OOPCourse(const OOPCourse& other) = default;
 	OOPCourse& operator=(const OOPCourse& other) = default;
 	~OOPCourse() = default;
 
-	Student* getStudentByFn(const int fn);
-
 	bool addStudent(const char* name, const int fn);
 	bool addGrade(const int fn, const char* task, const double grade, const char* from);
+	bool editGrade(const int fn, const char* task, const double grade, const char* from);
 	bool removeStudent(const int fn);
 	double getAverageForCourse() const;
 	double getAverageGradePerTask(const char* task) const;
 	double getAverageFromTeacher(const char* from) const;
+
+private:
+	Student* getStudentByFn(const int fn) const;
 };
 

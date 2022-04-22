@@ -15,6 +15,8 @@ public:
 	double getGrade() const;
 	const char* getTask() const;
 	const char* getFrom() const;
+
+	void setGrade(const double grade);
 private:
 	void copy(const Grade& other);
 	void free();

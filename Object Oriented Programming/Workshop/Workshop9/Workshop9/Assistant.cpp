@@ -39,3 +39,7 @@ void Assistant::copy(const Assistant& other) {
 void Assistant::free() {
 	delete[] name;
 }
+
+const char* Assistant::getName() const {
+	return name;
+}

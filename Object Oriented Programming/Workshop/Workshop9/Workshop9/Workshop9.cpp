@@ -15,8 +15,11 @@ int main()
 
 	double res = p.getAverageForCourse(); // 5.08
 
-	double res5 = p.getAverageGradePerTask("HW1"); // 5;
-	double res6 = p.getAverageGradePerTask("K1"); // 5.16;
+	p.editGrade(42069, "HW1", 2, "Lecturer1");
+	double res44 = p.getAverageForCourse(); // 4.44
+
+	double res5 = p.getAverageGradePerTask("HW1"); // 4;
+	double res6 = p.getAverageGradePerTask("K1"); // 5.33;
 	double res7 = p.getAverageGradePerTask("test"); // 0;
 
 	bool res2 = p.removeStudent(42069);

@@ -10,6 +10,7 @@ public:
 	Lectorer& operator=(const Lectorer& lectorer);
 	~Lectorer();
 
+	const char* getName() const;
 private:
 	void copy(const Lectorer& other);
 	void free();

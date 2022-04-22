@@ -40,3 +40,7 @@ void Lectorer::copy(const Lectorer& other) {
 void Lectorer::free() {
 	delete[] name;
 }
+
+const char* Lectorer::getName() const {
+	return name;
+}
