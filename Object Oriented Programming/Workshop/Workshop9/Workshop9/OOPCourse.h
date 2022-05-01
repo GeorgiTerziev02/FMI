@@ -19,7 +19,7 @@ public:
 	OOPCourse(const char* lName, const char* a1Name, const char* a2Name, const char* a3Name);
 	OOPCourse(const OOPCourse& other) = default;
 	OOPCourse& operator=(const OOPCourse& other) = default;
-	~OOPCourse() = default;
+	~OOPCourse();
 
 	bool addStudent(const char* name, const int fn);
 	bool addGrade(const int fn, const char* task, const double grade, const char* from);

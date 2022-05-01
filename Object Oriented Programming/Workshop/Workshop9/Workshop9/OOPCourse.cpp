@@ -16,6 +16,11 @@ OOPCourse::OOPCourse(const char* lName, const char* a1Name, const char* a2Name, 
 	OOPCourse(lName, a1Name, a2Name);
 }
 
+OOPCourse::~OOPCourse() {
+	for (size_t i = 0; i < studentsSize; i++)
+		delete students[i];
+}
+
 bool OOPCourse::addStudent(const char* name, const int fn) {
 	if (studentsSize >= STUDENTS_MAX_SIZE) return false;
 
