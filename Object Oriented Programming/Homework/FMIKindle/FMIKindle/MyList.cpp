@@ -82,7 +82,7 @@ void MyList<T>::copy(const MyList<T>& other) {
 
 template<typename T>
 void MyList<T>::free() {
-	delete data;
+	delete[] data;
 }
 
 template<typename T>
