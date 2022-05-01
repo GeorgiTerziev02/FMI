@@ -37,6 +37,11 @@ int Kindle::addUser(char* userName, char* password) {
 	return users.getSize() - 1;
 }
 
+int Kindle::addUser(const User& user) {
+	users.add(user);
+	return users.getSize() - 1;
+}
+
 int Kindle::addBook(const Book& book) {
 	books.add(book);
 	return books.getSize() - 1;

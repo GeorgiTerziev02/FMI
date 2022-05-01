@@ -15,7 +15,8 @@ public:
 	~Kindle() = default;
 
 	int logIn(char* userName, char* password) const;
-	int addUser(char* userName, char* password);
+	int addUser(char* userName, char* password); 
+	int addUser(const User& user);
 	int addBook(const Book& book);
 
 	const MyList<User>& getUsersList() const;

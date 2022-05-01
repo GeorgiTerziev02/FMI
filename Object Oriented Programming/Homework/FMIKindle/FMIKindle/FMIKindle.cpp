@@ -9,7 +9,16 @@ int main()
 {
 	bool isLoggedIn = false;
 	size_t userIndex = -1;
+
 	Kindle kindle;
+	
+	bool result = readKindleFromFile("kindle.bin", kindle);
+
+	if (result)
+		std::cout << "Successfully read db!" << std::endl;
+	else
+		std::cout << "Db not found. Starting with empty db!" << std::endl;
+
 	while (true)
 	{
 		char input[INPUT_BUFFER_SIZE];
