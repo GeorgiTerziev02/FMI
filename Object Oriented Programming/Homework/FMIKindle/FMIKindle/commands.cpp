@@ -23,3 +23,40 @@ int logInUser(const Kindle& kindle) {
 
 	return kindle.logIn(userName, password);
 }
+
+
+Book* getBookByName(Kindle& kindle) {
+	char bookName[INPUT_BUFFER_SIZE];
+	std::cout << ">Enter book name: ";
+	std::cin.getline(bookName, INPUT_BUFFER_SIZE);
+
+	Book* book = kindle.getBookByName(bookName);
+
+	return book;
+}
+
+void readBook(Kindle& kindle, User& user) {
+	Book* book = getBookByName(kindle);
+	user.addReadBook(book);
+}
+
+void commentBook(Kindle& kindle, User& user) {
+	Book* book = getBookByName(kindle);
+	user.commentBook(book);
+}
+
+void readBookComments(Kindle& kindle, const User& user) {
+	Book* book = getBookByName(kindle);
+	user.readBookComments(book);
+}
+
+void rateBook(Kindle& kindle, const User& user) {
+	Book* book = getBookByName(kindle);
+	user.rateBook(book);
+}
+
+void editBook(Kindle& kindle, const User& user) {
+	Book* book = getBookByName(kindle);
+
+	user.editBook(book);
+}

@@ -126,14 +126,46 @@ Book User::writeBook() {
 	return book;
 }
 
+void User::editBook(Book* book) const {
+	// TODO:
+	// name
+	//select page
+	// new content
+}
 
-void User::commentBook(Book* book) {
+void User::commentBook(Book* book) const {
+	if (!hasReadBook(book)) return;
+
 	char comment[INPUT_BUFFER_SIZE];
 	std::cout << ">Enter comment: ";
 	std::cin.getline(comment, INPUT_BUFFER_SIZE);
 
-	if (hasReadBook(book))
+	book->addComment(comment);
+}
+
+
+void User::readBookComments(const Book* book) const {
+	if (!hasReadBook(book) && !hasWroteBook(book)) return;
+
+	MyList<char*> comments = book->getComments();
+	for (size_t i = 0; i < comments.getSize(); i++)
 	{
-		book->addComment(comment);
+		std::cout << comments[i] << std::endl;
 	}
+}
+
+
+void User::rateBook(Book* book) const {
+	if (!hasReadBook(book)) return;
+
+	unsigned short rating = -1;
+	while (rating < 0 || rating > 10)
+	{
+		std::cout << ">Enter book rating: ";
+		std::cin >> rating;
+	}
+
+	Rating ratingObj(getUserName(), rating);
+
+	book->addRating(ratingObj);
 }

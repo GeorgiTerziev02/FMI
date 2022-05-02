@@ -8,7 +8,7 @@
 int main()
 {
 	bool isLoggedIn = false;
-	size_t userIndex = -1;
+	User currentUser;
 
 	Kindle kindle;
 	
@@ -43,47 +43,46 @@ int main()
 		{
 			if (strcmp(command, SIGNUP_COMMAND) == 0)
 			{
-				userIndex = signUpUser(kindle);
+				int userIndex = signUpUser(kindle);
 				isLoggedIn = userIndex >= 0;
+				if (isLoggedIn)
+				{
+					currentUser = kindle.getUsersList()[userIndex];
+				}
 			}
 			else if (strcmp(command, LOGIN_COMMAND) == 0) 
 			{
-				userIndex = logInUser(kindle);
+				int userIndex = logInUser(kindle);
 				isLoggedIn = userIndex >= 0;
+				if (isLoggedIn)
+				{
+					currentUser = kindle.getUsersList()[userIndex];
+				}
 			}
 		}
 		else {
-			User user = kindle.getUsersList()[userIndex];
-
-			if (strcmp(command, WRITE_COMMAND) == 0)
+			if (strcmp(command, LOGOUT_COMMAND) == 0) {
+				isLoggedIn = false;
+			}
+			else if (strcmp(command, WRITE_COMMAND) == 0)
 			{
-				Book book = user.writeBook();
+				Book book = currentUser.writeBook();
 				kindle.addBook(book);
 			}
+			else if (strcmp(command, READ_COMMAND) == 0) {
+				readBook(kindle, currentUser);
+			}
 			else if (strcmp(command, COMMENT_COMMAND) == 0) {
-				char bookName[INPUT_BUFFER_SIZE];
-				std::cout << ">Enter book name: ";
-				std::cin.getline(bookName, INPUT_BUFFER_SIZE);
-
-				Book* book = kindle.getBookByName(bookName);
-				user.commentBook(book);
+				commentBook(kindle, currentUser);
 			}
 			else if (strcmp(command, COMMENTS_COMMAND) == 0) {
-				char bookName[INPUT_BUFFER_SIZE];
-				std::cout << ">Enter book name: ";
-				std::cin.getline(bookName, INPUT_BUFFER_SIZE);
-
-				Book* book = kindle.getBookByName(bookName);
-				bool hasRead = user.hasReadBook(book);
-
-				if (hasRead)
-				{
-					MyList<char*> comments = book->getComments();
-					for (size_t i = 0; i < comments.getSize(); i++)
-					{
-						std::cout << comments[i] << std::endl;
-					}
-				}
+				readBookComments(kindle, currentUser);
+			}
+			else if (strcmp(command, RATE_COMMAND) == 0) {
+				rateBook(kindle, currentUser);
+			}
+			else if (strcmp(command, EDIT_COMMAND) == 0) {
+				editBook(kindle, currentUser);
 			}
 		}
 	}

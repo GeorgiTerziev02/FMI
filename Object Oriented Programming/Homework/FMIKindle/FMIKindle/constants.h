@@ -10,6 +10,7 @@ const char QUIT_COMMAND[] = "quit";
 
 const char SIGNUP_COMMAND[] = "signup";
 const char LOGIN_COMMAND[] = "login";
+const char LOGOUT_COMMAND[] = "logout";
 
 const char VIEW_COMMAND[] = "view";
 const char WRITE_COMMAND[] = "write";
