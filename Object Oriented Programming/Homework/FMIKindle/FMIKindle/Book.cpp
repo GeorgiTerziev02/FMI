@@ -76,6 +76,16 @@ void Book::copy(const Book& other) {
 	strcpy(authorName, other.authorName);
 
 	rating = other.rating;
+
+	for (size_t i = 0; i < other.pages.getSize(); i++)
+	{
+		pages.add(other.pages[i]);
+	}
+
+	for (size_t i = 0; i < other.comments.getSize(); i++)
+	{
+		comments.add(other.comments[i]);
+	}
 }
 
 void Book::free() {

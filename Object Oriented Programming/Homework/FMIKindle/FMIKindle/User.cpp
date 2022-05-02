@@ -1,4 +1,6 @@
 #include "User.h"
+#include "constants.h"
+#include <iostream>
 #include <cstring>
 
 #pragma warning (disable: 4996)
@@ -104,7 +106,22 @@ bool User::hasWroteBook(const Book* book) const {
 }
 
 Book User::writeBook() {
-	Book book("test", userName, 0);
+	char bookName[INPUT_BUFFER_SIZE];
+	std::cout << ">Enter book name: ";
+	std::cin.getline(bookName, INPUT_BUFFER_SIZE);
+
+	Book book(bookName, userName, 0);
+
+	while (true)
+	{
+		char pageContent[PAGE_BUFFER_SIZE];
+		std::cout << ">Enter page content or enter q to stop: ";
+		std::cin.getline(pageContent, PAGE_BUFFER_SIZE);
+
+		if (strcmp(pageContent, "q") == 0) break;
+
+		book.addPage(Page(pageContent));
+	}
 
 	return book;
 }

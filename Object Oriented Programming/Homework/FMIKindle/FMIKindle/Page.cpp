@@ -26,6 +26,17 @@ Page& Page::operator=(const Page& other) {
 	return *this;
 }
 
+Page& Page::operator=(Page&& other) {
+	if (this != &other) {
+		free();
+
+		content = other.content;
+		other.content = nullptr;
+	}
+
+	return *this;
+}
+
 Page::~Page() {
 	free();
 }

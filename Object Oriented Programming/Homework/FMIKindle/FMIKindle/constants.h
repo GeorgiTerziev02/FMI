@@ -2,6 +2,7 @@
 
 const int INPUT_BUFFER_SIZE = 50;
 const int COMMAND_SIZE = 20;
+const int PAGE_BUFFER_SIZE = 1024;
 
 const char FILE_PATH[] = "kindle.bin";
 

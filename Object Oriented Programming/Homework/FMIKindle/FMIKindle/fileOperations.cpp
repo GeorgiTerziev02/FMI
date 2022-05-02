@@ -18,7 +18,7 @@ void writeStringToFile(std::ofstream& file, const char* str) {
 	file.write(str, stringLength);
 }
 
-Book& readBookFromFile(std::ifstream& file) {
+Book readBookFromFile(std::ifstream& file) {
 	Book book;
 
 	char* name = readStringFromFile(file);
@@ -38,7 +38,8 @@ Book& readBookFromFile(std::ifstream& file) {
 	for (size_t i = 0; i < pagesLength; i++)
 	{
 		char* content = readStringFromFile(file);
-		book.addPage(Page(content));
+		Page page(content);
+		book.addPage(page);
 		delete content;
 	}
 
@@ -97,7 +98,8 @@ bool readKindleFromFile(const char* filePath, Kindle& kindle) {
 	in.read((char*)&booksSize, sizeof(booksSize));
 	for (size_t i = 0; i < booksSize; i++)
 	{
-		kindle.addBook(readBookFromFile(in));
+		Book book = readBookFromFile(in);
+		kindle.addBook(book);
 	}
 
 	size_t usersSize;

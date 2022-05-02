@@ -9,6 +9,7 @@ public:
 	Page(const char* content);
 	Page(const Page&);
 	Page& operator=(const Page&);
+	Page& operator=(Page&& other);
 	~Page();
 
 	const char* getContent() const;
