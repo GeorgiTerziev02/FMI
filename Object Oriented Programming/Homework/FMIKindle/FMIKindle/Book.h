@@ -12,7 +12,7 @@ private:
 	MyList<char*> comments;
 public:
 	Book();
-	Book(const char* name, const char* authorName, const unsigned short rating);
+	Book(const char* name, const char* authorName);
 	Book(const Book&);
 	Book(Book&&);
 	Book& operator=(const Book&);

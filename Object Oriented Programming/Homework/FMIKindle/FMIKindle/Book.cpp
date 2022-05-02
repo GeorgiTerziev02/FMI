@@ -11,14 +11,9 @@ Book::Book() {
 	authorName[0] = '\0';
 }
 
-Book::Book(const char* name, const char* authorName, const unsigned short rating) {
-	this->name = new char[strlen(name) + 1];
-	strcpy(this->name, name);
-
-	this->authorName = new char[strlen(authorName) + 1];
-	strcpy(this->authorName, authorName);
-
-	this->rating = rating;
+Book::Book(const char* name, const char* authorName) {
+	setName(name);
+	setAuthorName(authorName);
 }
 
 Book::Book(const Book& other) {
@@ -69,11 +64,8 @@ Book::~Book() {
 }
 
 void Book::copy(const Book& other) {
-	name = new char[strlen(other.name) + 1];
-	strcpy(name, other.name);
-
-	authorName = new char[strlen(other.authorName) + 1];
-	strcpy(authorName, other.authorName);
+	setName(other.name);
+	setAuthorName(other.authorName);
 
 	rating = other.rating;
 

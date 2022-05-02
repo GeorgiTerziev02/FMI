@@ -1,5 +1,6 @@
 #include "Page.h"
 #include <cstring>
+
 #pragma warning (disable: 4996)
 
 Page::Page() {
@@ -8,8 +9,7 @@ Page::Page() {
 }
 
 Page::Page(const char* content) {
-	this->content = new char[strlen(content) + 1];
-	strcpy(this->content, content);
+	setContent(content);
 }
 
 Page::Page(const Page& other) {
@@ -26,7 +26,7 @@ Page& Page::operator=(const Page& other) {
 	return *this;
 }
 
-Page& Page::operator=(Page&& other) {
+Page& Page::operator=(Page&& other) noexcept {
 	if (this != &other) {
 		free();
 
@@ -52,4 +52,10 @@ void Page::free() {
 
 const char* Page::getContent() const {
 	return content;
+}
+
+void Page::setContent(const char* content) {
+	delete this->content;
+	this->content = new char[strlen(content) + 1];
+	strcpy(this->content, content);
 }

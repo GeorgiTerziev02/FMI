@@ -13,6 +13,7 @@ const char LOGIN_COMMAND[] = "login";
 
 const char VIEW_COMMAND[] = "view";
 const char WRITE_COMMAND[] = "write";
+const char EDIT_COMMAND[] = "edit";
 const char READ_COMMAND[] = "read";
 const char RATE_COMMAND[] = "rate";
 const char COMMENT_COMMAND[] = "comment";

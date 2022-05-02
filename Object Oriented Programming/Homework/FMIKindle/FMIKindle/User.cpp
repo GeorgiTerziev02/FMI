@@ -110,7 +110,7 @@ Book User::writeBook() {
 	std::cout << ">Enter book name: ";
 	std::cin.getline(bookName, INPUT_BUFFER_SIZE);
 
-	Book book(bookName, userName, 0);
+	Book book(bookName, userName);
 
 	while (true)
 	{
