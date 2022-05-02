@@ -100,7 +100,7 @@ bool readKindleFromFile(const char* filePath, Kindle& kindle) {
 		kindle.addBook(readBookFromFile(in));
 	}
 
-	size_t usersSize = 0;
+	size_t usersSize;
 	in.read((char*)&usersSize, sizeof(usersSize));
 	for (size_t i = 0; i < usersSize; i++)
 	{

@@ -25,11 +25,40 @@ Book::Book(const Book& other) {
 	copy(other);
 }
 
+Book::Book(Book&& other) {
+	name = other.name;
+	authorName = other.authorName;
+	rating = other.rating;
+	pages = other.pages;
+	comments = other.comments;
+
+	other.name = nullptr;
+	other.authorName = nullptr;
+}
+
 Book& Book::operator=(const Book& other) {
 	if (this != &other)
 	{
 		free();
 		copy(other);
+	}
+
+	return *this;
+}
+
+Book& Book::operator=(Book&& other) {
+	if (this != &other)
+	{
+		free();
+
+		name = other.name;
+		authorName = other.authorName;
+		rating = other.rating;
+		pages = other.pages;
+		comments = other.comments;
+
+		other.name = nullptr;
+		other.authorName = nullptr;
 	}
 
 	return *this;

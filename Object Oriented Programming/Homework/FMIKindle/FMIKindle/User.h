@@ -26,6 +26,8 @@ public:
 
 	void addReadBook(Book* book);
 	void addWroteBook(Book* book);
+
+	Book writeBook();
 private:
 	void copy(const User&);
 	void free();

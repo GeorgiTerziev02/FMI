@@ -26,6 +26,21 @@ MyList<T>& MyList<T>::operator=(const MyList<T>& other) {
 }
 
 template<typename T>
+MyList<T>& MyList<T>::operator=(MyList<T>&& other) {
+	if (this != &other)
+	{
+		free();
+
+		data = other.data;
+		size = other.size;
+		capacity = other.capacity;
+		other.data = nullptr;
+	}
+
+	return *this;
+}
+
+template<typename T>
 MyList<T>::~MyList() {
 	free();
 }

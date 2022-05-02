@@ -14,7 +14,9 @@ public:
 	Book();
 	Book(const char* name, const char* authorName, const unsigned short rating);
 	Book(const Book&);
+	Book(Book&&);
 	Book& operator=(const Book&);
+	Book& operator=(Book&&);
 	~Book();
 
 	const char* getName() const;
@@ -31,6 +33,7 @@ public:
 	void addComment(char* comment);
 
 private:
+	void move(Book&&);
 	void copy(const Book&);
 	void free();
 };

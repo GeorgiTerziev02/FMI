@@ -102,3 +102,9 @@ bool User::hasWroteBook(const Book* book) const {
 
 	return false;
 }
+
+Book User::writeBook() {
+	Book book("test", userName, 0);
+
+	return book;
+}

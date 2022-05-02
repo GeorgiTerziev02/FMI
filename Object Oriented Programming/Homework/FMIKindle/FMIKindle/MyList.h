@@ -10,7 +10,8 @@ private:
 public:
 	MyList();
 	MyList(const MyList<T>&);
-	MyList& operator=(const MyList<T>&);
+	MyList<T>& operator=(const MyList<T>&);
+	MyList<T>& operator=(MyList<T>&&);
 	~MyList();
 
 	T& operator[](size_t);

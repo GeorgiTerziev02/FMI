@@ -12,7 +12,7 @@ int main()
 
 	Kindle kindle;
 	
-	bool result = readKindleFromFile("kindle.bin", kindle);
+	bool result = readKindleFromFile(FILE_PATH, kindle);
 
 	if (result)
 		std::cout << "Successfully read db!" << std::endl;
@@ -36,7 +36,7 @@ int main()
 
 		if (strcmp(command, QUIT_COMMAND) == 0)
 		{
-			writeKindleToFile("kindle.bin", kindle);
+			writeKindleToFile(FILE_PATH, kindle);
 			return 0;
 		}
 		if (!isLoggedIn)
@@ -53,7 +53,13 @@ int main()
 			}
 		}
 		else {
+			User user = kindle.getUsersList()[userIndex];
 
+			if (strcmp(command, WRITE_COMMAND) == 0)
+			{
+				Book book = user.writeBook();
+				kindle.addBook(book);
+			}
 		}
 	}
 
