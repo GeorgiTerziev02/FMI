@@ -16,3 +16,4 @@ const char WRITE_COMMAND[] = "write";
 const char READ_COMMAND[] = "read";
 const char RATE_COMMAND[] = "rate";
 const char COMMENT_COMMAND[] = "comment";
+const char COMMENTS_COMMAND[] = "comments";

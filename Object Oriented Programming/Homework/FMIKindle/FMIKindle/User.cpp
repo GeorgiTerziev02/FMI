@@ -125,3 +125,15 @@ Book User::writeBook() {
 
 	return book;
 }
+
+
+void User::commentBook(Book* book) {
+	char comment[INPUT_BUFFER_SIZE];
+	std::cout << ">Enter comment: ";
+	std::cin.getline(comment, INPUT_BUFFER_SIZE);
+
+	if (hasReadBook(book))
+	{
+		book->addComment(comment);
+	}
+}

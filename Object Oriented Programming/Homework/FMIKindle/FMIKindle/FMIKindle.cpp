@@ -60,6 +60,31 @@ int main()
 				Book book = user.writeBook();
 				kindle.addBook(book);
 			}
+			else if (strcmp(command, COMMENT_COMMAND) == 0) {
+				char bookName[INPUT_BUFFER_SIZE];
+				std::cout << ">Enter book name: ";
+				std::cin.getline(bookName, INPUT_BUFFER_SIZE);
+
+				Book* book = kindle.getBookByName(bookName);
+				user.commentBook(book);
+			}
+			else if (strcmp(command, COMMENTS_COMMAND) == 0) {
+				char bookName[INPUT_BUFFER_SIZE];
+				std::cout << ">Enter book name: ";
+				std::cin.getline(bookName, INPUT_BUFFER_SIZE);
+
+				Book* book = kindle.getBookByName(bookName);
+				bool hasRead = user.hasReadBook(book);
+
+				if (hasRead)
+				{
+					MyList<char*> comments = book->getComments();
+					for (size_t i = 0; i < comments.getSize(); i++)
+					{
+						std::cout << comments[i] << std::endl;
+					}
+				}
+			}
 		}
 	}
 
