@@ -81,6 +81,9 @@ int main()
 			else if (strcmp(command, RATE_COMMAND) == 0) {
 				rateBook(kindle, currentUser);
 			}
+			else if (strcmp(command, RATES_COMMAND) == 0) {
+				viewBookRates(kindle, currentUser);
+			}
 			else if (strcmp(command, EDIT_COMMAND) == 0) {
 				editBook(kindle, currentUser);
 			}

@@ -105,6 +105,44 @@ bool User::hasWroteBook(const Book* book) const {
 	return false;
 }
 
+void User::readBook(Book* book) {
+	MyList<Page> pages = book->getPages();
+
+	int index = 0;
+	std::cout << "n - next page" << std::endl;
+	std::cout << "p - prev page" << std::endl;
+	std::cout << "q - quit" << std::endl;
+
+	while (true)
+	{
+		char input;
+		std::cout << pages[index].getContent() << std::endl;
+		std::cout << ">" << std::endl;
+		std::cin >> input;
+
+		switch (input)
+		{
+			case 'n': {
+				if (index < pages.getSize() - 1)
+				{
+					index++;
+				}
+			}; break;
+			case 'p': {
+				if (index > 0)
+				{
+					index--;
+				}
+			}; break;
+			case 'q': {
+				break;
+			}; break;
+		}
+	}
+
+	addReadBook(book);
+}
+
 Book User::writeBook() {
 	char bookName[INPUT_BUFFER_SIZE];
 	std::cout << ">Enter book name: ";
@@ -168,4 +206,19 @@ void User::rateBook(Book* book) const {
 	Rating ratingObj(getUserName(), rating);
 
 	book->addRating(ratingObj);
+}
+
+void User::editRate(Book* book) const {
+	
+}
+
+void User::viewBookRates(Book* book) const {
+	if (!hasReadBook(book) && !hasWroteBook(book)) return;
+
+	MyList<Rating> ratings = book->getRatings();
+	
+	for (size_t i = 0; i < ratings.getSize(); i++)
+	{
+		std::cout << ratings[i].getUserName() << " - " << ratings[i].getRating() << std::endl;
+	}
 }

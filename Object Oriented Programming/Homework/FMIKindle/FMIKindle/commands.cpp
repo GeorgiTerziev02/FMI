@@ -37,7 +37,7 @@ Book* getBookByName(Kindle& kindle) {
 
 void readBook(Kindle& kindle, User& user) {
 	Book* book = getBookByName(kindle);
-	user.addReadBook(book);
+	user.readBook(book);
 }
 
 void commentBook(Kindle& kindle, User& user) {
@@ -53,6 +53,11 @@ void readBookComments(Kindle& kindle, const User& user) {
 void rateBook(Kindle& kindle, const User& user) {
 	Book* book = getBookByName(kindle);
 	user.rateBook(book);
+}
+
+void viewBookRates(Kindle& kindle, const User& user) {
+	Book* book = getBookByName(kindle);
+	user.viewBookRates(book);
 }
 
 void editBook(Kindle& kindle, const User& user) {

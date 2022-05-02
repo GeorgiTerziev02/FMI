@@ -8,6 +8,7 @@ class Book
 private:
 	char* name;
 	char* authorName;
+	double rating;
 	MyList<Rating> ratings;
 	MyList<Page> pages;
 	MyList<char*> comments;
@@ -22,6 +23,7 @@ public:
 
 	const char* getName() const;
 	const char* getAuthorName() const;
+	double getRating() const;
 	const MyList<Rating>& getRatings() const;
 	const MyList<Page>& getPages() const;
 	const MyList<char*>& getComments() const;
@@ -33,11 +35,12 @@ public:
 	// template error when const char*...
 	void addComment(char* comment);
 	void addRating(const Rating& rating);
+	void editRating(const Rating& newRating);
 
 	bool hasRatingFromUser(const char* userName) const;
 
 private:
-	void move(Book&&);
+	double calculateRating() const;
 	void copy(const Book&);
 	void free();
 };

@@ -13,4 +13,6 @@ void readBookComments(Kindle& kindle, const User& user);
 
 void rateBook(Kindle& kindle, const User& user);
 
+void viewBookRates(Kindle& kindle, const User& user);
+
 void editBook(Kindle& kindle, const User& user);

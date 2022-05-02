@@ -26,12 +26,15 @@ public:
 
 	void addReadBook(Book* book);
 	void addWroteBook(Book* book);
-
+	
+	void readBook(Book* book);
 	Book writeBook();
 	void editBook(Book* book) const;
 	void commentBook(Book* book) const;
 	void readBookComments(const Book* book) const;
 	void rateBook(Book* book) const;
+	void editRate(Book* book) const;
+	void viewBookRates(Book* book) const;
 private:
 	void copy(const User&);
 	void free();
