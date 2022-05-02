@@ -46,3 +46,15 @@ int Kindle::addBook(const Book& book) {
 	books.add(book);
 	return books.getSize() - 1;
 }
+
+Book* Kindle::getBookByName(const char* name) {
+	for (size_t i = 0; i < books.getSize(); i++)
+	{
+		if (strcmp(books[i].getName(), name) == 0)
+		{
+			return &(books[i]);
+		}
+	}
+
+	return nullptr;
+}

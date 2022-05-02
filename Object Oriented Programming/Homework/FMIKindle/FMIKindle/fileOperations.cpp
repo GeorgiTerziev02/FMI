@@ -56,7 +56,7 @@ Book& readBookFromFile(std::ifstream& file) {
 }
 
 // passing the kindle to map the books with the user
-User readUserFromFile(std::ifstream& file, const Kindle& kindle) {
+User readUserFromFile(std::ifstream& file, Kindle& kindle) {
 	char* userName = readStringFromFile(file);
 	char* password = readStringFromFile(file);
 
@@ -64,35 +64,34 @@ User readUserFromFile(std::ifstream& file, const Kindle& kindle) {
 	delete userName;
 	delete password;
 
-	return user;
-	//MyList<Book*> readBooks = user.getReadBooks();
-	//size_t booksSize = readBooks.getSize();
-	//file.write((const char*)&booksSize, sizeof(size_t));
-	//for (size_t i = 0; i < booksSize; i++)
-	//{
-	//	size_t bookNameLength = strlen(readBooks[i]->getName());
-	//	file.write((const char*)&bookNameLength, sizeof(bookNameLength));
-	//	file.write(readBooks[i]->getName(), bookNameLength);
-	//}
+	size_t readBooksSize;
+	file.read((char*)&readBooksSize, sizeof(readBooksSize));
 
-	//MyList<Book*> wroteBooks = user.getWroteBooks();
-	//size_t wroteBooksSize = wroteBooks.getSize();
-	//file.write((const char*)&wroteBooksSize, sizeof(size_t));
-	//for (size_t i = 0; i < wroteBooksSize; i++)
-	//{
-	//	size_t bookNameLength = strlen(wroteBooks[i]->getName());
-	//	file.write((const char*)&bookNameLength, sizeof(bookNameLength));
-	//	file.write(wroteBooks[i]->getName(), bookNameLength);
-	//}
+	for (size_t i = 0; i < readBooksSize; i++)
+	{
+		char* bookName = readStringFromFile(file);
+		Book* book = kindle.getBookByName(bookName);
+		user.addReadBook(book);
+	}
+
+	size_t wroteBooksSize;
+	file.read((char*)&wroteBooksSize, sizeof(wroteBooksSize));
+
+	for (size_t i = 0; i < wroteBooksSize; i++)
+	{
+		char* bookName = readStringFromFile(file);
+		Book* book = kindle.getBookByName(bookName);
+		user.addWroteBook(book);
+	}
+
+	return user;
 }
 
 bool readKindleFromFile(const char* filePath, Kindle& kindle) {
 	std::ifstream in(filePath, std::ios::binary);
 
-	if (!in.is_open())
-	{
+	if (!in.is_open()) 
 		return false;
-	}
 
 	size_t booksSize;
 	in.read((char*)&booksSize, sizeof(booksSize));
@@ -105,7 +104,6 @@ bool readKindleFromFile(const char* filePath, Kindle& kindle) {
 	in.read((char*)&usersSize, sizeof(usersSize));
 	for (size_t i = 0; i < usersSize; i++)
 	{
-		// todo: get user and map him to his books
 		User user = readUserFromFile(in, kindle);
 		kindle.addUser(user);
 	}

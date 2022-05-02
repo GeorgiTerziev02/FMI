@@ -21,6 +21,8 @@ public:
 
 	const MyList<User>& getUsersList() const;
 	const MyList<Book>& getBooksList() const;
+
+	Book* getBookByName(const char* name);
 private:
 	void copy(const Kindle&);
 	void free();

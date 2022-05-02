@@ -21,6 +21,11 @@ public:
 	const MyList<Book*>& getReadBooks() const;
 	const MyList<Book*>& getWroteBooks() const;
 
+	bool hasReadBook(const Book* book) const;
+	bool hasWroteBook(const Book* book) const;
+
+	void addReadBook(Book* book);
+	void addWroteBook(Book* book);
 private:
 	void copy(const User&);
 	void free();

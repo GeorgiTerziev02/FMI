@@ -44,7 +44,6 @@ const char* User::getPassword() const {
 	return password;
 }
 
-
 const MyList<Book*>& User::getReadBooks() const {
 	return readBooks;
 }
@@ -69,4 +68,37 @@ void User::free() {
 
 	for (size_t i = 0; i < readBooks.getSize(); i++)
 		delete readBooks[i];
+}
+
+
+void User::addReadBook(Book* book) {
+	if (hasReadBook(book))
+	{
+		readBooks.add(book);
+	}
+}
+
+void User::addWroteBook(Book* book) {
+	if (hasWroteBook(book))
+	{
+		wroteBooks.add(book);
+	}
+}
+
+bool User::hasReadBook(const Book* book) const {
+	for (size_t i = 0; i < readBooks.getSize(); i++)
+	{
+		if (readBooks[i] == book) return true;
+	}
+
+	return false;
+}
+
+bool User::hasWroteBook(const Book* book) const {
+	for (size_t i = 0; i < wroteBooks.getSize(); i++)
+	{
+		if (wroteBooks[i] == book) return true;
+	}
+
+	return false;
 }
