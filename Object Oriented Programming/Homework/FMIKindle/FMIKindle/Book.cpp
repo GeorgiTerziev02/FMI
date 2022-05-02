@@ -23,7 +23,7 @@ Book::Book(const Book& other) {
 Book::Book(Book&& other) {
 	name = other.name;
 	authorName = other.authorName;
-	rating = other.rating;
+	ratings = other.ratings;
 	pages = other.pages;
 	comments = other.comments;
 
@@ -48,7 +48,7 @@ Book& Book::operator=(Book&& other) {
 
 		name = other.name;
 		authorName = other.authorName;
-		rating = other.rating;
+		ratings = other.ratings;
 		pages = other.pages;
 		comments = other.comments;
 
@@ -67,7 +67,10 @@ void Book::copy(const Book& other) {
 	setName(other.name);
 	setAuthorName(other.authorName);
 
-	rating = other.rating;
+	for (size_t i = 0; i < other.ratings.getSize(); i++)
+	{
+		ratings.add(other.ratings[i]);
+	}
 
 	for (size_t i = 0; i < other.pages.getSize(); i++)
 	{
@@ -96,8 +99,8 @@ const char* Book::getAuthorName() const {
 	return authorName;
 }
 
-unsigned short Book::getRating() const {
-	return rating;
+const MyList<Rating>& Book::getRatings() const {
+	return ratings;
 }
 
 const MyList<Page>& Book::getPages() const {
@@ -120,14 +123,26 @@ void Book::setAuthorName(const char* authorName) {
 	strcpy(this->authorName, authorName);
 }
 
-void Book::setRating(const unsigned short rating) {
-	this->rating = rating;
-}
-
 void Book::addPage(const Page& page) {
 	pages.add(page);
 }
 
 void Book::addComment(char* comment) {
 	comments.add(comment);
+}
+
+void Book::addRating(const Rating& rating) {
+	if (hasRatingFromUser(rating.getUserName())) return;
+
+	ratings.add(rating);
+}
+
+
+bool Book::hasRatingFromUser(const char* userName) const {
+	for (size_t i = 0; i < ratings.getSize(); i++)
+	{
+		if (strcmp(ratings[i].getUserName(), userName) == 0) return true;
+	}
+
+	return false;
 }

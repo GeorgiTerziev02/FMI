@@ -129,3 +129,4 @@ template class MyList<Book>;
 template class MyList<Book*>;
 template class MyList<char*>;
 template class MyList<Page>;
+template class MyList<Rating>;

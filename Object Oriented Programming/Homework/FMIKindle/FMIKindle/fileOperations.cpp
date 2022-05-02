@@ -29,9 +29,17 @@ Book readBookFromFile(std::ifstream& file) {
 	book.setAuthorName(authorName);
 	delete authorName;
 
-	unsigned short rating;
-	file.read((char*)&rating, sizeof(rating));
-	book.setRating(rating);
+	size_t ratingsLength;
+	file.read((char*)&ratingsLength, sizeof(ratingsLength));
+	for (size_t i = 0; i < ratingsLength; i++)
+	{
+		char* userName = readStringFromFile(file);
+		unsigned short rating;
+		file.read((char*)&rating, sizeof(rating));
+		Rating ratingObj(userName, rating);
+		book.addRating(ratingObj);
+		delete userName;
+	}
 
 	size_t pagesLength;
 	file.read((char*)&pagesLength, sizeof(pagesLength));
@@ -91,7 +99,7 @@ User readUserFromFile(std::ifstream& file, Kindle& kindle) {
 bool readKindleFromFile(const char* filePath, Kindle& kindle) {
 	std::ifstream in(filePath, std::ios::binary);
 
-	if (!in.is_open()) 
+	if (!in.is_open())
 		return false;
 
 	size_t booksSize;
@@ -138,12 +146,18 @@ void writeBookToFile(std::ofstream& file, const Book& book) {
 	writeStringToFile(file, book.getName());
 	writeStringToFile(file, book.getAuthorName());
 
-	unsigned short rating = book.getRating();
-	file.write((const char*)&rating, sizeof(book.getRating()));
+	MyList<Rating> ratings = book.getRatings();
+	size_t ratingsSize = ratings.getSize();
+	file.write((const char*)ratingsSize, sizeof(ratingsSize));
+	for (size_t i = 0; i < ratingsSize; i++)
+	{
+		writeStringToFile(file, ratings[i].getUserName());
+		file.write((const char*)ratings[i].getRating(), sizeof(unsigned short));
+	}
 
 	MyList<Page> pages = book.getPages();
 	size_t pagesSize = pages.getSize();
-	file.write((const char*)&pagesSize, sizeof(size_t));
+	file.write((const char*)&pagesSize, sizeof(pagesSize));
 	for (size_t i = 0; i < pagesSize; i++)
 	{
 		writeStringToFile(file, pages[i].getContent());
@@ -151,7 +165,7 @@ void writeBookToFile(std::ofstream& file, const Book& book) {
 
 	MyList<char*> comments = book.getComments();
 	size_t commentsSize = comments.getSize();
-	file.write((const char*)&commentsSize, sizeof(size_t));
+	file.write((const char*)&commentsSize, sizeof(commentsSize));
 	for (size_t i = 0; i < commentsSize; i++)
 	{
 		writeStringToFile(file, comments[i]);

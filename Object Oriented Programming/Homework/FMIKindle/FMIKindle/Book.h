@@ -1,13 +1,14 @@
 #pragma once
 #include "MyList.h"
 #include "Page.h"
+#include "Rating.h"
 
 class Book
 {
 private:
 	char* name;
 	char* authorName;
-	unsigned short rating;
+	MyList<Rating> ratings;
 	MyList<Page> pages;
 	MyList<char*> comments;
 public:
@@ -21,16 +22,19 @@ public:
 
 	const char* getName() const;
 	const char* getAuthorName() const;
-	unsigned short getRating() const;
+	const MyList<Rating>& getRatings() const;
 	const MyList<Page>& getPages() const;
 	const MyList<char*>& getComments() const;
 
 	void setName(const char* name);
 	void setAuthorName(const char* authorName);
-	void setRating(const unsigned short rating);
 	void addPage(const Page& page);
+
 	// template error when const char*...
 	void addComment(char* comment);
+	void addRating(const Rating& rating);
+
+	bool hasRatingFromUser(const char* userName) const;
 
 private:
 	void move(Book&&);
