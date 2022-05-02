@@ -27,4 +27,8 @@ int main()
 	double res3 = p.getAverageGradePerTask("HW1"); // 6;
 
 	double res4 = p.getAverageFromTeacher("Lecturer1"); //6
+
+	OOPCourse test(p);
+	test.addStudent("2222222", 22222);
+	int a = 5;
 }

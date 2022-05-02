@@ -17,8 +17,8 @@ public:
 	OOPCourse(const char* lName, const char* a1Name);
 	OOPCourse(const char* lName, const char* a1Name, const char* a2Name);
 	OOPCourse(const char* lName, const char* a1Name, const char* a2Name, const char* a3Name);
-	OOPCourse(const OOPCourse& other) = default;
-	OOPCourse& operator=(const OOPCourse& other) = default;
+	OOPCourse(const OOPCourse& other);
+	OOPCourse& operator=(const OOPCourse& other);
 	~OOPCourse();
 
 	bool addStudent(const char* name, const int fn);
@@ -30,6 +30,8 @@ public:
 	double getAverageFromTeacher(const char* from) const;
 
 private:
+	void copy(const OOPCourse& other);
+	void free();
 	Student* getStudentByFn(const int fn) const;
 };
 

@@ -16,7 +16,39 @@ OOPCourse::OOPCourse(const char* lName, const char* a1Name, const char* a2Name, 
 	OOPCourse(lName, a1Name, a2Name);
 }
 
+OOPCourse::OOPCourse(const OOPCourse& other) {
+	copy(other);
+}
+
+OOPCourse& OOPCourse::operator=(const OOPCourse& other) {
+	if (this != &other)
+	{
+		free();
+		copy(other);
+	}
+
+	return *this;
+}
+
 OOPCourse::~OOPCourse() {
+	free();
+}
+
+void OOPCourse::copy(const OOPCourse& other) {
+	lectorer = other.lectorer;
+	for (size_t i = 0; i < 3; i++)
+	{
+		assistants[i] = other.assistants[i];
+	}
+
+	studentsSize = other.studentsSize;
+	for (size_t i = 0; i < studentsSize; i++)
+	{
+		students[i] = new Student(*other.students[i]);
+	}
+}
+
+void OOPCourse::free() {
 	for (size_t i = 0; i < studentsSize; i++)
 		delete students[i];
 }
@@ -41,7 +73,7 @@ bool OOPCourse::editGrade(const int fn, const char* task, const double grade, co
 Student* OOPCourse::getStudentByFn(const int fn) const {
 	for (size_t i = 0; i < studentsSize; i++)
 	{
-		if ((*students[i]).getFn() == fn)
+		if (students[i]->getFn() == fn)
 		{
 			return students[i];
 		}
@@ -54,7 +86,7 @@ bool OOPCourse::removeStudent(const int fn) {
 	short studentToRemoveIndex = -1;
 	for (size_t i = 0; i < studentsSize; i++)
 	{
-		if ((*students[i]).getFn() == fn)
+		if (students[i]->getFn() == fn)
 		{
 			studentToRemoveIndex = i;
 			delete students[i];
@@ -77,8 +109,8 @@ double OOPCourse::getAverageForCourse() const {
 
 	for (size_t i = 0; i < studentsSize; i++)
 	{
-		const Grade* grades = (*students[i]).getGrades();
-		short gradesCount = (*students[i]).getGradesCount();
+		const Grade* grades = students[i]->getGrades();
+		short gradesCount = students[i]->getGradesCount();
 
 		for (size_t i = 0; i < gradesCount; i++)
 		{
@@ -96,8 +128,8 @@ double OOPCourse::getAverageGradePerTask(const char* task) const {
 
 	for (size_t i = 0; i < studentsSize; i++)
 	{
-		const Grade* grades = (*students[i]).getGrades();
-		short gradesCount = (*students[i]).getGradesCount();
+		const Grade* grades = students[i]->getGrades();
+		short gradesCount = students[i]->getGradesCount();
 
 		for (size_t i = 0; i < gradesCount; i++)
 		{
@@ -118,8 +150,8 @@ double OOPCourse::getAverageFromTeacher(const char* from) const {
 
 	for (size_t i = 0; i < studentsSize; i++)
 	{
-		const Grade* grades = (*students[i]).getGrades();
-		short gradesCount = (*students[i]).getGradesCount();
+		const Grade* grades = students[i]->getGrades();
+		short gradesCount = students[i]->getGradesCount();
 
 		for (size_t i = 0; i < gradesCount; i++)
 		{
