@@ -12,8 +12,10 @@ Book::Book() {
 }
 
 Book::Book(const char* name, const char* authorName) {
-	setName(name);
-	setAuthorName(authorName);
+	this->name = new char[strlen(name) + 1];
+	strcpy(this->name, name);
+	this->authorName = new char[strlen(authorName) + 1];
+	strcpy(this->authorName, authorName);
 }
 
 Book::Book(const Book& other) {
@@ -66,8 +68,10 @@ Book::~Book() {
 }
 
 void Book::copy(const Book& other) {
-	setName(other.name);
-	setAuthorName(other.authorName);
+	this->name = new char[strlen(other.name) + 1];
+	strcpy(this->name, other.name);
+	this->authorName = new char[strlen(other.authorName) + 1];
+	strcpy(this->authorName, other.authorName);
 
 	for (size_t i = 0; i < other.ratings.getSize(); i++)
 		ratings.add(other.ratings[i]);

@@ -8,6 +8,7 @@ public:
 	Page();
 	Page(const char* content);
 	Page(const Page&);
+	Page(Page&&) noexcept;
 	Page& operator=(const Page&);
 	Page& operator=(Page&& other) noexcept;
 	~Page();

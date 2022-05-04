@@ -9,11 +9,17 @@ Page::Page() {
 }
 
 Page::Page(const char* content) {
-	setContent(content);
+	this->content = new char[strlen(content) + 1];
+	strcpy(this->content, content);
 }
 
 Page::Page(const Page& other) {
 	copy(other);
+}
+
+Page::Page(Page&& other) noexcept {
+	content = other.content;
+	other.content = nullptr;
 }
 
 Page& Page::operator=(const Page& other) {
@@ -56,6 +62,7 @@ const char* Page::getContent() const {
 
 void Page::setContent(const char* content) {
 	delete[] this->content;
+
 	this->content = new char[strlen(content) + 1];
 	strcpy(this->content, content);
 }
