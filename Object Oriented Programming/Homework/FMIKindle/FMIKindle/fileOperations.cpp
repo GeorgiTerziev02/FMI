@@ -179,25 +179,19 @@ void writeKindleToFile(const char* filePath, const Kindle& kindle) {
 	std::ofstream out(filePath, std::ios::binary);
 
 	if (!out.is_open())
-	{
 		throw "Couldn't open file";
-	}
 
 	MyList<Book> books = kindle.getBooksList();
 	size_t booksSize = books.getSize();
 	out.write((const char*)&booksSize, sizeof(size_t));
 	for (size_t i = 0; i < booksSize; i++)
-	{
 		writeBookToFile(out, books[i]);
-	}
 
 	MyList<User> users = kindle.getUsersList();
 	size_t usersSize = users.getSize();
 	out.write((const char*)&usersSize, sizeof(size_t));
 	for (size_t i = 0; i < usersSize; i++)
-	{
 		writeUserToFile(out, users[i]);
-	}
 
 	out.close();
 }

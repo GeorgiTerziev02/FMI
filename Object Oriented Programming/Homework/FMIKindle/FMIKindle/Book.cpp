@@ -70,19 +70,13 @@ void Book::copy(const Book& other) {
 	setAuthorName(other.authorName);
 
 	for (size_t i = 0; i < other.ratings.getSize(); i++)
-	{
 		ratings.add(other.ratings[i]);
-	}
 
 	for (size_t i = 0; i < other.pages.getSize(); i++)
-	{
 		pages.add(other.pages[i]);
-	}
 
 	for (size_t i = 0; i < other.comments.getSize(); i++)
-	{
 		comments.add(other.comments[i]);
-	}
 
 	rating = calculateRating();
 }
@@ -119,6 +113,13 @@ const MyList<char*>& Book::getComments() const {
 	return comments;
 }
 
+const Page& Book::getPage(size_t index) const {
+	if (index < 0 || pages.getSize() >= index)
+		throw "Invalid index";
+
+	return pages[index];
+}
+
 void Book::setName(const char* name) {
 	delete[] this->name;
 	this->name = new char[strlen(name) + 1];
@@ -139,15 +140,24 @@ void Book::addComment(char* comment) {
 	comments.add(comment);
 }
 
+void Book::editPage(const char* newContent, size_t index) {
+	if (index < 0 || pages.getSize() >= index)
+		throw "Invalid index";
+
+	pages[index].setContent(newContent);
+}
+
 void Book::addRating(const Rating& rating) {
-	if (hasRatingFromUser(rating.getUserName())) return;
+	if (hasRatingFromUser(rating.getUserName())) 
+		return;
 
 	ratings.add(rating);
 	this->rating = calculateRating();
 }
 
 void Book::editRating(const Rating& newRating) {
-	if (!hasRatingFromUser(newRating.getUserName())) return;
+	if (!hasRatingFromUser(newRating.getUserName())) 
+		return;
 
 	int index = -1;
 	for (size_t i = 0; i < ratings.getSize(); i++)
@@ -166,7 +176,8 @@ void Book::editRating(const Rating& newRating) {
 bool Book::hasRatingFromUser(const char* userName) const {
 	for (size_t i = 0; i < ratings.getSize(); i++)
 	{
-		if (strcmp(ratings[i].getUserName(), userName) == 0) return true;
+		if (strcmp(ratings[i].getUserName(), userName) == 0) 
+			return true;
 	}
 
 	return false;
@@ -176,9 +187,7 @@ double Book::calculateRating() const {
 	double result = 0;
 	int count = 0;
 	for (size_t i = 0; i < ratings.getSize(); i++)
-	{
 		result += ratings[i].getRating();
-	}
 
 	return count == 0 ? 0 : result / count;
 }

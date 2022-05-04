@@ -25,8 +25,7 @@ User::User(const User& other) {
 }
 
 User& User::operator=(const User& other) {
-	if (this != &other)
-	{
+	if (this != &other) {
 		free();
 		copy(other);
 	}
@@ -64,34 +63,24 @@ void User::copy(const User& other) {
 void User::free() {
 	delete[] userName;
 	delete[] password;
-
-	// this will actually delete the objects in the kindle
-	//for (size_t i = 0; i < wroteBooks.getSize(); i++)
-	//	delete wroteBooks[i];
-
-	//for (size_t i = 0; i < readBooks.getSize(); i++)
-	//	delete readBooks[i];
 }
 
 
 void User::addReadBook(Book* book) {
 	if (hasReadBook(book))
-	{
 		readBooks.add(book);
-	}
 }
 
 void User::addWroteBook(Book* book) {
 	if (hasWroteBook(book))
-	{
 		wroteBooks.add(book);
-	}
 }
 
 bool User::hasReadBook(const Book* book) const {
 	for (size_t i = 0; i < readBooks.getSize(); i++)
 	{
-		if (readBooks[i] == book) return true;
+		if (readBooks[i] == book)
+			return true;
 	}
 
 	return false;
@@ -100,7 +89,8 @@ bool User::hasReadBook(const Book* book) const {
 bool User::hasWroteBook(const Book* book) const {
 	for (size_t i = 0; i < wroteBooks.getSize(); i++)
 	{
-		if (wroteBooks[i] == book) return true;
+		if (wroteBooks[i] == book)
+			return true;
 	}
 
 	return false;
@@ -123,21 +113,15 @@ void User::readBook(Book* book) {
 
 		switch (input)
 		{
-			case 'n': {
-				if (index < pages.getSize() - 1)
-				{
-					index++;
-				}
-			}; break;
-			case 'p': {
-				if (index > 0)
-				{
-					index--;
-				}
-			}; break;
-			case 'q': {
-				break;
-			}; break;
+		case 'n': {
+			if (index < pages.getSize() - 1) index++;
+		}; break;
+		case 'p': {
+			if (index > 0) index--;
+		}; break;
+		case 'q': {
+			break;
+		}; break;
 		}
 	}
 
@@ -157,7 +141,8 @@ Book User::writeBook() {
 		std::cout << ">Enter page content or enter q to stop: ";
 		std::cin.getline(pageContent, PAGE_BUFFER_SIZE);
 
-		if (strcmp(pageContent, "q") == 0) break;
+		if (strcmp(pageContent, "q") == 0)
+			break;
 
 		book.addPage(Page(pageContent));
 	}
@@ -165,15 +150,49 @@ Book User::writeBook() {
 	return book;
 }
 
+
+void User::readBookPage(Book* book, size_t pageIndex) const {
+	Page page = book->getPage(pageIndex);
+	std::cout << page.getContent();
+}
+
 void User::editBook(Book* book) const {
-	// TODO:
-	// name
-	//select page
-	// new content
+	if (!hasWroteBook(book))
+		return;
+
+	char command[INPUT_BUFFER_SIZE];
+	std::cout << "Will you change book name?(yes/no)" << std::endl;
+	std::cin.getline(command, INPUT_BUFFER_SIZE);
+
+	if (strcmp(command, "yes") == 0) {
+		char newBookName[INPUT_BUFFER_SIZE];
+		std::cout << ">Enter new book name: ";
+		std::cin.getline(newBookName, INPUT_BUFFER_SIZE);
+
+		book->setName(newBookName);
+	}
+
+	while (true)
+	{
+		int page;
+		std::cout << "Which page you want to edit?(enter -1 to quit)" << std::endl;
+		std::cin >> page;
+
+		if (page == -1)
+			break;
+
+		char pageContent[PAGE_BUFFER_SIZE];
+		std::cout << "Enter new content" << std::endl;
+		std::cout << ">";
+		std::cin.getline(pageContent, PAGE_BUFFER_SIZE);
+
+		book->editPage(pageContent, page);
+	}
 }
 
 void User::commentBook(Book* book) const {
-	if (!hasReadBook(book)) return;
+	if (!hasReadBook(book)) 
+		return;
 
 	char comment[INPUT_BUFFER_SIZE];
 	std::cout << ">Enter comment: ";
@@ -184,7 +203,8 @@ void User::commentBook(Book* book) const {
 
 
 void User::readBookComments(const Book* book) const {
-	if (!hasReadBook(book) && !hasWroteBook(book)) return;
+	if (!hasReadBook(book) && !hasWroteBook(book)) 
+		return;
 
 	MyList<char*> comments = book->getComments();
 	for (size_t i = 0; i < comments.getSize(); i++)
@@ -195,7 +215,8 @@ void User::readBookComments(const Book* book) const {
 
 
 void User::rateBook(Book* book) const {
-	if (!hasReadBook(book)) return;
+	if (!hasReadBook(book)) 
+		return;
 
 	unsigned short rating = -1;
 	while (rating < 0 || rating > 10)
@@ -210,16 +231,15 @@ void User::rateBook(Book* book) const {
 }
 
 void User::editRate(Book* book) const {
-	
+
 }
 
 void User::viewBookRates(Book* book) const {
-	if (!hasReadBook(book) && !hasWroteBook(book)) return;
+	if (!hasReadBook(book) && !hasWroteBook(book)) 
+		return;
 
 	MyList<Rating> ratings = book->getRatings();
-	
+
 	for (size_t i = 0; i < ratings.getSize(); i++)
-	{
 		std::cout << ratings[i].getUserName() << " - " << ratings[i].getRating() << std::endl;
-	}
 }

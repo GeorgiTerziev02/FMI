@@ -45,9 +45,7 @@ unsigned short Rating::getRating() const {
 
 void Rating::setRating(const unsigned short rating) {
 	if (rating < 0 || rating > 10)
-	{
 		throw "Invalid rating";
-	}
 
 	this->rating = rating;
 }

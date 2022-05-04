@@ -29,9 +29,8 @@ int main()
 		int index = 0;
 
 		while (input[index] != ' ' && input[index] != '\0')
-		{
 			command[index] = input[index++];
-		}
+
 		command[index++] = '\0';
 
 		if (strcmp(command, QUIT_COMMAND) == 0)
@@ -46,18 +45,14 @@ int main()
 				int userIndex = signUpUser(kindle);
 				isLoggedIn = userIndex >= 0;
 				if (isLoggedIn)
-				{
 					currentUser = kindle.getUsersList()[userIndex];
-				}
 			}
 			else if (strcmp(command, LOGIN_COMMAND) == 0) 
 			{
 				int userIndex = logInUser(kindle);
 				isLoggedIn = userIndex >= 0;
 				if (isLoggedIn)
-				{
 					currentUser = kindle.getUsersList()[userIndex];
-				}
 			}
 		}
 		else {

@@ -76,9 +76,7 @@ void MyList<T>::add(const T& newData) {
 	// using the size property in the resize to know the old size
 	// so that the resize method can be reused in case of addRange method
 	if (size + 1 > capacity)
-	{
 		resize(size + 1);
-	}
 
 	data[size++] = newData;
 }
@@ -90,9 +88,7 @@ void MyList<T>::copy(const MyList<T>& other) {
 	data = new T[capacity];
 
 	for (size_t i = 0; i < size; i++)
-	{
 		data[i] = other.data[i];
-	}
 }
 
 template<typename T>
@@ -106,9 +102,7 @@ void MyList<T>::resize(const size_t expectedCapacityToFit) {
 
 	T* temp = new T[capacity];
 	for (size_t i = 0; i < size; i++)
-	{
 		temp[i] = data[i];
-	}
 
 	delete[] data;
 	data = temp;

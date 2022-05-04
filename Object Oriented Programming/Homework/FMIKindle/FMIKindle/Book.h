@@ -27,10 +27,12 @@ public:
 	const MyList<Rating>& getRatings() const;
 	const MyList<Page>& getPages() const;
 	const MyList<char*>& getComments() const;
+	const Page& getPage(size_t index) const;
 
 	void setName(const char* name);
 	void setAuthorName(const char* authorName);
 	void addPage(const Page& page);
+	void editPage(const char* newContent, size_t index);
 
 	// template error when const char*...
 	void addComment(char* comment);

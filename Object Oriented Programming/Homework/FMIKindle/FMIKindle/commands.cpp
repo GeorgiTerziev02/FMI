@@ -40,6 +40,15 @@ void readBook(Kindle& kindle, User& user) {
 	user.readBook(book);
 }
 
+
+void getBookPage(Kindle& kindle, const User& user) {
+	Book* book = getBookByName(kindle);
+	size_t pageIndex;
+	std::cout << "Page index: ";
+	std::cin >> pageIndex;
+	user.readBookPage(book, pageIndex);
+}
+
 void commentBook(Kindle& kindle, User& user) {
 	Book* book = getBookByName(kindle);
 	user.commentBook(book);
@@ -62,6 +71,5 @@ void viewBookRates(Kindle& kindle, const User& user) {
 
 void editBook(Kindle& kindle, const User& user) {
 	Book* book = getBookByName(kindle);
-
 	user.editBook(book);
 }

@@ -29,6 +29,7 @@ public:
 	
 	void readBook(Book* book);
 	Book writeBook();
+	void readBookPage(Book* book, size_t pageIndex) const;
 	void editBook(Book* book) const;
 	void commentBook(Book* book) const;
 	void readBookComments(const Book* book) const;
