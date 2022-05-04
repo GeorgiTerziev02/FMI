@@ -208,14 +208,12 @@ void User::readBookComments(const Book* book) const {
 
 	MyList<char*> comments = book->getComments();
 	for (size_t i = 0; i < comments.getSize(); i++)
-	{
 		std::cout << comments[i] << std::endl;
-	}
 }
 
 
 void User::rateBook(Book* book) const {
-	if (!hasReadBook(book)) 
+	if (!hasReadBook(book) || hasWroteBook(book)) 
 		return;
 
 	unsigned short rating = -1;
@@ -231,7 +229,17 @@ void User::rateBook(Book* book) const {
 }
 
 void User::editRate(Book* book) const {
+	if (!hasReadBook(book) || hasWroteBook(book))
+		return;
 
+	unsigned short rating = -1;
+	while (rating < 0 || rating > 10)
+	{
+		std::cout << ">Enter book rating: ";
+		std::cin >> rating;
+	}
+
+	book->editRating(userName, rating);
 }
 
 void User::viewBookRates(Book* book) const {

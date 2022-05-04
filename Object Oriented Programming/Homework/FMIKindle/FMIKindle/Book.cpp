@@ -155,20 +155,20 @@ void Book::addRating(const Rating& rating) {
 	this->rating = calculateRating();
 }
 
-void Book::editRating(const Rating& newRating) {
-	if (!hasRatingFromUser(newRating.getUserName())) 
+void Book::editRating(const char* userName, const unsigned short r) {
+	if (!hasRatingFromUser(userName))
 		return;
 
 	int index = -1;
 	for (size_t i = 0; i < ratings.getSize(); i++)
 	{
-		if (strcmp(ratings[i].getUserName(), newRating.getUserName()) == 0) {
+		if (strcmp(ratings[i].getUserName(), userName) == 0) {
 			index = i;
 			break;
 		}
 	}
 
-	ratings[index].setRating(newRating.getRating());
+	ratings[index].setRating(r);
 	rating = calculateRating();
 }
 

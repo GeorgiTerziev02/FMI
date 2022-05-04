@@ -37,7 +37,7 @@ public:
 	// template error when const char*...
 	void addComment(char* comment);
 	void addRating(const Rating& rating);
-	void editRating(const Rating& newRating);
+	void editRating(const char* userName, const unsigned short r);
 
 	bool hasRatingFromUser(const char* userName) const;
 
