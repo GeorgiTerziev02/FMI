@@ -110,7 +110,7 @@ void MyList<T>::resize(const size_t expectedCapacityToFit) {
 		temp[i] = data[i];
 	}
 
-	delete data;
+	delete[] data;
 	data = temp;
 }
 

@@ -88,8 +88,8 @@ void Book::copy(const Book& other) {
 }
 
 void Book::free() {
-	delete name;
-	delete authorName;
+	delete[] name;
+	delete[] authorName;
 
 	for (size_t i = 0; i < comments.getSize(); i++)
 		delete comments[i];
@@ -120,13 +120,13 @@ const MyList<char*>& Book::getComments() const {
 }
 
 void Book::setName(const char* name) {
-	delete this->name;
+	delete[] this->name;
 	this->name = new char[strlen(name) + 1];
 	strcpy(this->name, name);
 }
 
 void Book::setAuthorName(const char* authorName) {
-	delete this->authorName;
+	delete[] this->authorName;
 	this->authorName = new char[strlen(authorName) + 1];
 	strcpy(this->authorName, authorName);
 }

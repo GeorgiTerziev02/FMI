@@ -181,7 +181,6 @@ bool Vector<T>::empty() const {
 
 template <typename T>
 void Vector<T>::clear() {
-	// capacity remains!
 	delete[] data;
 	capacity = DEFAULT_CAPACITY;
 	data = new T[capacity];

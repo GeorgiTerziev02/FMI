@@ -47,7 +47,7 @@ void Page::copy(const Page& other) {
 }
 
 void Page::free() {
-	delete content;
+	delete[] content;
 }
 
 const char* Page::getContent() const {
@@ -55,7 +55,7 @@ const char* Page::getContent() const {
 }
 
 void Page::setContent(const char* content) {
-	delete this->content;
+	delete[] this->content;
 	this->content = new char[strlen(content) + 1];
 	strcpy(this->content, content);
 }

@@ -60,5 +60,5 @@ void Rating::copy(const Rating& other) {
 }
 
 void Rating::free() {
-	delete userName;
+	delete[] userName;
 }

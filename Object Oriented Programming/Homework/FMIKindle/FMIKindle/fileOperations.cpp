@@ -23,11 +23,11 @@ Book readBookFromFile(std::ifstream& file) {
 
 	char* name = readStringFromFile(file);
 	book.setName(name);
-	delete name;
+	delete[] name;
 
 	char* authorName = readStringFromFile(file);
 	book.setAuthorName(authorName);
-	delete authorName;
+	delete[] authorName;
 
 	size_t ratingsLength;
 	file.read((char*)&ratingsLength, sizeof(ratingsLength));
@@ -38,7 +38,7 @@ Book readBookFromFile(std::ifstream& file) {
 		file.read((char*)&rating, sizeof(rating));
 		Rating ratingObj(userName, rating);
 		book.addRating(ratingObj);
-		delete userName;
+		delete[] userName;
 	}
 
 	size_t pagesLength;
@@ -48,7 +48,7 @@ Book readBookFromFile(std::ifstream& file) {
 		char* content = readStringFromFile(file);
 		Page page(content);
 		book.addPage(page);
-		delete content;
+		delete[] content;
 	}
 
 	size_t commentsLength;
@@ -58,7 +58,7 @@ Book readBookFromFile(std::ifstream& file) {
 	{
 		char* comment = readStringFromFile(file);
 		book.addComment(comment);
-		delete comment;
+		delete[] comment;
 	}
 
 	return book;
@@ -70,8 +70,8 @@ User readUserFromFile(std::ifstream& file, Kindle& kindle) {
 	char* password = readStringFromFile(file);
 
 	User user(userName, password);
-	delete userName;
-	delete password;
+	delete[] userName;
+	delete[] password;
 
 	size_t readBooksSize;
 	file.read((char*)&readBooksSize, sizeof(readBooksSize));
@@ -81,6 +81,7 @@ User readUserFromFile(std::ifstream& file, Kindle& kindle) {
 		char* bookName = readStringFromFile(file);
 		Book* book = kindle.getBookByName(bookName);
 		user.addReadBook(book);
+		delete[] bookName;
 	}
 
 	size_t wroteBooksSize;
@@ -91,6 +92,7 @@ User readUserFromFile(std::ifstream& file, Kindle& kindle) {
 		char* bookName = readStringFromFile(file);
 		Book* book = kindle.getBookByName(bookName);
 		user.addWroteBook(book);
+		delete[] bookName;
 	}
 
 	return user;

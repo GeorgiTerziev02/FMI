@@ -62,14 +62,15 @@ void User::copy(const User& other) {
 }
 
 void User::free() {
-	delete userName;
-	delete password;
+	delete[] userName;
+	delete[] password;
 
-	for (size_t i = 0; i < wroteBooks.getSize(); i++)
-		delete wroteBooks[i];
+	// this will actually delete the objects in the kindle
+	//for (size_t i = 0; i < wroteBooks.getSize(); i++)
+	//	delete wroteBooks[i];
 
-	for (size_t i = 0; i < readBooks.getSize(); i++)
-		delete readBooks[i];
+	//for (size_t i = 0; i < readBooks.getSize(); i++)
+	//	delete readBooks[i];
 }
 
 
