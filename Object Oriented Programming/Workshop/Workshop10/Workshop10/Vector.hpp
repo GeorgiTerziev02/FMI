@@ -183,7 +183,8 @@ template <typename T>
 void Vector<T>::clear() {
 	// capacity remains!
 	delete[] data;
-	data = new T[DEFAULT_CAPACITY];
+	capacity = DEFAULT_CAPACITY;
+	data = new T[capacity];
 	size = 0;
 }
 
