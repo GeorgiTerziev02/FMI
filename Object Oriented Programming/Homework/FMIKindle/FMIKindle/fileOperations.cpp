@@ -4,7 +4,7 @@
 
 char* readStringFromFile(std::ifstream& file) {
 	size_t stringLength;
-	file.read((char*)&stringLength, sizeof(stringLength));
+	file.read((char*)&stringLength, sizeof(size_t));
 	char* str = new char[stringLength + 1];
 	file.read(str, stringLength);
 	str[stringLength] = '\0';
@@ -14,7 +14,7 @@ char* readStringFromFile(std::ifstream& file) {
 
 void writeStringToFile(std::ofstream& file, const char* str) {
 	size_t stringLength = strlen(str);
-	file.write((const char*)&stringLength, sizeof(stringLength));
+	file.write((const char*)&stringLength, sizeof(size_t));
 	file.write(str, stringLength);
 }
 
@@ -30,19 +30,19 @@ Book readBookFromFile(std::ifstream& file) {
 	delete[] authorName;
 
 	size_t ratingsLength;
-	file.read((char*)&ratingsLength, sizeof(ratingsLength));
+	file.read((char*)&ratingsLength, sizeof(size_t));
 	for (size_t i = 0; i < ratingsLength; i++)
 	{
 		char* userName = readStringFromFile(file);
 		unsigned short rating;
-		file.read((char*)&rating, sizeof(rating));
+		file.read((char*)&rating, sizeof(unsigned short));
 		Rating ratingObj(userName, rating);
 		book.addRating(ratingObj);
 		delete[] userName;
 	}
 
 	size_t pagesLength;
-	file.read((char*)&pagesLength, sizeof(pagesLength));
+	file.read((char*)&pagesLength, sizeof(size_t));
 	for (size_t i = 0; i < pagesLength; i++)
 	{
 		char* content = readStringFromFile(file);
@@ -52,7 +52,7 @@ Book readBookFromFile(std::ifstream& file) {
 	}
 
 	size_t commentsLength;
-	file.read((char*)&commentsLength, sizeof(commentsLength));
+	file.read((char*)&commentsLength, sizeof(size_t));
 
 	for (size_t i = 0; i < commentsLength; i++)
 	{
@@ -74,7 +74,7 @@ User readUserFromFile(std::ifstream& file, Kindle& kindle) {
 	delete[] password;
 
 	size_t readBooksSize;
-	file.read((char*)&readBooksSize, sizeof(readBooksSize));
+	file.read((char*)&readBooksSize, sizeof(size_t));
 
 	for (size_t i = 0; i < readBooksSize; i++)
 	{
@@ -85,7 +85,7 @@ User readUserFromFile(std::ifstream& file, Kindle& kindle) {
 	}
 
 	size_t wroteBooksSize;
-	file.read((char*)&wroteBooksSize, sizeof(wroteBooksSize));
+	file.read((char*)&wroteBooksSize, sizeof(size_t));
 
 	for (size_t i = 0; i < wroteBooksSize; i++)
 	{
@@ -105,7 +105,7 @@ bool readKindleFromFile(const char* filePath, Kindle& kindle) {
 		return false;
 
 	size_t booksSize;
-	in.read((char*)&booksSize, sizeof(booksSize));
+	in.read((char*)&booksSize, sizeof(size_t));
 	for (size_t i = 0; i < booksSize; i++)
 	{
 		Book book = readBookFromFile(in);
@@ -113,7 +113,7 @@ bool readKindleFromFile(const char* filePath, Kindle& kindle) {
 	}
 
 	size_t usersSize;
-	in.read((char*)&usersSize, sizeof(usersSize));
+	in.read((char*)&usersSize, sizeof(size_t));
 	for (size_t i = 0; i < usersSize; i++)
 	{
 		User user = readUserFromFile(in, kindle);
@@ -150,7 +150,7 @@ void writeBookToFile(std::ofstream& file, const Book& book) {
 
 	MyList<Rating> ratings = book.getRatings();
 	size_t ratingsSize = ratings.getSize();
-	file.write((const char*)ratingsSize, sizeof(ratingsSize));
+	file.write((const char*)&ratingsSize, sizeof(size_t));
 	for (size_t i = 0; i < ratingsSize; i++)
 	{
 		writeStringToFile(file, ratings[i].getUserName());
@@ -159,7 +159,7 @@ void writeBookToFile(std::ofstream& file, const Book& book) {
 
 	MyList<Page> pages = book.getPages();
 	size_t pagesSize = pages.getSize();
-	file.write((const char*)&pagesSize, sizeof(pagesSize));
+	file.write((const char*)&pagesSize, sizeof(size_t));
 	for (size_t i = 0; i < pagesSize; i++)
 	{
 		writeStringToFile(file, pages[i].getContent());
@@ -167,7 +167,7 @@ void writeBookToFile(std::ofstream& file, const Book& book) {
 
 	MyList<char*> comments = book.getComments();
 	size_t commentsSize = comments.getSize();
-	file.write((const char*)&commentsSize, sizeof(commentsSize));
+	file.write((const char*)&commentsSize, sizeof(size_t));
 	for (size_t i = 0; i < commentsSize; i++)
 	{
 		writeStringToFile(file, comments[i]);
