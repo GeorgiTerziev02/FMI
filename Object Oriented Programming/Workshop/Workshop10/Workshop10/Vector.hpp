@@ -12,14 +12,18 @@ private:
 public:
 	Vector();
 	Vector(const Vector<T>&);
+	Vector(Vector<T>&&);
 	Vector<T>& operator=(const Vector<T>&);
+	Vector<T>& operator=(Vector<T>&&);
 	~Vector();
 
 	size_t getSize() const;
 	size_t getCapacity() const;
 
 	void pushBack(const T& n);
+	void pushBack(T&& n);
 	void pushAt(const T& n, const size_t index);
+	void pushAt(T&& n, const size_t index);
 	T& popBack();
 	T& popAt(const size_t index);
 	T& operator[](const size_t index);
@@ -48,6 +52,15 @@ Vector<T>::Vector(const Vector<T>& other) {
 }
 
 template <typename T>
+Vector<T>::Vector(Vector<T>&& other) {
+	data = other.data;
+	size = other.size;
+	capacity = other.capacity;
+
+	other.data = nullptr;
+}
+
+template <typename T>
 Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
 	if (this != &other)
 	{
@@ -55,6 +68,21 @@ Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
 		copy(other);
 	}
 	
+	return *this;
+}
+
+template <typename T>
+Vector<T>& Vector<T>::operator=(Vector<T>&& other) {
+	if (this != &other)
+	{
+		free();
+		data = other.data;
+		size = other.size;
+		capacity = other.capacity;
+
+		other.data = nullptr;
+	}
+
 	return *this;
 }
 
@@ -80,8 +108,27 @@ void Vector<T>::pushBack(const T& n) {
 	data[size++] = n;
 }
 
+
+template <typename T>
+void Vector<T>::pushBack(T&& n) {
+	if (size + 1 > capacity) resize(size + 1);
+
+	data[size++] = n;
+}
+
 template <typename T>
 void Vector<T>::pushAt(const T& n, const size_t index) {
+	if (size + 1 > capacity) resize(size + 1);
+
+	for (size_t i = size; i > index; i--)
+		data[i] = data[i - 1];
+
+	data[index] = n;
+	size++;
+}
+
+template <typename T>
+void Vector<T>::pushAt(T&& n, const size_t index) {
 	if (size + 1 > capacity) resize(size + 1);
 
 	for (size_t i = size; i > index; i--)
