@@ -67,12 +67,12 @@ void User::free() {
 
 
 void User::addReadBook(Book* book) {
-	if (hasReadBook(book))
+	if (!hasReadBook(book))
 		readBooks.add(book);
 }
 
 void User::addWroteBook(Book* book) {
-	if (hasWroteBook(book))
+	if (!hasWroteBook(book))
 		wroteBooks.add(book);
 }
 
@@ -104,11 +104,12 @@ void User::readBook(Book* book) {
 	std::cout << "p - prev page" << std::endl;
 	std::cout << "q - quit" << std::endl;
 
-	while (true)
+	bool loop = true;
+	while (loop)
 	{
 		char input;
 		std::cout << pages[index].getContent() << std::endl;
-		std::cout << ">" << std::endl;
+		std::cout << ">";
 		std::cin >> input;
 
 		switch (input)
@@ -120,7 +121,7 @@ void User::readBook(Book* book) {
 			if (index > 0) index--;
 		}; break;
 		case 'q': {
-			break;
+			loop = false;
 		}; break;
 		}
 	}

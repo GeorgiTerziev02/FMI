@@ -154,7 +154,8 @@ void writeBookToFile(std::ofstream& file, const Book& book) {
 	for (size_t i = 0; i < ratingsSize; i++)
 	{
 		writeStringToFile(file, ratings[i].getUserName());
-		file.write((const char*)ratings[i].getRating(), sizeof(unsigned short));
+		unsigned short rating = ratings[i].getRating();
+		file.write((const char*)&rating, sizeof(unsigned short));
 	}
 
 	MyList<Page> pages = book.getPages();
