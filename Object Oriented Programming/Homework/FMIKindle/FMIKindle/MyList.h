@@ -15,7 +15,7 @@ public:
 	~MyList();
 
 	T& operator[](size_t);
-	T operator[](size_t) const;
+	const T& operator[](size_t) const;
 
 	T* getData() const;
 	size_t getSize() const;

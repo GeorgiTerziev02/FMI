@@ -154,7 +154,7 @@ Book User::writeBook() {
 
 void User::readBookPage(Book* book, size_t pageIndex) const {
 	Page page = book->getPage(pageIndex);
-	std::cout << page.getContent();
+	std::cout << page.getContent() << std::endl;
 }
 
 void User::editBook(Book* book) const {

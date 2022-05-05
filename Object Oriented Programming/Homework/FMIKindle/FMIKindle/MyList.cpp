@@ -51,7 +51,7 @@ T& MyList<T>::operator[](size_t index) {
 }
 
 template<typename T>
-T MyList<T>::operator[](size_t index) const {
+const T& MyList<T>::operator[](size_t index) const {
 	return data[index];
 }
 
