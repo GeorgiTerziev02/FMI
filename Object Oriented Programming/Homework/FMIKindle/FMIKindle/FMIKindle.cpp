@@ -40,7 +40,7 @@ int main()
 				writeKindleToFile(FILE_PATH, kindle);
 				return 0;
 			}
-			if (!isLoggedIn)
+			else if (!isLoggedIn)
 			{
 				if (strcmp(command, SIGNUP_COMMAND) == 0)
 				{

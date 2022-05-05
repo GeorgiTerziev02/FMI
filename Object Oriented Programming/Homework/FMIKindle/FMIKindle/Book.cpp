@@ -153,7 +153,7 @@ void Book::editPage(const char* newContent, size_t index) {
 
 void Book::addRating(const Rating& rating) {
 	if (hasRatingFromUser(rating.getUserName())) 
-		return;
+		throw "There is already rating from this user!";
 
 	ratings.add(rating);
 	this->rating = calculateRating();
@@ -161,7 +161,7 @@ void Book::addRating(const Rating& rating) {
 
 void Book::editRating(const char* userName, const unsigned short r) {
 	if (!hasRatingFromUser(userName))
-		return;
+		throw "Rating from user not found!";
 
 	int index = -1;
 	for (size_t i = 0; i < ratings.getSize(); i++)

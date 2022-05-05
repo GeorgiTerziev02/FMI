@@ -159,7 +159,7 @@ void User::readBookPage(Book* book, size_t pageIndex) const {
 
 void User::editBook(Book* book) const {
 	if (!hasWroteBook(book))
-		return;
+		throw "User is not the author of this book!";
 
 	char command[INPUT_BUFFER_SIZE];
 	std::cout << "Will you change book name?(yes/no)" << std::endl;
@@ -192,8 +192,8 @@ void User::editBook(Book* book) const {
 }
 
 void User::commentBook(Book* book) const {
-	if (!hasReadBook(book)) 
-		return;
+	if (!hasReadBook(book))
+		throw "User have not read the book!";
 
 	char comment[INPUT_BUFFER_SIZE];
 	std::cout << ">Enter comment: ";
@@ -204,9 +204,6 @@ void User::commentBook(Book* book) const {
 
 
 void User::readBookComments(const Book* book) const {
-	if (!hasReadBook(book) && !hasWroteBook(book)) 
-		return;
-
 	MyList<char*> comments = book->getComments();
 	for (size_t i = 0; i < comments.getSize(); i++)
 		std::cout << comments[i] << std::endl;
@@ -214,8 +211,11 @@ void User::readBookComments(const Book* book) const {
 
 
 void User::rateBook(Book* book) const {
-	if (!hasReadBook(book) || hasWroteBook(book)) 
-		return;
+	if (hasWroteBook(book))
+		throw "User cannot rate a book he wrote!";
+
+	if (!hasReadBook(book))
+		throw "User cannot rate a book he hasn't read!";
 
 	unsigned short rating = -1;
 	while (rating < 0 || rating > 10)
@@ -230,8 +230,11 @@ void User::rateBook(Book* book) const {
 }
 
 void User::editRate(Book* book) const {
-	if (!hasReadBook(book) || hasWroteBook(book))
-		return;
+	if (hasWroteBook(book))
+		throw "User cannot rate a book he wrote!";
+
+	if (!hasReadBook(book))
+		throw "User cannot rate a book he hasn't read!";
 
 	unsigned short rating = -1;
 	while (rating < 0 || rating > 10)
@@ -244,9 +247,6 @@ void User::editRate(Book* book) const {
 }
 
 void User::viewBookRates(Book* book) const {
-	if (!hasReadBook(book) && !hasWroteBook(book)) 
-		return;
-
 	MyList<Rating> ratings = book->getRatings();
 
 	for (size_t i = 0; i < ratings.getSize(); i++)
