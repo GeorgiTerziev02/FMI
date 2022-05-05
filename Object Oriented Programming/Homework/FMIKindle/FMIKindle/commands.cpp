@@ -38,41 +38,41 @@ Book* getBookByName(Kindle& kindle) {
 	return book;
 }
 
-void readBook(Kindle& kindle, User& user) {
+void readBook(Kindle& kindle, User* user) {
 	Book* book = getBookByName(kindle);
-	user.readBook(book);
+	user->readBook(book);
 }
 
 
-void readBookPage(Kindle& kindle, const User& user) {
+void readBookPage(Kindle& kindle, const User* user) {
 	Book* book = getBookByName(kindle);
 	size_t pageIndex;
 	std::cout << "Page index: ";
 	std::cin >> pageIndex;
-	user.readBookPage(book, pageIndex);
+	user->readBookPage(book, pageIndex);
 }
 
-void commentBook(Kindle& kindle, User& user) {
+void commentBook(Kindle& kindle, User* user) {
 	Book* book = getBookByName(kindle);
-	user.commentBook(book);
+	user->commentBook(book);
 }
 
-void readBookComments(Kindle& kindle, const User& user) {
+void readBookComments(Kindle& kindle, const User* user) {
 	Book* book = getBookByName(kindle);
-	user.readBookComments(book);
+	user->readBookComments(book);
 }
 
-void rateBook(Kindle& kindle, const User& user) {
+void rateBook(Kindle& kindle, const User* user) {
 	Book* book = getBookByName(kindle);
-	user.rateBook(book);
+	user->rateBook(book);
 }
 
-void viewBookRates(Kindle& kindle, const User& user) {
+void viewBookRates(Kindle& kindle, const User* user) {
 	Book* book = getBookByName(kindle);
-	user.viewBookRates(book);
+	user->viewBookRates(book);
 }
 
-void editBook(Kindle& kindle, const User& user) {
+void editBook(Kindle& kindle, const User* user) {
 	Book* book = getBookByName(kindle);
-	user.editBook(book);
+	user->editBook(book);
 }

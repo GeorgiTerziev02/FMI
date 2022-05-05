@@ -11,7 +11,7 @@ const MyList<Book>& Kindle::getBooksList() const {
 	return books;
 }
 
-int Kindle::logIn(char* userName, char* password) const {
+size_t Kindle::logIn(char* userName, char* password) const {
 	for (size_t i = 0; i < users.getSize(); i++)
 	{
 		if (strcmp(users[i].getUserName(), userName) == 0
@@ -19,10 +19,10 @@ int Kindle::logIn(char* userName, char* password) const {
 			return i;
 	}
 
-	return -1;
+	throw "User not found!";
 }
 
-int Kindle::addUser(char* userName, char* password) {
+size_t Kindle::addUser(char* userName, char* password) {
 	for (size_t i = 0; i < users.getSize(); i++)
 	{
 		if (strcmp(users[i].getUserName(), userName) == 0)
@@ -33,12 +33,12 @@ int Kindle::addUser(char* userName, char* password) {
 	return users.getSize() - 1;
 }
 
-int Kindle::addUser(const User& user) {
+size_t Kindle::addUser(const User& user) {
 	users.add(user);
 	return users.getSize() - 1;
 }
 
-int Kindle::addBook(const Book& book) {
+size_t Kindle::addBook(const Book& book) {
 	if (getBookByName(book.getName()) != nullptr)
 		throw "Book with this name already exists!";
 
@@ -54,4 +54,11 @@ Book* Kindle::getBookByName(const char* name) {
 	}
 
 	return nullptr;
+}
+
+User* Kindle::getUserAtIndex(size_t index) {
+	if (index < 0 || index >= users.getSize())
+		throw "Invalid index!";
+
+	return &(users[index]);
 }

@@ -14,15 +14,16 @@ public:
 	Kindle& operator=(const Kindle&);
 	~Kindle() = default;
 
-	int logIn(char* userName, char* password) const;
-	int addUser(char* userName, char* password); 
-	int addUser(const User& user);
-	int addBook(const Book& book);
+	size_t logIn(char* userName, char* password) const;
+	size_t addUser(char* userName, char* password);
+	size_t addUser(const User& user);
+	size_t addBook(const Book& book);
 
 	const MyList<User>& getUsersList() const;
 	const MyList<Book>& getBooksList() const;
 
 	Book* getBookByName(const char* name);
+	User* getUserAtIndex(size_t index);
 private:
 	void copy(const Kindle&);
 	void free();

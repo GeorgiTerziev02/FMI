@@ -90,7 +90,7 @@ void Book::free() {
 	delete[] authorName;
 
 	for (size_t i = 0; i < comments.getSize(); i++)
-		delete comments[i];
+		delete[] comments[i];
 }
 
 const char* Book::getName() const {

@@ -58,6 +58,9 @@ void User::copy(const User& other) {
 	strcpy(userName, other.userName);
 	password = new char[strlen(other.password) + 1];
 	strcpy(password, other.password);
+
+	readBooks = other.readBooks;
+	wroteBooks = other.wroteBooks;
 }
 
 void User::free() {

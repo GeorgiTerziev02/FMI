@@ -8,7 +8,7 @@
 int main()
 {
 	bool isLoggedIn = false;
-	User currentUser;
+	User* currentUser = nullptr;
 
 	Kindle kindle;
 
@@ -47,7 +47,7 @@ int main()
 					int userIndex = signUpUser(kindle);
 					isLoggedIn = userIndex >= 0;
 					if (isLoggedIn) {
-						currentUser = kindle.getUsersList()[userIndex];
+						currentUser = kindle.getUserAtIndex(userIndex);
 						std::cout << "Successfully logged in!" << std::endl;
 					}
 				}
@@ -56,7 +56,7 @@ int main()
 					int userIndex = logInUser(kindle);
 					isLoggedIn = userIndex >= 0;
 					if (isLoggedIn) {
-						currentUser = kindle.getUsersList()[userIndex];
+						currentUser = kindle.getUserAtIndex(userIndex);
 						std::cout << "Successfully logged in!" << std::endl;
 					}
 					else {
@@ -71,8 +71,11 @@ int main()
 				}
 				else if (strcmp(command, WRITE_COMMAND) == 0)
 				{
-					Book book = currentUser.writeBook();
+					Book book = currentUser->writeBook();
 					kindle.addBook(book);
+					// wrote book is added to user only if book is added successfully to kindle
+					Book* kindleBook = kindle.getBookByName(book.getName());
+					currentUser->addWroteBook(kindleBook);
 				}
 				else if (strcmp(command, READ_COMMAND) == 0) {
 					readBook(kindle, currentUser);
