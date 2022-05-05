@@ -32,6 +32,9 @@ Book* getBookByName(Kindle& kindle) {
 
 	Book* book = kindle.getBookByName(bookName);
 
+	if (book == nullptr)
+		throw "Book not found!";
+
 	return book;
 }
 
@@ -41,7 +44,7 @@ void readBook(Kindle& kindle, User& user) {
 }
 
 
-void getBookPage(Kindle& kindle, const User& user) {
+void readBookPage(Kindle& kindle, const User& user) {
 	Book* book = getBookByName(kindle);
 	size_t pageIndex;
 	std::cout << "Page index: ";

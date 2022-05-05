@@ -118,7 +118,7 @@ const MyList<char*>& Book::getComments() const {
 }
 
 const Page& Book::getPage(size_t index) const {
-	if (index < 0 || pages.getSize() >= index)
+	if (index < 0 || index >= pages.getSize())
 		throw "Invalid index";
 
 	return pages[index];
@@ -145,7 +145,7 @@ void Book::addComment(char* comment) {
 }
 
 void Book::editPage(const char* newContent, size_t index) {
-	if (index < 0 || pages.getSize() >= index)
+	if (index < 0 || index >= pages.getSize())
 		throw "Invalid index";
 
 	pages[index].setContent(newContent);

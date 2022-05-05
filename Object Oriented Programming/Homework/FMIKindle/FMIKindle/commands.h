@@ -7,7 +7,7 @@ int logInUser(const Kindle& kindle);
 
 void readBook(Kindle& kindle, User& user);
 
-void getBookPage(Kindle& kindle, const User& user);
+void readBookPage(Kindle& kindle, const User& user);
 
 void commentBook(Kindle& kindle, User& user);
 

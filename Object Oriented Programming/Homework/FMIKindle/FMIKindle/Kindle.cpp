@@ -39,6 +39,9 @@ int Kindle::addUser(const User& user) {
 }
 
 int Kindle::addBook(const Book& book) {
+	if (getBookByName(book.getName()) != nullptr)
+		throw "Book with this name already exists!";
+
 	books.add(book);
 	return books.getSize() - 1;
 }

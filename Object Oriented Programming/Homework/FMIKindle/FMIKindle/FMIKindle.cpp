@@ -46,20 +46,28 @@ int main()
 				{
 					int userIndex = signUpUser(kindle);
 					isLoggedIn = userIndex >= 0;
-					if (isLoggedIn)
+					if (isLoggedIn) {
 						currentUser = kindle.getUsersList()[userIndex];
+						std::cout << "Successfully logged in!" << std::endl;
+					}
 				}
 				else if (strcmp(command, LOGIN_COMMAND) == 0)
 				{
 					int userIndex = logInUser(kindle);
 					isLoggedIn = userIndex >= 0;
-					if (isLoggedIn)
+					if (isLoggedIn) {
 						currentUser = kindle.getUsersList()[userIndex];
+						std::cout << "Successfully logged in!" << std::endl;
+					}
+					else {
+						std::cout << "User not found!" << std::endl;
+					}
 				}
 			}
 			else {
 				if (strcmp(command, LOGOUT_COMMAND) == 0) {
 					isLoggedIn = false;
+					std::cout << "You are logged out!" << std::endl;
 				}
 				else if (strcmp(command, WRITE_COMMAND) == 0)
 				{
@@ -68,6 +76,9 @@ int main()
 				}
 				else if (strcmp(command, READ_COMMAND) == 0) {
 					readBook(kindle, currentUser);
+				}
+				else if (strcmp(command, READ_PAGE_COMMAND) == 0) {
+					readBookPage(kindle, currentUser);
 				}
 				else if (strcmp(command, COMMENT_COMMAND) == 0) {
 					commentBook(kindle, currentUser);
