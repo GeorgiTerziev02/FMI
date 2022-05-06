@@ -195,8 +195,8 @@ bool Book::hasRatingFromUser(const char* userName) const {
 
 double Book::calculateRating() const {
 	double result = 0;
-	int count = 0;
-	for (size_t i = 0; i < ratings.getSize(); i++)
+	int count = ratings.getSize();
+	for (size_t i = 0; i < count; i++)
 		result += ratings[i].getRating();
 
 	return count == 0 ? 0 : result / count;
