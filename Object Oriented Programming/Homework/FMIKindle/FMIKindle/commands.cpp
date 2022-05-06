@@ -76,3 +76,8 @@ void editBook(Kindle& kindle, const User* user) {
 	Book* book = getBookByName(kindle);
 	user->editBook(book);
 }
+
+void editBookRating(Kindle& kindle, const User* user) {
+	Book* book = getBookByName(kindle);
+	user->editRate(book);
+}

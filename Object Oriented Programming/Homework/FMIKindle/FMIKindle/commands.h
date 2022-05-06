@@ -18,3 +18,5 @@ void rateBook(Kindle& kindle, const User* user);
 void viewBookRates(Kindle& kindle, const User* user);
 
 void editBook(Kindle& kindle, const User* user);
+
+void editBookRating(Kindle& kindle, const User* user);

@@ -131,17 +131,13 @@ void writeUserToFile(std::ofstream& file, const User& user) {
 	size_t booksSize = readBooks.getSize();
 	file.write((const char*)&booksSize, sizeof(size_t));
 	for (size_t i = 0; i < booksSize; i++)
-	{
 		writeStringToFile(file, readBooks[i]->getName());
-	}
 
 	MyList<Book*> wroteBooks = user.getWroteBooks();
 	size_t wroteBooksSize = wroteBooks.getSize();
 	file.write((const char*)&wroteBooksSize, sizeof(size_t));
 	for (size_t i = 0; i < wroteBooksSize; i++)
-	{
 		writeStringToFile(file, wroteBooks[i]->getName());
-	}
 }
 
 void writeBookToFile(std::ofstream& file, const Book& book) {
@@ -162,17 +158,13 @@ void writeBookToFile(std::ofstream& file, const Book& book) {
 	size_t pagesSize = pages.getSize();
 	file.write((const char*)&pagesSize, sizeof(size_t));
 	for (size_t i = 0; i < pagesSize; i++)
-	{
 		writeStringToFile(file, pages[i].getContent());
-	}
 
 	MyList<char*> comments = book.getComments();
 	size_t commentsSize = comments.getSize();
 	file.write((const char*)&commentsSize, sizeof(size_t));
 	for (size_t i = 0; i < commentsSize; i++)
-	{
 		writeStringToFile(file, comments[i]);
-	}
 }
 
 

@@ -177,10 +177,13 @@ void User::editBook(Book* book) const {
 	}
 
 	while (true)
-	{
+	{		
 		int page;
 		std::cout << "Which page you want to edit?(enter -1 to quit)" << std::endl;
 		std::cin >> page;
+		std::cin.clear();
+		std::cin.sync();
+		std::cin.ignore();
 
 		if (page == -1)
 			break;
@@ -242,7 +245,7 @@ void User::editRate(Book* book) const {
 	unsigned short rating = -1;
 	while (rating < 0 || rating > 10)
 	{
-		std::cout << ">Enter book rating: ";
+		std::cout << ">Enter new book rating: ";
 		std::cin >> rating;
 	}
 

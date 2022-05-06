@@ -23,17 +23,9 @@ int main()
 	{
 		try
 		{
-			char input[INPUT_BUFFER_SIZE];
+			char command[INPUT_BUFFER_SIZE];
 			std::cout << ">";
-			std::cin.getline(input, INPUT_BUFFER_SIZE);
-
-			char command[COMMAND_SIZE];
-			int index = 0;
-
-			while (input[index] != ' ' && input[index] != '\0')
-				command[index] = input[index++];
-
-			command[index++] = '\0';
+			std::cin.getline(command, INPUT_BUFFER_SIZE);
 
 			if (strcmp(command, QUIT_COMMAND) == 0)
 			{
@@ -97,6 +89,9 @@ int main()
 				}
 				else if (strcmp(command, EDIT_COMMAND) == 0) {
 					editBook(kindle, currentUser);
+				}
+				else if (strcmp(command, EDIT_RATING_COMMAND) == 0) {
+					editBookRating(kindle, currentUser);
 				}
 			}
 		}
