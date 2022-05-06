@@ -1,8 +1,38 @@
-#include "MyList.h"
-#include "User.h"
-#include "Book.h"
+#pragma once
 
 const size_t DEFAULT_CAPACITY = 4;
+
+template<typename T>
+class MyList
+{
+private:
+	T* data;
+	size_t size;
+	size_t capacity;
+public:
+	MyList();
+	MyList(const MyList<T>&);
+	MyList<T>& operator=(const MyList<T>&);
+	MyList<T>& operator=(MyList<T>&&);
+	~MyList();
+
+	T& operator[](size_t);
+	const T& operator[](size_t) const;
+
+	T* getData() const;
+	size_t getSize() const;
+	size_t getCapacity() const;
+	void clear();
+
+	void add(const T&);
+private:
+	void copy(const MyList<T>&);
+	void free();
+
+	void resize(const size_t expectedCapacityToFit);
+
+	size_t calculateCapacity(const size_t number) const;
+};
 
 template<typename T>
 MyList<T>::MyList() {
@@ -128,10 +158,3 @@ size_t MyList<T>::calculateCapacity(const size_t number) const {
 
 	return num;
 }
-
-template class MyList<User>;
-template class MyList<Book>;
-template class MyList<Book*>;
-template class MyList<char*>;
-template class MyList<Page>;
-template class MyList<Rating>;

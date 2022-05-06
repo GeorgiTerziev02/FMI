@@ -144,6 +144,10 @@ void Book::addPage(const Page& page) {
 	pages.add(page);
 }
 
+void Book::addPage(Page&& page) {
+	pages.add(page);
+}
+
 void Book::addComment(char* comment) {
 	char* newComment = new char[strlen(comment) + 1];
 	strcpy(newComment, comment);
@@ -200,4 +204,10 @@ double Book::calculateRating() const {
 		result += ratings[i].getRating();
 
 	return count == 0 ? 0 : result / count;
+}
+
+void Book::printRates() const {
+	for (size_t i = 0; i < ratings.getSize(); i++)
+		std::cout << ratings[i].getUserName() << " rated " << ratings[i].getRating() << std::endl;
+	
 }

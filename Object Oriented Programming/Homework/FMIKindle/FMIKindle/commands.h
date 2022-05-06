@@ -5,6 +5,8 @@ int signUpUser(Kindle& kindle);
 
 int logInUser(const Kindle& kindle);
 
+void viewBooks(const Kindle& kindle);
+
 void readBook(Kindle& kindle, User* user);
 
 void readBookPage(Kindle& kindle, const User* user);
@@ -20,3 +22,5 @@ void viewBookRates(Kindle& kindle, const User* user);
 void editBook(Kindle& kindle, const User* user);
 
 void editBookRating(Kindle& kindle, const User* user);
+
+void addPage(Kindle& kindle, const User* user);

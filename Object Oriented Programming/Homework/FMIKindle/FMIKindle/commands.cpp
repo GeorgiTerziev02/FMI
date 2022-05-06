@@ -24,6 +24,9 @@ int logInUser(const Kindle& kindle) {
 	return kindle.logIn(userName, password);
 }
 
+void viewBooks(const Kindle& kindle) {
+	kindle.printBooks();
+}
 
 Book* getBookByName(Kindle& kindle) {
 	char bookName[INPUT_BUFFER_SIZE];
@@ -80,4 +83,9 @@ void editBook(Kindle& kindle, const User* user) {
 void editBookRating(Kindle& kindle, const User* user) {
 	Book* book = getBookByName(kindle);
 	user->editRate(book);
+}
+
+void addPage(Kindle& kindle, const User* user) {
+	Book* book = getBookByName(kindle);
+	user->addPage(book);
 }

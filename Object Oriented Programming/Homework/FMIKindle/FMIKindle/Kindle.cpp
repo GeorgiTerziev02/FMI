@@ -1,5 +1,6 @@
 #include "Kindle.h"
 #include <cstring>
+#include <iostream>
 
 #pragma warning (disable: 4996)
 
@@ -61,4 +62,9 @@ User* Kindle::getUserAtIndex(size_t index) {
 		throw "Invalid index!";
 
 	return &(users[index]);
+}
+
+void Kindle::printBooks() const {
+	for (size_t i = 0; i < books.getSize(); i++)
+		std::cout << i + 1 << ". " << books[i].getName() << " by " << books[i].getAuthorName() << std::endl;
 }

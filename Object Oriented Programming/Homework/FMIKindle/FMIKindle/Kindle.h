@@ -1,5 +1,5 @@
 #pragma once
-#include "MyList.h"
+#include "MyList.hpp"
 #include "User.h"
 #include "Book.h"
 
@@ -24,6 +24,8 @@ public:
 
 	Book* getBookByName(const char* name);
 	User* getUserAtIndex(size_t index);
+
+	void printBooks() const;
 private:
 	void copy(const Kindle&);
 	void free();

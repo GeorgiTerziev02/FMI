@@ -1,5 +1,5 @@
 #pragma once
-#include "MyList.h"
+#include "MyList.hpp"
 #include "Page.h"
 #include "Rating.h"
 
@@ -32,6 +32,7 @@ public:
 	void setName(const char* name);
 	void setAuthorName(const char* authorName);
 	void addPage(const Page& page);
+	void addPage(Page&& page);
 	void editPage(const char* newContent, size_t index);
 
 	// template error when const char*...
@@ -40,7 +41,7 @@ public:
 	void editRating(const char* userName, const unsigned short r);
 
 	bool hasRatingFromUser(const char* userName) const;
-
+	void printRates() const;
 private:
 	double calculateRating() const;
 	void copy(const Book&);

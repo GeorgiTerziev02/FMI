@@ -93,6 +93,12 @@ int main()
 				else if (strcmp(command, EDIT_RATING_COMMAND) == 0) {
 					editBookRating(kindle, currentUser);
 				}
+				else if (strcmp(command, VIEW_COMMAND) == 0) {
+					viewBooks(kindle);
+				}
+				else if (strcmp(command, ADD_PAGE_COMMAND) == 0) {
+					addPage(kindle, currentUser);
+				}
 			}
 		}
 		catch (const char* ex)

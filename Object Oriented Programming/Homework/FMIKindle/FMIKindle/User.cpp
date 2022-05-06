@@ -177,9 +177,9 @@ void User::editBook(Book* book) const {
 	}
 
 	while (true)
-	{		
+	{
 		int page;
-		std::cout << "Which page you want to edit?(enter -1 to quit)" << std::endl;
+		std::cout << "Which page you want to edit?(enter zero based index, enter -1 to quit)" << std::endl;
 		std::cin >> page;
 		std::cin.clear();
 		std::cin.sync();
@@ -197,6 +197,17 @@ void User::editBook(Book* book) const {
 	}
 }
 
+void User::addPage(Book* book) const {
+	if (!hasWroteBook(book))
+		throw "User is not the author of the book!";
+
+	char pageContent[PAGE_BUFFER_SIZE];
+	std::cout << "Enter new page content" << std::endl;
+	std::cout << ">";
+	std::cin.getline(pageContent, PAGE_BUFFER_SIZE);
+	book->addPage(Page(pageContent));
+}
+
 void User::commentBook(Book* book) const {
 	if (!hasReadBook(book))
 		throw "User have not read the book!";
@@ -208,13 +219,11 @@ void User::commentBook(Book* book) const {
 	book->addComment(comment);
 }
 
-
 void User::readBookComments(const Book* book) const {
 	MyList<char*> comments = book->getComments();
 	for (size_t i = 0; i < comments.getSize(); i++)
 		std::cout << comments[i] << std::endl;
 }
-
 
 void User::rateBook(Book* book) const {
 	if (hasWroteBook(book))
@@ -226,7 +235,7 @@ void User::rateBook(Book* book) const {
 	unsigned short rating = -1;
 	while (rating < 0 || rating > 10)
 	{
-		std::cout << ">Enter book rating: ";
+		std::cout << ">Enter book rating (0-10): ";
 		std::cin >> rating;
 	}
 
@@ -245,7 +254,7 @@ void User::editRate(Book* book) const {
 	unsigned short rating = -1;
 	while (rating < 0 || rating > 10)
 	{
-		std::cout << ">Enter new book rating: ";
+		std::cout << ">Enter new book rating (0-10): ";
 		std::cin >> rating;
 	}
 
@@ -253,8 +262,5 @@ void User::editRate(Book* book) const {
 }
 
 void User::viewBookRates(Book* book) const {
-	MyList<Rating> ratings = book->getRatings();
-
-	for (size_t i = 0; i < ratings.getSize(); i++)
-		std::cout << ratings[i].getUserName() << " - " << ratings[i].getRating() << std::endl;
+	book->printRates();
 }
