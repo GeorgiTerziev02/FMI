@@ -182,17 +182,19 @@ void writeKindleToFile(const char* filePath, const Kindle& kindle) {
 	if (!out.is_open())
 		throw "Couldn't open file";
 
-	MyList<Book> books = kindle.getBooksList();
-	size_t booksSize = books.getSize();
+	const MyList<Book>* books = kindle.getBooksList();
+	Book* booksData = books->getData();
+	size_t booksSize = books->getSize();
 	out.write((const char*)&booksSize, sizeof(size_t));
 	for (size_t i = 0; i < booksSize; i++)
-		writeBookToFile(out, books[i]);
+		writeBookToFile(out, booksData[i]);
 
-	MyList<User> users = kindle.getUsersList();
-	size_t usersSize = users.getSize();
+	const MyList<User>* users = kindle.getUsersList();
+	User* usersData = users->getData();
+	size_t usersSize = users->getSize();
 	out.write((const char*)&usersSize, sizeof(size_t));
 	for (size_t i = 0; i < usersSize; i++)
-		writeUserToFile(out, users[i]);
+		writeUserToFile(out, usersData[i]);
 
 	out.close();
 }

@@ -3,12 +3,12 @@
 
 #pragma warning (disable: 4996)
 
-const MyList<User>& Kindle::getUsersList() const {
-	return users;
+const MyList<User>* Kindle::getUsersList() const {
+	return &users;
 }
 
-const MyList<Book>& Kindle::getBooksList() const {
-	return books;
+const MyList<Book>* Kindle::getBooksList() const {
+	return &books;
 }
 
 size_t Kindle::logIn(char* userName, char* password) const {

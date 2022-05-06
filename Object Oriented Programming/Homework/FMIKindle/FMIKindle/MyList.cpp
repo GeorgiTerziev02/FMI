@@ -2,6 +2,8 @@
 #include "User.h"
 #include "Book.h"
 
+const size_t DEFAULT_CAPACITY = 4;
+
 template<typename T>
 MyList<T>::MyList() {
 	data = nullptr;
@@ -35,6 +37,8 @@ MyList<T>& MyList<T>::operator=(MyList<T>&& other) {
 		size = other.size;
 		capacity = other.capacity;
 		other.data = nullptr;
+		other.size = 0;
+		other.capacity = 0;
 	}
 
 	return *this;
@@ -96,6 +100,14 @@ void MyList<T>::free() {
 	delete[] data;
 }
 
+template <typename T>
+void MyList<T>::clear() {
+	delete[] data;
+	capacity = DEFAULT_CAPACITY;
+	data = new T[capacity];
+	size = 0;
+}
+
 template<typename T>
 void MyList<T>::resize(const size_t expectedCapacityToFit) {
 	capacity = calculateCapacity(expectedCapacityToFit);
@@ -110,8 +122,7 @@ void MyList<T>::resize(const size_t expectedCapacityToFit) {
 
 template<typename T>
 size_t MyList<T>::calculateCapacity(const size_t number) const {
-	// initial size 4
-	size_t num = 4;
+	size_t num = DEFAULT_CAPACITY;
 
 	while (number > num) num *= 2;
 

@@ -1,4 +1,5 @@
 #include "Book.h"
+#include <iostream>
 #include <cstring>
 
 #pragma warning (disable: 4996)
@@ -25,9 +26,9 @@ Book::Book(const Book& other) {
 Book::Book(Book&& other) {
 	name = other.name;
 	authorName = other.authorName;
-	ratings = other.ratings;
-	pages = other.pages;
-	comments = other.comments;
+	ratings = std::move(other.ratings);
+	pages = std::move(other.pages);
+	comments = std::move(other.comments);
 	rating = calculateRating();
 
 	other.name = nullptr;
@@ -51,9 +52,9 @@ Book& Book::operator=(Book&& other) {
 
 		name = other.name;
 		authorName = other.authorName;
-		ratings = other.ratings;
-		pages = other.pages;
-		comments = other.comments;
+		ratings = std::move(other.ratings);
+		pages = std::move(other.pages);
+		comments = std::move(other.comments);
 		rating = calculateRating();
 
 		other.name = nullptr;
@@ -79,8 +80,11 @@ void Book::copy(const Book& other) {
 	for (size_t i = 0; i < other.pages.getSize(); i++)
 		pages.add(other.pages[i]);
 
-	for (size_t i = 0; i < other.comments.getSize(); i++)
-		comments.add(other.comments[i]);
+	for (size_t i = 0; i < other.comments.getSize(); i++) {
+		char* newComment = new char[strlen(other.comments[i]) + 1];
+		strcpy(newComment, other.comments[i]);
+		comments.add(newComment);
+	}
 
 	rating = calculateRating();
 }

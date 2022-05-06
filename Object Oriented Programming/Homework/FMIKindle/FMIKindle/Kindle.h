@@ -19,8 +19,8 @@ public:
 	size_t addUser(const User& user);
 	size_t addBook(const Book& book);
 
-	const MyList<User>& getUsersList() const;
-	const MyList<Book>& getBooksList() const;
+	const MyList<User>* getUsersList() const;
+	const MyList<Book>* getBooksList() const;
 
 	Book* getBookByName(const char* name);
 	User* getUserAtIndex(size_t index);
