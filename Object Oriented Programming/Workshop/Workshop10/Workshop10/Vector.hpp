@@ -8,7 +8,6 @@ private:
 	T* data;
 	size_t size;
 	size_t capacity;
-
 public:
 	Vector();
 	Vector(const Vector<T>&);
@@ -20,30 +19,30 @@ public:
 	size_t getSize() const;
 	size_t getCapacity() const;
 
-	void pushBack(const T& n);
+	void pushBack(const T&);
 	void pushBack(T&& n);
-	void pushAt(const T& n, const size_t index);
-	void pushAt(T&& n, const size_t index);
+	void pushAt(const T&, const size_t);
+	void pushAt(T&&, const size_t);
 	T& popBack();
-	T& popAt(const size_t index);
-	T& operator[](const size_t index);
-	const T& operator[](const size_t index) const;
+	T& popAt(const size_t);
+	T& operator[](const size_t);
+	const T& operator[](const size_t) const;
 	bool empty() const;
-	void clear(); 
-	void swap(const Vector<T>& other);
+	void clear();
+	void swap(const Vector<T>&);
 private:
 	void copy(const Vector&);
 	void free();
+	void move(Vector&&);
 
-	size_t calculateCapacity(const size_t number) const;
-	void resize(const size_t expectedCapacityToFit);
+	size_t calculateCapacity(const size_t) const;
+	void resize(const size_t);
 };
 
 template <typename T>
 Vector<T>::Vector() {
 	data = nullptr;
-	size = 0;
-	capacity = 0;
+	capacity = size = 0;
 }
 
 template <typename T>
@@ -53,11 +52,7 @@ Vector<T>::Vector(const Vector<T>& other) {
 
 template <typename T>
 Vector<T>::Vector(Vector<T>&& other) {
-	data = other.data;
-	size = other.size;
-	capacity = other.capacity;
-
-	other.data = nullptr;
+	move(std::move(other));
 }
 
 template <typename T>
@@ -67,7 +62,7 @@ Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
 		free();
 		copy(other);
 	}
-	
+
 	return *this;
 }
 
@@ -76,11 +71,7 @@ Vector<T>& Vector<T>::operator=(Vector<T>&& other) {
 	if (this != &other)
 	{
 		free();
-		data = other.data;
-		size = other.size;
-		capacity = other.capacity;
-
-		other.data = nullptr;
+		move(std::move(other));
 	}
 
 	return *this;
@@ -102,39 +93,43 @@ size_t Vector<T>::getCapacity() const {
 }
 
 template <typename T>
-void Vector<T>::pushBack(const T& n) {
-	if (size + 1 > capacity) resize(size + 1);
+void Vector<T>::pushBack(const T& element) {
+	if (size + 1 > capacity)
+		resize(size + 1);
 
-	data[size++] = n;
+	data[size++] = element;
 }
 
 
 template <typename T>
-void Vector<T>::pushBack(T&& n) {
-	if (size + 1 > capacity) resize(size + 1);
+void Vector<T>::pushBack(T&& element) {
+	if (size + 1 > capacity)
+		resize(size + 1);
 
-	data[size++] = n;
+	data[size++] = element;
 }
 
 template <typename T>
-void Vector<T>::pushAt(const T& n, const size_t index) {
-	if (size + 1 > capacity) resize(size + 1);
+void Vector<T>::pushAt(const T& element, const size_t index) {
+	if (size + 1 > capacity)
+		resize(size + 1);
 
 	for (size_t i = size; i > index; i--)
 		data[i] = data[i - 1];
 
-	data[index] = n;
+	data[index] = element;
 	size++;
 }
 
 template <typename T>
-void Vector<T>::pushAt(T&& n, const size_t index) {
-	if (size + 1 > capacity) resize(size + 1);
+void Vector<T>::pushAt(T&& element, const size_t index) {
+	if (size + 1 > capacity)
+		resize(size + 1);
 
 	for (size_t i = size; i > index; i--)
 		data[i] = data[i - 1];
 
-	data[index] = n;
+	data[index] = element;
 	size++;
 }
 
@@ -155,6 +150,7 @@ T& Vector<T>::popAt(size_t index) {
 	for (size_t i = index; i < size - 1; i++)
 		data[i] = data[i + 1];
 
+	size--;
 	return temp;
 }
 
@@ -189,24 +185,16 @@ void Vector<T>::clear() {
 
 template <typename T>
 void Vector<T>::swap(const Vector<T>& other) {
-	T* tempData = this->data;
-	size_t tempSize = this->size;
-	size_t tempCapacity = this->capacity;
-
-	this->data = other.data;
-	this->size = other.size;
-	this->capacity = other.capacity;
-
-	other.data = tempData;
-	other.size = tempSize;
-	other.capacity = tempCapacity;
+	Vector<T> tempVector(std::move(*this));
+	*this = std::move(other);
+	other = std::move(tempVector);
 }
 
 template <typename T>
 void Vector<T>::copy(const Vector<T>& other) {
 	size = other.size;
 	capacity = other.capacity;
-	data = new T[size];
+	data = new T[capacity];
 
 	for (size_t i = 0; i < size; i++)
 		data[i] = other[i];
@@ -216,14 +204,23 @@ template <typename T>
 void Vector<T>::free() {
 	delete[] data;
 	data = nullptr;
-	size = 0;
-	capacity = 0;
+	capacity = size = 0;
 }
 
 template <typename T>
+void Vector<T>::move(Vector&& other)
+{
+	data = other.data;
+	size = other.size;
+	capacity = other.capacity;
+
+	other.data = nullptr;
+	other.capacity = other.size = 0;
+}
+template <typename T>
 size_t Vector<T>::calculateCapacity(const size_t number) const {
 	size_t result = DEFAULT_CAPACITY;
-	while (number > result) 
+	while (number > result)
 		result *= 2;
 
 	return result;
@@ -234,7 +231,7 @@ void Vector<T>::resize(const size_t expectedCapacityToFit) {
 	capacity = calculateCapacity(expectedCapacityToFit);
 	T* temp = new T[capacity];
 
-	for (size_t i = 0; i < size; i++) 
+	for (size_t i = 0; i < size; i++)
 		temp[i] = data[i];
 
 	delete[] data;
