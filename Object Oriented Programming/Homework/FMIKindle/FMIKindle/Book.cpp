@@ -74,11 +74,8 @@ void Book::copy(const Book& other) {
 	this->authorName = new char[strlen(other.authorName) + 1];
 	strcpy(this->authorName, other.authorName);
 
-	for (size_t i = 0; i < other.ratings.getSize(); i++)
-		ratings.add(other.ratings[i]);
-
-	for (size_t i = 0; i < other.pages.getSize(); i++)
-		pages.add(other.pages[i]);
+	ratings = other.ratings;
+	pages = other.pages;
 
 	for (size_t i = 0; i < other.comments.getSize(); i++) {
 		char* newComment = new char[strlen(other.comments[i]) + 1];
@@ -95,6 +92,10 @@ void Book::free() {
 
 	for (size_t i = 0; i < comments.getSize(); i++)
 		delete[] comments[i];
+
+	ratings.clear();
+	pages.clear();
+	comments.clear();
 }
 
 const char* Book::getName() const {
