@@ -148,7 +148,7 @@ void Book::addPage(Page&& page) {
 	pages.add(page);
 }
 
-void Book::addComment(char* comment) {
+void Book::addComment(const char* comment) {
 	char* newComment = new char[strlen(comment) + 1];
 	strcpy(newComment, comment);
 	comments.add(newComment);

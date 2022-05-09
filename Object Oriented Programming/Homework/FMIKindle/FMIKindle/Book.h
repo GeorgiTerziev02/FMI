@@ -35,8 +35,7 @@ public:
 	void addPage(Page&& page);
 	void editPage(const char* newContent, size_t index);
 
-	// template error when const char*...
-	void addComment(char* comment);
+	void addComment(const char* comment);
 	void addRating(const Rating& rating);
 	void editRating(const char* userName, const unsigned short r);
 
