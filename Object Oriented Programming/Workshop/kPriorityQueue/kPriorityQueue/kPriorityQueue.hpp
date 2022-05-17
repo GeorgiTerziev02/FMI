@@ -5,27 +5,24 @@ template<typename T>
 class kPriorityQueue {
 	Queue<T>* queues;
 	size_t maxPriority;
+	size_t size = 0;
 public:
-	kPriorityQueue();
 	kPriorityQueue(const size_t);
 	kPriorityQueue(const kPriorityQueue<T>&);
 	kPriorityQueue<T>& operator=(const kPriorityQueue<T>&);
 	~kPriorityQueue();
 
+	size_t getSize() const;
+
 	void enqueue(const T&, const size_t);
 	T dequeue();
 	T& peek() const;
 
+	bool isEmpty() const;
 private:
 	void copyFrom(const kPriorityQueue<T>&);
 	void free();
 };
-
-template<typename T>
-kPriorityQueue<T>::kPriorityQueue() {
-	queues = nullptr;
-	maxPriority = 0;
-}
 
 template<typename T>
 kPriorityQueue<T>::kPriorityQueue(const size_t maxPriority) {
@@ -56,7 +53,8 @@ kPriorityQueue<T>::~kPriorityQueue() {
 
 template<typename T>
 void kPriorityQueue<T>::copyFrom(const kPriorityQueue<T>& other) {
-	this->maxPriority = other.maxPriority;
+	maxPriority = other.maxPriority;
+	size = other.size;
 	queues = new Queue<T>[maxPriority];
 
 	for (size_t i = 0; i < maxPriority; i++)
@@ -70,23 +68,43 @@ void kPriorityQueue<T>::free() {
 }
 
 template<typename T>
+size_t kPriorityQueue<T>::getSize() const {
+	return size;
+}
+
+template<typename T>
 void kPriorityQueue<T>::enqueue(const T& element, const size_t priority) {
-	if (priority < 0 || priority >= maxPriority)
+	if (priority >= maxPriority)
 		throw "Invalid priority!";
 
 	queues[priority].enqueue(element);
+	size++;
 }
 
 template<typename T>
 T kPriorityQueue<T>::dequeue() {
-	for (int i = maxPriority - 1; i >= 0; i--)
-		if (!queues[i].isEmpty())
+	if (isEmpty())
+		throw "No elements in the queue!";
+
+	for (int i = maxPriority - 1; i >= 0; i--) {
+		if (!queues[i].isEmpty()) {
+			size--;
 			return queues[i].dequeue();
+		}
+	}
 }
 
 template<typename T>
 T& kPriorityQueue<T>::peek() const {
+	if (isEmpty())
+		throw "No elements in the queue!";
+
 	for (int i = maxPriority - 1; i >= 0; i--)
 		if (!queues[i]->isEmpty())
 			queues[i].peek();
+}
+
+template<typename T>
+bool kPriorityQueue<T>::isEmpty() const {
+	return size == 0;
 }

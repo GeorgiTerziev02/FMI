@@ -9,10 +9,12 @@ int main() {
 	q.enqueue('C', 2);
 	q.enqueue('D', 2);
 	q.enqueue('E', 1);
+	std::cout << q.getSize() << std::endl;
 
 	std::cout << q.dequeue() << std::endl; // B
 	std::cout << q.dequeue() << std::endl; // C
 	std::cout << q.dequeue() << std::endl; // D
 	std::cout << q.dequeue() << std::endl; // E
 	std::cout << q.dequeue() << std::endl; // A
+	std::cout << q.getSize() << std::endl;
 }
