@@ -7,6 +7,8 @@ int main() {
 
 	try
 	{
+		CarPart t1(1, "test1", "test2");
+		std::cout << t1 << t1;
 		Engine engine1(1, "Honda", "Honda engine", 150);
 		Tyre tyre1(2, "Bridgestone", "Summer tyres", 185, 65, 14);
 
@@ -38,6 +40,6 @@ int main() {
 	}
 	catch (const insufficient_fuel_error& error)
 	{
-		std::cout << "hello" << std::endl;
+		//std::cout << error.what() << std::endl;
 	}
 }
