@@ -1,6 +1,7 @@
 #include <iostream>
 #include "constants.h"
 #include "Bank.h"
+#include "NormalAccount.h"
 
 int main() {
 	Bank bank("BankName", "BankAddress");

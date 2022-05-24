@@ -11,10 +11,16 @@ class Bank
 	Vector<Customer*> customers;
 	Vector<Account*> accounts;
 	Vector<String> log;
+
+	void copyFrom(const Bank&);
+	void free();
 public:
 	Bank(const String& name, const String& address);
+	Bank(const Bank&);
+	Bank& operator=(const Bank&);
 	~Bank();
 
+	Customer* getCustomer(size_t customerId);
 	void addCustomer(Customer* customer);
 	void deleteCustomer(size_t customerId);
 	void addAccount();

@@ -20,6 +20,6 @@ public:
 
 	void deposit(double toDeposit);
 	virtual bool withdraw(double toWithdraw) = 0;
-	void display() const;
+	virtual void display() const;
 };
 

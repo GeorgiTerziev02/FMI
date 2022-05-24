@@ -20,3 +20,12 @@ double Account::getAmount() const {
 void Account::deposit(double toDeposit) {
 	amount += toDeposit;
 }
+
+void Account::display() const {
+	std::cout << dateOfCreation << std::endl;
+	std::cout << iBAN << std::endl;
+	std::cout << amount << std::endl;
+	std::cout << ownerId << std::endl;
+	std::cout<< userName << std::endl;
+	std::cout<< password << std::endl;
+}

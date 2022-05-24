@@ -17,7 +17,6 @@ public:
 	const char* c_str() const;
 	size_t getSize() const;
 
-	const char* c_str() const;
 	void concat(const String&);
 
 	String& operator+=(const String&);
