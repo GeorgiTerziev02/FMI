@@ -23,5 +23,5 @@ bool PrivilegeAccount::withdraw(double toWithdraw) {
 
 void PrivilegeAccount::display() const {
 	std::cout << "PrivilegeAccount" << std::endl;
-	((const Account*)this)->display();
+	std::cout << *this;
 }

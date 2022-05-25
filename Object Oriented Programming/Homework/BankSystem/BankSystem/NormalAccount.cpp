@@ -5,8 +5,7 @@ NormalAccount::NormalAccount(const String& userName, const String& password, con
 	:Account(userName, password, iBAN, ownerId) {}
 
 
-Account* NormalAccount::clone() const
-{
+Account* NormalAccount::clone() const {
 	Account* newObj = new NormalAccount(*this);
 	return newObj;
 }
@@ -21,5 +20,5 @@ bool NormalAccount::withdraw(double toWithdraw) {
 
 void NormalAccount::display() const {
 	std::cout << "NormalAccount" << std::endl;
-	//((const Account*)this)->display();
+	std::cout << *this;
 }

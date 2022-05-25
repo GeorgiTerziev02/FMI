@@ -19,5 +19,5 @@ bool SavingsAccount::withdraw(double toWithdraw) {
 
 void SavingsAccount::display() const {
 	std::cout << "SavingsAccount" << std::endl;
-	((const Account*)this)->display();
+	std::cout << *this;
 }

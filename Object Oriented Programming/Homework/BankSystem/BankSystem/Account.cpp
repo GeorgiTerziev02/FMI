@@ -9,7 +9,6 @@ Account::Account(const String& userName, const String& password, const String& i
 	dateOfCreation = time(0);
 }
 
-
 const String& Account::getIBAN() const {
 	return iBAN;
 }
@@ -33,4 +32,15 @@ void Account::display() const {
 	std::cout << ownerId << std::endl;
 	std::cout<< userName << std::endl;
 	std::cout<< password << std::endl;
+}
+
+std::ostream& operator<<(std::ostream& out, const Account& account) {
+	out << account.dateOfCreation << std::endl;
+	out << account.iBAN << std::endl;
+	out << account.amount << std::endl;
+	out << account.ownerId << std::endl;
+	out << account.userName << std::endl;
+	out << account.password << std::endl;
+
+	return out;
 }
