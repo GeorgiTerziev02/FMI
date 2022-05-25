@@ -4,6 +4,8 @@
 #include "NormalAccount.h"
 
 int main() {
+	NormalAccount n("test", "test", "test", 1);
+	n.display();
 	Bank bank("BankName", "BankAddress");
 
 	while (true) {

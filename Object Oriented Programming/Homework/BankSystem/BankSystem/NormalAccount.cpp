@@ -21,5 +21,5 @@ bool NormalAccount::withdraw(double toWithdraw) {
 
 void NormalAccount::display() const {
 	std::cout << "NormalAccount" << std::endl;
-	((const Account*)this)->display();
+	//((const Account*)this)->display();
 }
