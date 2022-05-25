@@ -9,7 +9,7 @@ class ShapeContainer
 	void free();
 	//void copyFrom(const ShapeContainer&);
 public:
-	//ShapeContainer();
+	ShapeContainer() = default;
 	ShapeContainer(const ShapeContainer&) = delete;
 	ShapeContainer& operator=(const ShapeContainer&) = delete;
 	~ShapeContainer();

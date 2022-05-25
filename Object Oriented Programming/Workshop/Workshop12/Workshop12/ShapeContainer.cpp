@@ -1,7 +1,5 @@
 #include "ShapeContainer.h"
 
-Vector<Shape*> shapes;
-
 void ShapeContainer::free() {
 	for (size_t i = 0; i < shapes.getSize(); i++)
 		delete shapes[i];
