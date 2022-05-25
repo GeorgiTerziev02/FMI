@@ -23,7 +23,6 @@ Bank::~Bank() {
 	free();
 }
 
-// TODO: ???
 void Bank::copyFrom(const Bank& other) {
 	name = other.name;
 	address = other.address;
@@ -34,11 +33,11 @@ void Bank::copyFrom(const Bank& other) {
 		customers.pushBack(customer);
 	}
 
-	//for (size_t i = 0; i < other.accounts.getSize(); i++)
-	//{
-	//	Account* account = new Account(*other.accounts[i]);
-	//	accounts.pushBack(account);
-	//}
+	for (size_t i = 0; i < other.accounts.getSize(); i++)
+		accounts.pushBack(other.accounts[i]->clone());
+
+	//for (size_t i = 0; i < other.log.getSize(); i++)
+	//	log.pushBack(other.log[i]);
 }
 
 void Bank::free() {
@@ -48,30 +47,68 @@ void Bank::free() {
 	customers.clear();
 
 	for (size_t i = 0; i < accounts.getSize(); i++)
-		delete customers[i];
+		delete accounts[i];
 
 	accounts.clear();
+
+	this->log.clear();
 }
 
-Customer* Bank::getCustomer(size_t customerId) {
+Customer* Bank::getCustomer(size_t customerId) const {
+	for (size_t i = 0; i < customers.getSize(); i++)
+		if (customers[i]->getId() == customerId)
+			return customers[i];
+
 	return nullptr;
+}
+
+int Bank::getCustomerIndex(size_t customerId) const {
+	for (size_t i = 0; i < customers.getSize(); i++)
+		if (customers[i]->getId() == customerId)
+			return i;
+
+	return -1;
 }
 
 
 void Bank::addCustomer(Customer* customer) {
+	if (getCustomer(customer->getId()) != nullptr)
+		throw "Customer already exists!";
+
 	customers.pushBack(customer);
 }
 
 void Bank::deleteCustomer(size_t customerId) {
+	int customerIndex = getCustomerIndex(customerId);
 
+	if (customerIndex == -1)
+		throw "Customer does not exist!";
+
+	for (size_t i = 0; i < accounts.getSize(); i++) {
+		if (accounts[i]->getOwnerId() == customerId) {
+			Account* account = accounts.popAt(i);
+			delete account;
+		}
+	}
+
+	Customer* customer = customers.popAt(getCustomerIndex(customerId));
+	delete customer;
 }
 
 void Bank::addAccount() {
-
+	// unique iban
 }
 
 void Bank::deleteAccount(const String& iBAN) {
-
+	for (size_t i = 0; i < accounts.getSize(); i++)
+	{
+		if (accounts[i]->getIBAN() == iBAN)
+		{
+			Account* account = accounts.popAt(i);
+			delete account;
+			break;
+		}
+	}
 }
 
 void Bank::listCustomers() const {
@@ -85,7 +122,13 @@ void Bank::listAccounts() const {
 }
 
 void Bank::listCustomerAccount(size_t customerId) const {
-	
+	for (size_t i = 0; i < accounts.getSize(); i++)
+	{
+		if (accounts[i]->getOwnerId() == customerId)
+		{
+			accounts[i]->display();
+		}
+	}
 }
 
 void Bank::exportLog() const {

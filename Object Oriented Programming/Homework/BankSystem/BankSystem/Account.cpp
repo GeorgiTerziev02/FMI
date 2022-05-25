@@ -9,6 +9,11 @@ Account::Account(const String& userName, const String& password, const String& i
 	dateOfCreation = time(0);
 }
 
+
+const String& Account::getIBAN() const {
+	return iBAN;
+}
+
 size_t Account::getOwnerId() const {
 	return ownerId;
 }

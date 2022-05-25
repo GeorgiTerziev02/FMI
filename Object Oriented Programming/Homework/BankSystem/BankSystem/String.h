@@ -26,3 +26,5 @@ private:
 	void copy(const String&);
 	void free();
 };
+
+bool operator==(const String& lhs, const String& rhs);

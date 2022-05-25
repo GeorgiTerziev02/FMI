@@ -14,7 +14,11 @@ protected:
 
 public:
 	Account(const String& userName, const String& password, const String& iBAN, size_t ownerId);
+	virtual ~Account() {}
 
+	virtual Account* clone() const = 0;
+
+	const String& getIBAN() const;
 	size_t getOwnerId() const;
 	double getAmount() const;
 

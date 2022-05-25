@@ -4,6 +4,13 @@
 NormalAccount::NormalAccount(const String& userName, const String& password, const String& iBAN, size_t ownerId)
 	:Account(userName, password, iBAN, ownerId) {}
 
+
+Account* NormalAccount::clone() const
+{
+	Account* newObj = new NormalAccount(*this);
+	return newObj;
+}
+
 bool NormalAccount::withdraw(double toWithdraw) {
 	if (amount < toWithdraw)
 		return false;

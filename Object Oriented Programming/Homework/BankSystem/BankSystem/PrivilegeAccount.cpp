@@ -3,6 +3,12 @@
 PrivilegeAccount::PrivilegeAccount(const String& userName, const String& password, const String& iBAN, size_t ownerId, double overdraft)
 	: Account(userName, password, iBAN, ownerId), overdraft(overdraft) {}
 
+Account* PrivilegeAccount::clone() const
+{
+	Account* newObj = new PrivilegeAccount(*this);
+	return newObj;
+}
+
 double PrivilegeAccount::getOverdraft() const {
 	return overdraft;
 }

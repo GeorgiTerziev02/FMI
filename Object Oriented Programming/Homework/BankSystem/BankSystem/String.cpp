@@ -101,3 +101,8 @@ String operator+(const String& lhs, const String& rhs)
 	temp += rhs;
 	return temp;
 }
+
+bool operator==(const String& lhs, const String& rhs)
+{
+	return strcmp(lhs.c_str(), rhs.c_str()) == 0;
+}

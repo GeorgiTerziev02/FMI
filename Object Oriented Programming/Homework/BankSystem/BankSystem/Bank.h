@@ -20,7 +20,9 @@ public:
 	Bank& operator=(const Bank&);
 	~Bank();
 
-	Customer* getCustomer(size_t customerId);
+	Customer* getCustomer(size_t customerId) const;
+	int getCustomerIndex(size_t customerId) const;
+
 	void addCustomer(Customer* customer);
 	void deleteCustomer(size_t customerId);
 	void addAccount();
