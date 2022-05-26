@@ -1,4 +1,5 @@
 #include "Bank.h"
+#include <fstream>
 
 Bank::Bank(const String& name, const String& address) {
 	this->name = name;
@@ -70,6 +71,14 @@ int Bank::getCustomerIndex(size_t customerId) const {
 	return -1;
 }
 
+Account* Bank::getAccountByIBAN(const String& iBAN) const {
+	for (size_t i = 0; i < accounts.getSize(); i++)
+		if (accounts[i]->getIBAN() == iBAN)
+			return accounts[i];
+
+	return nullptr;
+}
+
 
 void Bank::addCustomer(Customer* customer) {
 	if (getCustomer(customer->getId()) != nullptr)
@@ -118,24 +127,39 @@ void Bank::listCustomers() const {
 
 void Bank::listAccounts() const {
 	for (size_t i = 0; i < accounts.getSize(); i++)
-		std::cout << accounts[i]->getOwnerId() << " " << accounts[i]->getAmount() << std::endl;
+		std::cout << accounts[i]->getOwnerId() << " " << accounts[i]->getBalance() << std::endl;
 }
 
 void Bank::listCustomerAccount(size_t customerId) const {
 	for (size_t i = 0; i < accounts.getSize(); i++)
-	{
 		if (accounts[i]->getOwnerId() == customerId)
-		{
 			accounts[i]->display();
-		}
-	}
 }
 
 void Bank::exportLog() const {
+	std::ofstream out("logs.txt");
 
+	if (!out.is_open())
+		throw "Could not open file!";
+
+	for (size_t i = 0; i < log.getSize(); i++)
+		out << log[i] << std::endl;
+
+	out.close();
 }
 
-bool Bank::transfer(const String& fromIBAN, const String& toIBAN) {
+bool Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount) {
+	Account* fromAccount = getAccountByIBAN(fromIBAN);
+	Account* toAccount = getAccountByIBAN(toIBAN);
+
+	if (fromAccount == nullptr || toAccount == nullptr)
+		throw "One of the accounts was not found!";
+
+	bool success = fromAccount->withdraw(amount);
+	if (!success)
+		throw "Could not withdraw from the account!";
+
+	toAccount->deposit(amount);
 
 	return true;
 }

@@ -17,7 +17,7 @@ size_t Account::getOwnerId() const {
 	return ownerId;
 }
 
-double Account::getAmount() const {
+double Account::getBalance() const {
 	return amount;
 }
 

@@ -12,11 +12,18 @@ int main() {
 		char input[INPUT_BUFFER];
 		std::cin.getline(input, INPUT_BUFFER);
 
-		if (strcmp(input, EDIT_COMMAND) == 0) {
+		try
+		{
+			if (strcmp(input, EDIT_COMMAND) == 0) {
 
+			}
+			else if (strcmp(input, QUIT_COMMAND) == 0) {
+				break;
+			}
 		}
-		else if (strcmp(input, QUIT_COMMAND) == 0) {
-			break;
+		catch (const char* ex)
+		{
+			std::cout << ex << std::endl;
 		}
 	}
 }

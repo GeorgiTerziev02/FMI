@@ -20,7 +20,7 @@ public:
 
 	const String& getIBAN() const;
 	size_t getOwnerId() const;
-	double getAmount() const;
+	double getBalance() const;
 
 	void deposit(double toDeposit);
 	virtual bool withdraw(double toWithdraw) = 0;
