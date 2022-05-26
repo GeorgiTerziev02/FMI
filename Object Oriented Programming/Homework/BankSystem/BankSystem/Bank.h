@@ -26,13 +26,17 @@ public:
 
 	void addCustomer(Customer* customer);
 	void deleteCustomer(size_t customerId);
-	void addAccount();
+	void addAccount(Account* account);
 	void deleteAccount(const String& iBAN);
 	void listCustomers() const;
 	void listAccounts() const;
 	void listCustomerAccount(size_t customerId) const;
+	void listLog() const;
 	void exportLog() const;
-	bool transfer(const String& fromIBAN, const String& toIBAN, double amount);
+
+	void deposit(const String& iBAN, double amount);
+	void withdraw(const String& iBAN, double amount);
+	void transfer(const String& fromIBAN, const String& toIBAN, double amount);
 	void display() const;
 };
 

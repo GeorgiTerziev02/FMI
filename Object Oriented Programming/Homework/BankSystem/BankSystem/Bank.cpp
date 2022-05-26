@@ -37,8 +37,8 @@ void Bank::copyFrom(const Bank& other) {
 	for (size_t i = 0; i < other.accounts.getSize(); i++)
 		accounts.pushBack(other.accounts[i]->clone());
 
-	//for (size_t i = 0; i < other.log.getSize(); i++)
-	//	log.pushBack(other.log[i]);
+	for (size_t i = 0; i < other.log.getSize(); i++)
+		log.pushBack(other.log[i]);
 }
 
 void Bank::free() {
@@ -52,7 +52,7 @@ void Bank::free() {
 
 	accounts.clear();
 
-	this->log.clear();
+	log.clear();
 }
 
 Customer* Bank::getCustomer(size_t customerId) const {
@@ -79,12 +79,12 @@ Account* Bank::getAccountByIBAN(const String& iBAN) const {
 	return nullptr;
 }
 
-
 void Bank::addCustomer(Customer* customer) {
 	if (getCustomer(customer->getId()) != nullptr)
 		throw "Customer already exists!";
 
 	customers.pushBack(customer);
+	log.pushBack("Customer added " + customer->getId());
 }
 
 void Bank::deleteCustomer(size_t customerId) {
@@ -102,10 +102,15 @@ void Bank::deleteCustomer(size_t customerId) {
 
 	Customer* customer = customers.popAt(getCustomerIndex(customerId));
 	delete customer;
+	log.pushBack("Customer deleted " + customerId);
 }
 
-void Bank::addAccount() {
-	// unique iban
+void Bank::addAccount(Account* account) {
+	if (getAccountByIBAN(account->getIBAN()) != nullptr)
+		throw "Account already exists";
+
+	accounts.pushBack(account);
+	log.pushBack("Account added " + 123);
 }
 
 void Bank::deleteAccount(const String& iBAN) {
@@ -115,6 +120,7 @@ void Bank::deleteAccount(const String& iBAN) {
 		{
 			Account* account = accounts.popAt(i);
 			delete account;
+			log.pushBack("Account deleted " + 123);
 			break;
 		}
 	}
@@ -136,6 +142,11 @@ void Bank::listCustomerAccount(size_t customerId) const {
 			accounts[i]->display();
 }
 
+void Bank::listLog() const {
+	for (size_t i = 0; i < log.getSize(); i++)
+		std::cout << log[i] << std::endl;
+}
+
 void Bank::exportLog() const {
 	std::ofstream out("logs.txt");
 
@@ -148,7 +159,27 @@ void Bank::exportLog() const {
 	out.close();
 }
 
-bool Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount) {
+void Bank::deposit(const String& iBAN, double amount) {
+	Account* account = getAccountByIBAN(iBAN);
+
+	if (account == nullptr)
+		"Account not found!";
+
+	account->deposit(amount);
+}
+
+void Bank::withdraw(const String& iBAN, double amount) {
+	Account* account = getAccountByIBAN(iBAN);
+
+	if (account == nullptr)
+		"Account not found!";
+
+	bool success = account->withdraw(amount);
+	if (!success)
+		"Can not withdraw the given amount!";
+}
+
+void Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount) {
 	Account* fromAccount = getAccountByIBAN(fromIBAN);
 	Account* toAccount = getAccountByIBAN(toIBAN);
 
@@ -160,8 +191,7 @@ bool Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount)
 		throw "Could not withdraw from the account!";
 
 	toAccount->deposit(amount);
-
-	return true;
+	log.pushBack("Transfer");
 }
 
 void Bank::display() const {
