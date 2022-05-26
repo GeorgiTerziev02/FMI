@@ -110,6 +110,9 @@ void Bank::addAccount(Account* account) {
 	if (getAccountByIBAN(account->getIBAN()) != nullptr)
 		throw ACCOUNT_ALREADY_EXISTS;
 
+	if (getCustomer(account->getOwnerId()) == nullptr)
+		throw CUSTOMER_DOES_NOT_EXIST;
+
 	accounts.pushBack(account);
 	log.pushBack("Account added " + 123);
 }
