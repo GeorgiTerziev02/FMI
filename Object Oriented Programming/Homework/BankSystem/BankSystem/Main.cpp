@@ -4,8 +4,6 @@
 #include "NormalAccount.h"
 
 int main() {
-	NormalAccount n("test", "test", "test", 1);
-	n.display();
 	Bank bank("BankName", "BankAddress");
 
 	while (true) {
@@ -14,7 +12,40 @@ int main() {
 
 		try
 		{
-			if (strcmp(input, EDIT_COMMAND) == 0) {
+			if (strcmp(input, ADD_CUSTOMER_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, DELETE_CUSTOMER_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, ADD_ACCOUNT_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, DELETE_ACCOUNT_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, LIST_CUSTOMERS_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, LIST_ACCOUNTS_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, LIST_CUSTOMER_ACCOUNTS_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, LIST_LOG_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, WITHDRAW_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, DEPOSIT_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, TRANSFER_COMMAND) == 0) {
+
+			}
+			else if (strcmp(input, INFO_COMMAND) == 0) {
 
 			}
 			else if (strcmp(input, QUIT_COMMAND) == 0) {

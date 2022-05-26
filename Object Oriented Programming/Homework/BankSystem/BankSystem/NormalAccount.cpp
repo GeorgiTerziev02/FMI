@@ -1,4 +1,5 @@
 #include "NormalAccount.h"
+#include "constants.h"
 #include <iostream>
 
 NormalAccount::NormalAccount(const String& userName, const String& password, const String& iBAN, size_t ownerId)
@@ -19,6 +20,6 @@ bool NormalAccount::withdraw(double toWithdraw) {
 }
 
 void NormalAccount::display() const {
-	std::cout << "NormalAccount" << std::endl;
+	std::cout << NORMAL_ACCOUNT << std::endl;
 	std::cout << *this;
 }

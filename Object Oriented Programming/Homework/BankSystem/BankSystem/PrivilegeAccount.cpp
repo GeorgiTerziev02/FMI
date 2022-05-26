@@ -1,4 +1,5 @@
 #include "PrivilegeAccount.h"
+#include "constants.h"
 
 PrivilegeAccount::PrivilegeAccount(const String& userName, const String& password, const String& iBAN, size_t ownerId, double overdraft)
 	: Account(userName, password, iBAN, ownerId), overdraft(overdraft) {}
@@ -22,6 +23,6 @@ bool PrivilegeAccount::withdraw(double toWithdraw) {
 }
 
 void PrivilegeAccount::display() const {
-	std::cout << "PrivilegeAccount" << std::endl;
+	std::cout << PRIVILEGE_ACCOUNT << std::endl;
 	std::cout << *this;
 }

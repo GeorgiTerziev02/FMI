@@ -1,4 +1,5 @@
 #include "SavingsAccount.h"
+#include "constants.h"
 
 SavingsAccount::SavingsAccount(const String& userName, const String& password, const String& iBAN, size_t ownerId, double interestRate) 
 	:Account(userName, password, iBAN, ownerId), interestRate(interestRate) {}
@@ -18,6 +19,6 @@ bool SavingsAccount::withdraw(double toWithdraw) {
 }
 
 void SavingsAccount::display() const {
-	std::cout << "SavingsAccount" << std::endl;
+	std::cout << SAVINGS_ACCOUNT << std::endl;
 	std::cout << *this;
 }

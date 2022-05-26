@@ -1,4 +1,5 @@
 #include "Bank.h"
+#include "constants.h"
 #include <fstream>
 
 Bank::Bank(const String& name, const String& address) {
@@ -81,7 +82,7 @@ Account* Bank::getAccountByIBAN(const String& iBAN) const {
 
 void Bank::addCustomer(Customer* customer) {
 	if (getCustomer(customer->getId()) != nullptr)
-		throw "Customer already exists!";
+		throw CUSTOMER_ALREADY_EXISTS;
 
 	customers.pushBack(customer);
 	log.pushBack("Customer added " + customer->getId());
@@ -91,7 +92,7 @@ void Bank::deleteCustomer(size_t customerId) {
 	int customerIndex = getCustomerIndex(customerId);
 
 	if (customerIndex == -1)
-		throw "Customer does not exist!";
+		throw CUSTOMER_DOES_NOT_EXIST;
 
 	for (size_t i = 0; i < accounts.getSize(); i++) {
 		if (accounts[i]->getOwnerId() == customerId) {
@@ -107,7 +108,7 @@ void Bank::deleteCustomer(size_t customerId) {
 
 void Bank::addAccount(Account* account) {
 	if (getAccountByIBAN(account->getIBAN()) != nullptr)
-		throw "Account already exists";
+		throw ACCOUNT_ALREADY_EXISTS;
 
 	accounts.pushBack(account);
 	log.pushBack("Account added " + 123);
@@ -163,7 +164,7 @@ void Bank::deposit(const String& iBAN, double amount) {
 	Account* account = getAccountByIBAN(iBAN);
 
 	if (account == nullptr)
-		"Account not found!";
+		throw ACCOUNT_DOES_NOT_EXIST;
 
 	account->deposit(amount);
 }
@@ -172,11 +173,11 @@ void Bank::withdraw(const String& iBAN, double amount) {
 	Account* account = getAccountByIBAN(iBAN);
 
 	if (account == nullptr)
-		"Account not found!";
+		throw ACCOUNT_DOES_NOT_EXIST;
 
 	bool success = account->withdraw(amount);
 	if (!success)
-		"Can not withdraw the given amount!";
+		throw CAN_NOT_WITHDRAW_FROM_THE_ACCOUNT;
 }
 
 void Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount) {
@@ -184,11 +185,11 @@ void Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount)
 	Account* toAccount = getAccountByIBAN(toIBAN);
 
 	if (fromAccount == nullptr || toAccount == nullptr)
-		throw "One of the accounts was not found!";
+		throw ACCOUNT_DOES_NOT_EXIST;
 
 	bool success = fromAccount->withdraw(amount);
 	if (!success)
-		throw "Could not withdraw from the account!";
+		throw CAN_NOT_WITHDRAW_FROM_THE_ACCOUNT;
 
 	toAccount->deposit(amount);
 	log.pushBack("Transfer");
