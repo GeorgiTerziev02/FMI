@@ -85,7 +85,7 @@ void Bank::addCustomer(Customer* customer) {
 		throw CUSTOMER_ALREADY_EXISTS;
 
 	customers.pushBack(customer);
-	log.pushBack("Customer added " + customer->getId());
+	log.pushBack("Customer added ");
 }
 
 void Bank::deleteCustomer(size_t customerId) {
@@ -103,7 +103,7 @@ void Bank::deleteCustomer(size_t customerId) {
 
 	Customer* customer = customers.popAt(getCustomerIndex(customerId));
 	delete customer;
-	log.pushBack("Customer deleted " + customerId);
+	log.pushBack("Customer deleted ");
 }
 
 void Bank::addAccount(Account* account) {
@@ -114,7 +114,7 @@ void Bank::addAccount(Account* account) {
 		throw CUSTOMER_DOES_NOT_EXIST;
 
 	accounts.pushBack(account);
-	log.pushBack("Account added " + 123);
+	log.pushBack("Account added ");
 }
 
 void Bank::deleteAccount(const String& iBAN) {
@@ -124,20 +124,26 @@ void Bank::deleteAccount(const String& iBAN) {
 		{
 			Account* account = accounts.popAt(i);
 			delete account;
-			log.pushBack("Account deleted " + 123);
+			log.pushBack("Account deleted ");
 			break;
 		}
 	}
 }
 
 void Bank::listCustomers() const {
-	for (size_t i = 0; i < customers.getSize(); i++)
-		std::cout << customers[i]->getId() << customers[i]->getName() << " " << customers[i]->getAddress() << std::endl;
+	for (size_t i = 0; i < customers.getSize(); i++) {
+		std::cout << "Id: " << customers[i]->getId() << std::endl;
+		std::cout << "Name: " << customers[i]->getName() << std::endl;
+		std::cout << "Address: " << customers[i]->getAddress() << std::endl;
+		std::cout << std::endl;
+	}
 }
 
 void Bank::listAccounts() const {
-	for (size_t i = 0; i < accounts.getSize(); i++)
-		std::cout << accounts[i]->getOwnerId() << " " << accounts[i]->getBalance() << std::endl;
+	for (size_t i = 0; i < accounts.getSize(); i++) {
+		std::cout << accounts[i] << std::endl;
+		std::cout << std::endl;
+	}
 }
 
 void Bank::listCustomerAccount(size_t customerId) const {
@@ -170,6 +176,7 @@ void Bank::deposit(const String& iBAN, double amount) {
 		throw ACCOUNT_DOES_NOT_EXIST;
 
 	account->deposit(amount);
+	log.pushBack("Deposited");
 }
 
 void Bank::withdraw(const String& iBAN, double amount) {
@@ -181,6 +188,8 @@ void Bank::withdraw(const String& iBAN, double amount) {
 	bool success = account->withdraw(amount);
 	if (!success)
 		throw CAN_NOT_WITHDRAW_FROM_THE_ACCOUNT;
+
+	log.pushBack("Withdraw");
 }
 
 void Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount) {
@@ -199,8 +208,9 @@ void Bank::transfer(const String& fromIBAN, const String& toIBAN, double amount)
 }
 
 void Bank::display() const {
-	std::cout << "Name: " << name << std::endl;
+	std::cout << "Bank name: " << name << std::endl;
 	std::cout << "Address: " << address << std::endl;
 	std::cout << "Customers count: " << customers.getSize() << std::endl;
 	std::cout << "Accounts count: " << accounts.getSize() << std::endl;
+	std::cout << std::endl;
 }

@@ -24,7 +24,7 @@ public:
 
 	void deposit(double toDeposit);
 	virtual bool withdraw(double toWithdraw) = 0;
-	virtual void display() const;
+	virtual void display() const = 0;
 
 	friend std::ostream& operator<<(std::ostream& out, const Account& account);
 };

@@ -10,9 +10,9 @@ const char ACCOUNT_DOES_NOT_EXIST[] = "Account does not exist!";
 
 const char CAN_NOT_WITHDRAW_FROM_THE_ACCOUNT[] = "Can not withdraw the given amount!";
 
-const char NORMAL_ACCOUNT[] = "Normal Account";
-const char SAVINGS_ACCOUNT[] = "Savings Account";
-const char PRIVILEGE_ACCOUNT[] = "Privilege Account";
+const char NORMAL_ACCOUNT[] = "NormalAccount";
+const char SAVINGS_ACCOUNT[] = "SavingsAccount";
+const char PRIVILEGE_ACCOUNT[] = "PrivilegeAccount";
 
 const char ADD_CUSTOMER_COMMAND[] = "Add Customer";
 const char DELETE_CUSTOMER_COMMAND[] = "Delete Customer";

@@ -1,4 +1,5 @@
 #include "Account.h"
+#pragma warning(disable : 4996) //_CRT_SECURE_NO_WARNINGS
 
 Account::Account(const String& userName, const String& password, const String& iBAN, size_t ownerId) {
 	this->userName = userName;
@@ -25,22 +26,12 @@ void Account::deposit(double toDeposit) {
 	amount += toDeposit;
 }
 
-void Account::display() const {
-	std::cout << dateOfCreation << std::endl;
-	std::cout << iBAN << std::endl;
-	std::cout << amount << std::endl;
-	std::cout << ownerId << std::endl;
-	std::cout<< userName << std::endl;
-	std::cout<< password << std::endl;
-}
-
 std::ostream& operator<<(std::ostream& out, const Account& account) {
-	out << account.dateOfCreation << std::endl;
-	out << account.iBAN << std::endl;
-	out << account.amount << std::endl;
-	out << account.ownerId << std::endl;
-	out << account.userName << std::endl;
-	out << account.password << std::endl;
-
+	out << "Date of creation: " << ctime(&account.dateOfCreation);
+	out << "IBAN: " << account.iBAN << std::endl;
+	out << "Amount: " << account.amount << std::endl;
+	out << "Owner id: " << account.ownerId << std::endl;
+	out << "User name: " << account.userName << std::endl;
+	out << std::endl;
 	return out;
 }
