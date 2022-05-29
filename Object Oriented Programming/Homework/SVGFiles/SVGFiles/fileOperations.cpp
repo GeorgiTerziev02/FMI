@@ -16,7 +16,7 @@ Rectangle* readRectangleFromString(const char* str) {
 		currentIndex++;
 	}
 
-	return new Rectangle();
+	return new Rectangle(1, 1, 1, 1);
 }
 
 Circle* readCircleFromString(const char* str) {
@@ -28,7 +28,7 @@ Circle* readCircleFromString(const char* str) {
 		currentIndex++;
 	}
 
-	return new Circle();
+	return new Circle(1, 1, 1);
 }
 
 Line* readLineFromString(const char* str) {
@@ -40,7 +40,7 @@ Line* readLineFromString(const char* str) {
 		currentIndex++;
 	}
 
-	return new Line();
+	return new Line(1, 1, 1, 1);
 }
 
 void readFile(const char* fileName, ShapesCollection& shapesCollection) {
@@ -77,7 +77,7 @@ void readFile(const char* fileName, ShapesCollection& shapesCollection) {
 				shapesCollection.addShape(readRectangleFromString(""));
 			else if (strcmp(tag, CIRCLE_TAG) == 0)
 				shapesCollection.addShape(readCircleFromString(""));
-			else if (strcmp(tag, LINE_TAG) == 0) 
+			else if (strcmp(tag, LINE_TAG) == 0)
 				shapesCollection.addShape(readLineFromString(""));
 
 			delete[] tag;

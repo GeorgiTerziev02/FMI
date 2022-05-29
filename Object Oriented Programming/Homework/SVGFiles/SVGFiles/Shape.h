@@ -17,6 +17,11 @@ protected:
 
 			return sqrt(dx * dx + dy * dy);
 		}
+
+		void translate(int x, int y) {
+			this->x += x;
+			this->y += y;
+		}
 	};
 public:
 	virtual ~Shape() {};

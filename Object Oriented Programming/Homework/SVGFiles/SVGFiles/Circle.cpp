@@ -1,14 +1,18 @@
 #include "Circle.h"
 
-Circle::Circle(int x, int y, double radius) {
+Circle::Circle(int x, int y, double radius)
+	: Shape() {
 	center.x = x;
 	center.y = y;
 	this->radius = radius;
 }
 
+Shape* Circle::clone() const {
+	return new Circle(*this);
+}
+
 void Circle::translate(int x, int y) {
-	center.x += x;
-	center.y += y;
+	center.translate(x, y);
 }
 
 bool Circle::isPointIn(int x, int y) const {
