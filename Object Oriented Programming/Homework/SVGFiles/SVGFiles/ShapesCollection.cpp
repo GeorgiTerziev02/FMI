@@ -33,12 +33,14 @@ void ShapesCollection::copyFrom(const ShapesCollection& other) {
 		shapes.pushBack(other.shapes[i]->clone());
 }
 
-
-
 void ShapesCollection::printShapes() const {
 	size_t size = shapes.getSize();
 	for (size_t i = 0; i < size; i++)
 		shapes[i]->print();
+}
+
+void ShapesCollection::addShape(const Shape* shape) {
+	shapes.pushBack(shape->clone());
 }
 
 //void ShapesCollection::createShape();

@@ -13,6 +13,7 @@ public:
 	~ShapesCollection();
 
 	void printShapes() const;
+	void addShape(const Shape* shape);
 	void createShape();
 	void eraseShape();
 	void translate();
