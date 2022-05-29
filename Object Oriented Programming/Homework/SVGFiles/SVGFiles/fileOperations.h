@@ -1,4 +1,6 @@
 #pragma once
 #include "ShapesCollection.h"
 
-void readFile(const char* fileName, ShapesCollection& shapesCollection);
+ShapesCollection* readFile(const char* fileName);
+
+void saveToFile(const char* fileName, const ShapesCollection* collection);

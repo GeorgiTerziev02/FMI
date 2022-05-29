@@ -19,23 +19,19 @@ ShapesCollection::~ShapesCollection() {
 }
 
 void ShapesCollection::free() {
-	size_t size = shapes.getSize();
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i < shapes.getSize(); i++)
 		delete shapes[i];
 
 	shapes.clear();
 }
 
 void ShapesCollection::copyFrom(const ShapesCollection& other) {
-	size_t size = other.shapes.getSize();
-
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i < shapes.getSize(); i++)
 		shapes.pushBack(other.shapes[i]->clone());
 }
 
 void ShapesCollection::printShapes() const {
-	size_t size = shapes.getSize();
-	for (size_t i = 0; i < size; i++)
+	for (size_t i = 0; i < shapes.getSize(); i++)
 		shapes[i]->print();
 }
 

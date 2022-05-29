@@ -43,7 +43,7 @@ Line* readLineFromString(const char* str) {
 	return new Line(1, 1, 1, 1);
 }
 
-void readFile(const char* fileName, ShapesCollection& shapesCollection) {
+ShapesCollection* readFile(const char* fileName) {
 
 	std::ifstream file(fileName);
 
@@ -85,4 +85,13 @@ void readFile(const char* fileName, ShapesCollection& shapesCollection) {
 
 		currentIndex++;
 	}
+}
+
+
+
+void saveToFile(const char* fileName, const ShapesCollection* collection) {
+	std::ofstream file(fileName);
+
+	if (!file.is_open())
+		throw OPEN_FILE_ERROR_MESSAGE;
 }
