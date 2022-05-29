@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+
 class Shape
 {
 protected:
@@ -7,12 +9,20 @@ protected:
 		int x, y;
 		point(int x = 0, int y = 0)
 			: x(x), y(y) {}
-	}point;
+
+		double getDist(const point& other) const
+		{
+			int dx = x - other.x;
+			int dy = y - other.y;
+
+			return sqrt(dx * dx + dy * dy);
+		}
+	};
 public:
+	virtual ~Shape() {};
 	virtual Shape* clone() const = 0;
 
-	void translate(int x, int y);
-
+	virtual void translate(int x, int y) = 0;
 	virtual bool isPointIn(int x, int y) const = 0;
 	virtual double getArea() const = 0;
 	virtual double getPerimeter() const = 0;
