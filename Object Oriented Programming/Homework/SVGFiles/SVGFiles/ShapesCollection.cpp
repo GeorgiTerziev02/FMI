@@ -1,4 +1,7 @@
 #include "ShapesCollection.h"
+#include "Circle.h"
+#include "Line.h"
+#include "Rectangle.h"
 
 ShapesCollection::ShapesCollection(const ShapesCollection& other) {
 	copyFrom(other);
@@ -63,4 +66,20 @@ void ShapesCollection::translate(int x, int y, int index) {
 		throw "Invalid index";
 
 	shapes[index]->translate(x, y);
+}
+
+
+std::ostream& operator<<(std::ostream& out, const ShapesCollection& collection) {
+	out << "<svg>" << std::endl;
+	for (size_t i = 0; i < collection.shapes.getSize(); i++) {
+		if (strcmp(collection.shapes[i]->getTypeString(), "Circle") == 0)
+			out << *((Circle*)collection.shapes[i]) << std::endl;
+		else if (strcmp(collection.shapes[i]->getTypeString(), "Rectangle") == 0)
+			out << *((Rectangle*)collection.shapes[i]) << std::endl;
+		else if (strcmp(collection.shapes[i]->getTypeString(), "Line") == 0)
+			out << *((Line*)collection.shapes[i]) << std::endl;
+	}
+	out << "</svg>" << std::endl;
+	
+	return out;
 }

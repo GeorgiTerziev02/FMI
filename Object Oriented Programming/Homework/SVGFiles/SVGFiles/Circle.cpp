@@ -35,3 +35,11 @@ const char* Circle::getTypeString() const {
 void Circle::print() const {
 	std::cout << "Circle" << std::endl;
 }
+
+
+std::ostream& operator<<(std::ostream& out, const Circle& circle) {
+	return out << "<circle cx=\"" << circle.center.x 
+		<< "\" cy=\"" << circle.center.y
+		<< "\" r=\"" <<circle.radius
+		<<"\" />";
+}

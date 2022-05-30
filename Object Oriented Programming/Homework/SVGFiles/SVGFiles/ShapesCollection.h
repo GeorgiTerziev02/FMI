@@ -18,6 +18,7 @@ public:
 	void translate(int x, int y, int index = -1);
 	const Vector<Shape*>& getShapes() const;
 
+	friend std::ostream& operator<<(std::ostream&, const ShapesCollection&);
 private:
 	void free();
 	void copyFrom(const ShapesCollection&);

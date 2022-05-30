@@ -15,5 +15,7 @@ public:
 	double getPerimeter() const override;
 	void print() const override;
 	const char* getTypeString() const override;
+
+	friend std::ostream& operator<<(std::ostream&, const Rectangle&);
 };
 
