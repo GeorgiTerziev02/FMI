@@ -5,6 +5,7 @@ Line::Line(int x1, int y1, int x2, int y2) {
 	p1.y = y1;
 	p2.x = x2;
 	p2.y = y2;
+	type = TypeOfShape::Line;
 }
 
 Shape* Line::clone() const {
@@ -29,6 +30,10 @@ double Line::getArea() const {
 
 double Line::getPerimeter() const {
 	return p1.getDist(p2);
+}
+
+const char* Line::getTypeString() const {
+	return "Line";
 }
 
 void Line::print() const {

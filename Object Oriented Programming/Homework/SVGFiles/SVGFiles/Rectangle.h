@@ -14,5 +14,6 @@ public:
 	double getArea() const override;
 	double getPerimeter() const override;
 	void print() const override;
+	const char* getTypeString() const override;
 };
 

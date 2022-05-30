@@ -60,6 +60,7 @@ ShapesCollection* readFile(const char* fileName) {
 
 	file.close();
 
+	ShapesCollection* shapesCollection = new ShapesCollection();
 	int currentIndex = 0;
 	while (currentIndex < length)
 	{
@@ -74,17 +75,19 @@ ShapesCollection* readFile(const char* fileName) {
 			currentIndex = indexOfFirstSpace;
 
 			if (strcmp(tag, RECTANGLE_TAG) == 0)
-				shapesCollection.addShape(readRectangleFromString(""));
+				shapesCollection->createShape(readRectangleFromString(""));
 			else if (strcmp(tag, CIRCLE_TAG) == 0)
-				shapesCollection.addShape(readCircleFromString(""));
+				shapesCollection->createShape(readCircleFromString(""));
 			else if (strcmp(tag, LINE_TAG) == 0)
-				shapesCollection.addShape(readLineFromString(""));
+				shapesCollection->createShape(readLineFromString(""));
 
 			delete[] tag;
 		}
 
 		currentIndex++;
 	}
+
+	return shapesCollection;
 }
 
 void saveToFile(const char* fileName, const ShapesCollection* collection) {

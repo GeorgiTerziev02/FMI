@@ -39,11 +39,10 @@ void ShapesCollection::printShapes() const {
 		shapes[i]->print();
 }
 
-void ShapesCollection::addShape(const Shape* shape) {
+void ShapesCollection::createShape(const Shape* shape) {
 	shapes.pushBack(shape->clone());
 }
 
-//void ShapesCollection::createShape();
 void ShapesCollection::eraseShape(size_t index) {
 	if (index >= shapes.getSize())
 		throw "Invalid index";
@@ -51,7 +50,7 @@ void ShapesCollection::eraseShape(size_t index) {
 	shapes.popAt(index);
 }
 
-void ShapesCollection::translate(int x, int y, int index = -1) {
+void ShapesCollection::translate(int x, int y, int index) {
 	if (index == -1)
 	{
 		for (size_t i = 0; i < shapes.getSize(); i++)

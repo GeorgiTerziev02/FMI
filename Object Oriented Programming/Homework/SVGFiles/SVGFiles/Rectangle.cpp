@@ -5,6 +5,7 @@ Rectangle::Rectangle(int x, int y, double width, double height) {
 	point.y = y;
 	this->width = width;
 	this->height = height;
+	type = TypeOfShape::Rectangle;
 }
 
 Shape* Rectangle::clone() const {
@@ -26,6 +27,10 @@ double Rectangle::getArea() const {
 
 double Rectangle::getPerimeter() const {
 	return 2 * (height + width);
+}
+
+const char* Rectangle::getTypeString() const {
+	return "Rectangle";
 }
 
 void Rectangle::print() const {

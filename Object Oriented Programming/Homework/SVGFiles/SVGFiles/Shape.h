@@ -23,6 +23,13 @@ protected:
 			this->y += y;
 		}
 	};
+
+	enum TypeOfShape
+	{
+		Rectangle,
+		Circle,
+		Line
+	} type;
 public:
 	virtual ~Shape() {};
 	virtual Shape* clone() const = 0;
@@ -32,5 +39,6 @@ public:
 	virtual double getArea() const = 0;
 	virtual double getPerimeter() const = 0;
 	virtual void print() const = 0;
+	virtual const char* getTypeString() const = 0;
 };
 

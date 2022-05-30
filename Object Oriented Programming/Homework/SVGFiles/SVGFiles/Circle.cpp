@@ -5,6 +5,7 @@ Circle::Circle(int x, int y, double radius)
 	center.x = x;
 	center.y = y;
 	this->radius = radius;
+	type = TypeOfShape::Circle;
 }
 
 Shape* Circle::clone() const {
@@ -25,6 +26,10 @@ double Circle::getArea() const {
 
 double Circle::getPerimeter() const {
 	return 2 * radius * 3.14;
+}
+
+const char* Circle::getTypeString() const {
+	return "Circle";
 }
 
 void Circle::print() const {
