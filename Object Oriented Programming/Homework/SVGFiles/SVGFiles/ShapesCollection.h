@@ -13,10 +13,10 @@ public:
 	~ShapesCollection();
 
 	void printShapes() const;
-	void addShape(const Shape* shape);
-	void createShape();
-	void eraseShape();
-	void translate();
+	void createShape(const Shape* shape);
+	void eraseShape(size_t index);
+	void translate(int x, int y, int index = -1);
+	const Vector<Shape*>& getShapes() const;
 
 private:
 	void free();

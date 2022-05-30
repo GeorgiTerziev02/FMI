@@ -87,11 +87,16 @@ ShapesCollection* readFile(const char* fileName) {
 	}
 }
 
-
-
 void saveToFile(const char* fileName, const ShapesCollection* collection) {
 	std::ofstream file(fileName);
 
 	if (!file.is_open())
 		throw OPEN_FILE_ERROR_MESSAGE;
+
+	file << "<svg>" << std::endl;
+
+	auto shapes = collection->getShapes();
+	shapes[3] = new Circle(1,1,1);
+
+	file << "</svg>" << std::endl;
 }
