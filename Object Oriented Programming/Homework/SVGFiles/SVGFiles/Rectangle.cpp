@@ -34,7 +34,7 @@ const char* Rectangle::getTypeString() const {
 }
 
 void Rectangle::print() const {
-	std::cout << "Rectangle" << std::endl;
+	std::cout << "rectangle" << point.x << " " << point.y << " " << width << " " << height << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Rectangle& rect) {

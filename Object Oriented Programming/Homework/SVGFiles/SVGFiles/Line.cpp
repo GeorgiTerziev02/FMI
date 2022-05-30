@@ -37,7 +37,7 @@ const char* Line::getTypeString() const {
 }
 
 void Line::print() const {
-	std::cout << "Line" << std::endl;
+	std::cout << "line" << p1.x << " " << p1.y << " " << p2.x << " " << p2.y << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Line& line) {

@@ -38,8 +38,10 @@ const Vector<Shape*>& ShapesCollection::getShapes() const {
 }
 
 void ShapesCollection::printShapes() const {
-	for (size_t i = 0; i < shapes.getSize(); i++)
+	for (size_t i = 0; i < shapes.getSize(); i++) {
+		std::cout << i + 1 << ". ";
 		shapes[i]->print();
+	}
 }
 
 void ShapesCollection::createShape(const Shape* shape) {

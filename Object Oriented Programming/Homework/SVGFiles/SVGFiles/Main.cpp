@@ -33,7 +33,7 @@ int main() {
 		}
 		else if (strcmp(input, SAVE_COMMAND) == 0)
 		{
-
+			saveToFile(fileName, collection);
 		}
 		else if (strcmp(input, EXIT_COMMAND) == 0) {
 			break;
