@@ -14,6 +14,9 @@ Rectangle* readRectangleFromString(const char* str) {
 	int y = 0;
 	double width = 0;
 	double height = 0;
+	String fill;
+	String stroke;
+	double strokeWidth = 0;
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
@@ -30,13 +33,19 @@ Rectangle* readRectangleFromString(const char* str) {
 			width = doubleParse(value);
 		else if (strcmp(prop, "height") == 0)
 			height = doubleParse(value);
+		else if (strcmp(prop, "stroke") == 0)
+			stroke = value;
+		else if (strcmp(prop, "stroke-width") == 0)
+			strokeWidth = doubleParse(value);
+		else if (strcmp(prop, "fill") == 0)
+			fill = value;
 
 		delete[] prop;
 		delete[] value;
 		delete[] parts[i];
 	}
 
-	return new Rectangle(x, y, width, height);
+	return new Rectangle(x, y, width, height, fill, stroke, strokeWidth);
 }
 
 Circle* readCircleFromString(const char* str) {
@@ -45,6 +54,9 @@ Circle* readCircleFromString(const char* str) {
 	int x = 0;
 	int y = 0;
 	double radius = 0;
+	String fill;
+	String stroke;
+	double strokeWidth = 0;
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
@@ -59,13 +71,19 @@ Circle* readCircleFromString(const char* str) {
 			y = intParse(value);
 		else if (strcmp(prop, "r") == 0)
 			radius = doubleParse(value);
+		else if (strcmp(prop, "stroke") == 0)
+			stroke = value;
+		else if (strcmp(prop, "stroke-width") == 0)
+			strokeWidth = doubleParse(value);
+		else if (strcmp(prop, "fill") == 0)
+			fill = value;
 
 		delete[] prop;
 		delete[] value;
 		delete[] parts[i];
 	}
 
-	return new Circle(x, y, radius);
+	return new Circle(x, y, radius, fill, stroke, strokeWidth);
 }
 
 Line* readLineFromString(const char* str) {
@@ -73,6 +91,8 @@ Line* readLineFromString(const char* str) {
 
 	int x1 = 0, x2 = 0;
 	int y1 = 0, y2 = 0;
+	String stroke;
+	double strokeWidth = 0;
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
@@ -89,13 +109,17 @@ Line* readLineFromString(const char* str) {
 			x2 = doubleParse(value);
 		else if (strcmp(prop, "y2") == 0)
 			y2 = intParse(value);
+		else if (strcmp(prop, "stroke") == 0)
+			stroke = value;
+		else if (strcmp(prop, "stroke-width") == 0)
+			strokeWidth = doubleParse(value);
 
 		delete[] prop;
 		delete[] value;
 		delete[] parts[i];
 	}
 
-	return new Line(x1, y1, x2, y2);
+	return new Line(x1, y1, x2, y2, stroke, strokeWidth);
 }
 
 ShapesCollection* readFile(const char* fileName) {

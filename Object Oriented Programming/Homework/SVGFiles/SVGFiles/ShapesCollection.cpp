@@ -70,7 +70,6 @@ void ShapesCollection::translate(int x, int y, int index) {
 	shapes[index]->translate(x, y);
 }
 
-
 std::ostream& operator<<(std::ostream& out, const ShapesCollection& collection) {
 	out << "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">" << std::endl;
 	for (size_t i = 0; i < collection.shapes.getSize(); i++) {

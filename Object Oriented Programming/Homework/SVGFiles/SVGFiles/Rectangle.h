@@ -4,9 +4,9 @@ class Rectangle : public Shape
 {
 	point point;
 	double width, height;
-
+	String fill;
 public: 
-	Rectangle(int x, int y, double width, double height);
+	Rectangle(int x, int y, double width, double height, const String& fill, const String& stroke, int strokeWidth);
 	Shape* clone() const override;
 
 	void translate(int x, int y) override;

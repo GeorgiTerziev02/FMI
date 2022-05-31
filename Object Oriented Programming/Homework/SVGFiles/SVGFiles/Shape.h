@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "String.h"
 
 class Shape
 {
@@ -30,7 +31,11 @@ protected:
 		Circle,
 		Line
 	} type;
+
+	String stroke;
+	int strokeWidth;
 public:
+	Shape(const String& stroke, int strokeWidth);
 	virtual ~Shape() {};
 	virtual Shape* clone() const = 0;
 

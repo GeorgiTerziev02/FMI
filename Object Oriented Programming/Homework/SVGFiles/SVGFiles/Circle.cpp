@@ -1,10 +1,12 @@
 #include "Circle.h"
 
-Circle::Circle(int x, int y, double radius)
-	: Shape() {
+Circle::Circle(int x, int y, double radius, const String& fill, const String& stroke, int strokeWidth)
+	: Shape(stroke, strokeWidth) 
+{
 	center.x = x;
 	center.y = y;
 	this->radius = radius;
+	this->fill = fill;
 	type = TypeOfShape::Circle;
 }
 

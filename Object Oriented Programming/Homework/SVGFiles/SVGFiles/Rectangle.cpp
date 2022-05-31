@@ -1,10 +1,13 @@
 #include "Rectangle.h"
 
-Rectangle::Rectangle(int x, int y, double width, double height) {
+Rectangle::Rectangle(int x, int y, double width, double height, const String& fill, const String& stroke, int strokeWidth)
+	:Shape(stroke, strokeWidth)
+{
 	point.x = x;
 	point.y = y;
 	this->width = width;
 	this->height = height;
+	this->fill = fill;
 	type = TypeOfShape::Rectangle;
 }
 

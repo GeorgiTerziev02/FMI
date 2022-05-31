@@ -5,8 +5,10 @@ class Circle : public Shape
 {
 	point center;
 	double radius;
+	String fill;
+
 public:
-	Circle(int x, int y, double radius);
+	Circle(int x, int y, double radius, const String& fill, const String& stroke, int strokeWidth);
 
 	Shape* clone() const override;
 

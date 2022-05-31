@@ -1,6 +1,7 @@
 #include "Line.h"
 
-Line::Line(int x1, int y1, int x2, int y2) {
+Line::Line(int x1, int y1, int x2, int y2, const String& stroke, int strokeWidth)
+	:Shape(stroke, strokeWidth) {
 	p1.x = x1;
 	p1.y = y1;
 	p2.x = x2;
@@ -44,6 +45,6 @@ std::ostream& operator<<(std::ostream& out, const Line& line) {
 	return out << "<line x1=\"" << line.p1.x
 		<< "\" y1=\"" << line.p1.y
 		<< "\" x2=\"" << line.p2.x
-		<< "\" y2=\"" << line.p2.y 
+		<< "\" y2=\"" << line.p2.y
 		<< "\" />";
 }

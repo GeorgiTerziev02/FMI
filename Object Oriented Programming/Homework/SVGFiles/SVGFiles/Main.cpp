@@ -7,14 +7,6 @@
 #include "Rectangle.h"
 
 int main() {
-	Circle* circle = new Circle(1, 2, 3);
-	Line* line = new Line(1, 2, 3, 4);
-	Rectangle* rect = new Rectangle(1, 2, 3, 4);
-
-	std::cout << *line << std::endl;
-	std::cout << *circle << std::endl;
-	std::cout << *rect << std::endl;
-
 	std::cout << "Enter fileName: " << std::endl;
 	char fileName[INPUT_BUFFER];
 	std::cin.getline(fileName, INPUT_BUFFER);
