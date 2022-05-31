@@ -37,13 +37,6 @@ const Vector<Shape*>& ShapesCollection::getShapes() const {
 	return shapes;
 }
 
-void ShapesCollection::printShapes() const {
-	for (size_t i = 0; i < shapes.getSize(); i++) {
-		std::cout << i + 1 << ". ";
-		shapes[i]->print();
-	}
-}
-
 void ShapesCollection::createShape(const Shape* shape) {
 	shapes.pushBack(shape->clone());
 }
@@ -56,8 +49,7 @@ void ShapesCollection::eraseShape(size_t index) {
 }
 
 void ShapesCollection::translate(int x, int y, int index) {
-	if (index == -1)
-	{
+	if (index == -1) {
 		for (size_t i = 0; i < shapes.getSize(); i++)
 			shapes[i]->translate(x, y);
 
@@ -68,6 +60,28 @@ void ShapesCollection::translate(int x, int y, int index) {
 		throw "Invalid index";
 
 	shapes[index]->translate(x, y);
+}
+
+void ShapesCollection::printContainingPoint(int x, int y) const {
+	for (size_t i = 0; i < shapes.getSize(); i++)
+		if (shapes[i]->isPointIn(x, y))
+			shapes[i]->print();
+}
+
+void ShapesCollection::printShapes() const {
+	for (size_t i = 0; i < shapes.getSize(); i++) {
+		std::cout << i + 1 << ". ";
+		shapes[i]->print();
+	}
+}
+void ShapesCollection::printPerimeters() const {
+	for (size_t i = 0; i < shapes.getSize(); i++)
+		std::cout << i + 1 << " " << shapes[i]->getTypeString() << " " << shapes[i]->getPerimeter();
+}
+
+void ShapesCollection::printAreas() const {
+	for (size_t i = 0; i < shapes.getSize(); i++)
+		std::cout << i + 1 << " " << shapes[i]->getTypeString() << " " << shapes[i]->getArea();
 }
 
 std::ostream& operator<<(std::ostream& out, const ShapesCollection& collection) {
@@ -81,6 +95,6 @@ std::ostream& operator<<(std::ostream& out, const ShapesCollection& collection) 
 			out << '\t' << *((Line*)collection.shapes[i]) << std::endl;
 	}
 	out << "</svg>" << std::endl;
-	
+
 	return out;
 }

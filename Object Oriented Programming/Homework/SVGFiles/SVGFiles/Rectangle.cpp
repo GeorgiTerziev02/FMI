@@ -38,8 +38,8 @@ const char* Rectangle::getTypeString() const {
 
 void Rectangle::print() const {
 	std::cout << "rectangle " << point.x << " " << point.y 
-		<< " " << width << " " << height << " "
-		<< fill << " " << stroke << " " << strokeWidth << " "
+		<< " width: " << width << " height: " << height
+		<< " fill: " << fill << " stroke: " << stroke << " stroke width: " << strokeWidth << " "
 		<< std::endl;
 }
 

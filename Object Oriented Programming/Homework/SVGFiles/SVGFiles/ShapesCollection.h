@@ -12,11 +12,15 @@ public:
 	ShapesCollection& operator=(const ShapesCollection&);
 	~ShapesCollection();
 
-	void printShapes() const;
+	const Vector<Shape*>& getShapes() const;
+
 	void createShape(const Shape* shape);
 	void eraseShape(size_t index);
 	void translate(int x, int y, int index = -1);
-	const Vector<Shape*>& getShapes() const;
+	void printContainingPoint(int x, int y) const;
+	void printShapes() const;
+	void printPerimeters() const;
+	void printAreas() const;
 
 	friend std::ostream& operator<<(std::ostream&, const ShapesCollection&);
 private:

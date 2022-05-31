@@ -40,7 +40,7 @@ const char* Line::getTypeString() const {
 void Line::print() const {
 	std::cout << "line " << p1.x << " " << p1.y 
 		<< " " << p2.x << " " << p2.y << " " 
-		<< stroke << " " << strokeWidth 
+		<< "stroke: " << stroke << " stroke width: " << strokeWidth
 		<< std::endl;
 }
 
