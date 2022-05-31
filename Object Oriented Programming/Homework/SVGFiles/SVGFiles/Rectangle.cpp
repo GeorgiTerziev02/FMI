@@ -20,7 +20,7 @@ void Rectangle::translate(int x, int y) {
 }
 
 bool Rectangle::isPointIn(int x, int y) const {
-	return point.x <= x && x <= point.x + width 
+	return point.x <= x && x <= point.x + width
 		&& point.y <= y && y <= point.y + width;
 }
 
@@ -37,7 +37,10 @@ const char* Rectangle::getTypeString() const {
 }
 
 void Rectangle::print() const {
-	std::cout << "rectangle " << point.x << " " << point.y << " " << width << " " << height << std::endl;
+	std::cout << "rectangle " << point.x << " " << point.y 
+		<< " " << width << " " << height << " "
+		<< fill << " " << stroke << " " << strokeWidth << " "
+		<< std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Rectangle& rect) {
@@ -47,5 +50,8 @@ std::ostream& operator<<(std::ostream& out, const Rectangle& rect) {
 		<< "\" y=\"" << rect.point.y
 		<< "\" width=\"" << rect.width
 		<< "\" height=\"" << rect.height
+		<< "\" fill=\"" << rect.fill
+		<< "\" stroke=\"" << rect.stroke
+		<< "\" stroke-width=\"" << rect.strokeWidth
 		<< "\" />";
 }

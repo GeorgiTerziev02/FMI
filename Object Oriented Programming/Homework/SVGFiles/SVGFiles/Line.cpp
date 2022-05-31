@@ -38,7 +38,10 @@ const char* Line::getTypeString() const {
 }
 
 void Line::print() const {
-	std::cout << "line " << p1.x << " " << p1.y << " " << p2.x << " " << p2.y << std::endl;
+	std::cout << "line " << p1.x << " " << p1.y 
+		<< " " << p2.x << " " << p2.y << " " 
+		<< stroke << " " << strokeWidth 
+		<< std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Line& line) {
@@ -46,5 +49,7 @@ std::ostream& operator<<(std::ostream& out, const Line& line) {
 		<< "\" y1=\"" << line.p1.y
 		<< "\" x2=\"" << line.p2.x
 		<< "\" y2=\"" << line.p2.y
+		<< "\" stroke=\"" << line.stroke
+		<< "\" stroke-width=\"" << line.strokeWidth
 		<< "\" />";
 }
