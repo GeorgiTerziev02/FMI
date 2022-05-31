@@ -72,14 +72,14 @@ void ShapesCollection::translate(int x, int y, int index) {
 
 
 std::ostream& operator<<(std::ostream& out, const ShapesCollection& collection) {
-	out << "<svg>" << std::endl;
+	out << "<svg xmlns=\"http://www.w3.org/2000/svg\" version=\"1.1\">" << std::endl;
 	for (size_t i = 0; i < collection.shapes.getSize(); i++) {
 		if (strcmp(collection.shapes[i]->getTypeString(), "Circle") == 0)
-			out << *((Circle*)collection.shapes[i]) << std::endl;
+			out << '\t' << *((Circle*)collection.shapes[i]) << std::endl;
 		else if (strcmp(collection.shapes[i]->getTypeString(), "Rectangle") == 0)
-			out << *((Rectangle*)collection.shapes[i]) << std::endl;
+			out << '\t' << *((Rectangle*)collection.shapes[i]) << std::endl;
 		else if (strcmp(collection.shapes[i]->getTypeString(), "Line") == 0)
-			out << *((Line*)collection.shapes[i]) << std::endl;
+			out << '\t' << *((Line*)collection.shapes[i]) << std::endl;
 	}
 	out << "</svg>" << std::endl;
 	
