@@ -6,6 +6,12 @@
 #include "Line.h"
 #include "Rectangle.h"
 
+void clearInputBuffer() {
+	std::cin.clear();
+	std::cin.sync();
+	std::cin.ignore();
+}
+
 int main() {
 	std::cout << "Enter fileName: " << std::endl;
 	char fileName[INPUT_BUFFER];
@@ -26,10 +32,22 @@ int main() {
 
 		}
 		else if (strcmp(input, ERASE_COMMAND) == 0) {
+			size_t index;
+			std::cout << "Enter index: ";
+			std::cin >> index;
 
+			collection->eraseShape(index - 1);
 		}
 		else if (strcmp(input, TRANSLATE_COMMAND) == 0) {
+			int x = 0, y = 0, index = -1;
+			std::cout << "Vertical: ";
+			std::cin >> x;
+			std::cout << "Horizontal: ";
+			std::cin >> y;
+			std::cout << "Index (enter -1 for all):";
+			std::cin >> index;
 
+			collection->translate(x, y, index);
 		}
 		else if (strcmp(input, POINTIN_COMMAND) == 0) {
 			int x = 0, y = 0;
@@ -55,5 +73,7 @@ int main() {
 		else if (strcmp(input, EXIT_COMMAND) == 0) {
 			break;
 		}
+
+		clearInputBuffer();
 	}
 }

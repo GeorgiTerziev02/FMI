@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-	<rect x="31" y="41" width="1198" height="398" fill="none" stroke="blue" stroke-width="2" />
-	<rect x="400" y="100" width="400" height="200" fill="yellow" stroke="navy" stroke-width="10" />
-	<circle cx="600" cy="200" r="100" fill="red" stroke="blue" stroke-width="10" />
-	<line x1="500" y1="300" x2="700" y2="100" stroke="purple" stroke-width="15" />
+	<rect x="41" y="51" width="1198" height="398" fill="none" stroke="blue" stroke-width="2" />
+	<rect x="410" y="110" width="400" height="200" fill="yellow" stroke="navy" stroke-width="10" />
+	<circle cx="610" cy="210" r="100" fill="red" stroke="blue" stroke-width="10" />
+	<line x1="510" y1="310" x2="710" y2="110" stroke="purple" stroke-width="15" />
 </svg>
