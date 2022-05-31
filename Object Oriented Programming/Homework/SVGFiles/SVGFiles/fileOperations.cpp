@@ -19,7 +19,6 @@ Rectangle* readRectangleFromString(const char* str) {
 	{
 		// test="123"
 		size_t equalsIndex = indexOf(parts[i], 0, '=');
-		char* test = parts[i];
 		char* prop = subStr(parts[i], 0, equalsIndex - 1);
 		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
 
@@ -52,7 +51,7 @@ Circle* readCircleFromString(const char* str) {
 		// test="123"
 		size_t equalsIndex = indexOf(parts[i], 0, '=');
 		char* prop = subStr(parts[i], 0, equalsIndex - 1);
-		char* value = subStr(parts[i], equalsIndex + 1, strlen(parts[i]) - 2); // -2 because of "
+		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
 
 		if (strcmp(prop, "cx") == 0)
 			x = intParse(value);
@@ -80,7 +79,7 @@ Line* readLineFromString(const char* str) {
 		// test="123"
 		size_t equalsIndex = indexOf(parts[i], 0, '=');
 		char* prop = subStr(parts[i], 0, equalsIndex - 1);
-		char* value = subStr(parts[i], equalsIndex + 1, strlen(parts[i]) - 2); // -2 because of "
+		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
 
 		if (strcmp(prop, "x1") == 0)
 			x1 = intParse(value);
