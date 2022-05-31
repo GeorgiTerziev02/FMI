@@ -9,7 +9,11 @@ const char RECTANGLE_TAG[] = "rect";
 const char CIRCLE_TAG[] = "circle";
 const char LINE_TAG[] = "line";
 
-const char OPEN_COMMAND[] = "Open";
-const char PRINT_COMMAND[] = "Print";
-const char SAVE_COMMAND[] = "Save";
-const char EXIT_COMMAND[] = "Exit";
+const char OPEN_COMMAND[] = "open";
+const char CREATE_COMMAND[] = "create";
+const char WITHIN_COMMAND[] = "within";
+const char ERASE_COMMAND[] = "erase";
+const char TRANSLATE_COMMAND[] = "translate";
+const char PRINT_COMMAND[] = "print";
+const char SAVE_COMMAND[] = "save";
+const char EXIT_COMMAND[] = "exit";

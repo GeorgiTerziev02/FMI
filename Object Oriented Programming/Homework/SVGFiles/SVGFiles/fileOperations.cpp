@@ -8,39 +8,51 @@
 
 
 Rectangle* readRectangleFromString(const char* str) {
-	int currentIndex = 0;
-	int strLength = strlen(str);
+	Vector<char*> parts = split(str, ' ');
 
-	while (currentIndex < strLength)
+	int x = 0;
+	int y = 0;
+	double width = 0;
+	double height = 0;
+
+	for (size_t i = 0; i < parts.getSize(); i++)
 	{
-		currentIndex++;
+
+		delete[] parts[i];
 	}
 
-	return new Rectangle(1, 1, 1, 1);
+	return new Rectangle(x, y, width, height);
 }
 
 Circle* readCircleFromString(const char* str) {
-	int currentIndex = 0;
-	int strLength = strlen(str);
+	Vector<char*> parts = split(str, ' ');
 
-	while (currentIndex < strLength)
+	int x = 0;
+	int y = 0;
+	double radius = 0;
+
+	for (size_t i = 0; i < parts.getSize(); i++)
 	{
-		currentIndex++;
+
+		delete[] parts[i];
 	}
 
-	return new Circle(1, 1, 1);
+	return new Circle(x, y, radius);
 }
 
 Line* readLineFromString(const char* str) {
-	int currentIndex = 0;
-	int strLength = strlen(str);
+	Vector<char*> parts = split(str, ' ');
 
-	while (currentIndex < strLength)
+	int x1 = 0, x2 = 0;
+	int y1 = 0, y2 = 0;
+
+	for (size_t i = 0; i < parts.getSize(); i++)
 	{
-		currentIndex++;
+
+		delete[] parts[i];
 	}
 
-	return new Line(1, 1, 1, 1);
+	return new Line(x1, y1, x2, y2);
 }
 
 ShapesCollection* readFile(const char* fileName) {
@@ -72,14 +84,27 @@ ShapesCollection* readFile(const char* fileName) {
 		{
 			char* tag = subStr(fileBuffer, indexOfLeftArrow + 1, indexOfFirstSpace - 1);
 
-			currentIndex = indexOfFirstSpace;
-
-			if (strcmp(tag, RECTANGLE_TAG) == 0)
-				shapesCollection->createShape(readRectangleFromString(""));
-			else if (strcmp(tag, CIRCLE_TAG) == 0)
-				shapesCollection->createShape(readCircleFromString(""));
-			else if (strcmp(tag, LINE_TAG) == 0)
-				shapesCollection->createShape(readLineFromString(""));
+			if (strcmp(tag, RECTANGLE_TAG) == 0) {
+				size_t tagEndIndex = indexOf(fileBuffer, currentIndex, '>');
+				char* info = subStr(fileBuffer, indexOfLeftArrow + 1, tagEndIndex - 1);
+				shapesCollection->createShape(readRectangleFromString(info));
+				delete[] info;
+				currentIndex = tagEndIndex;
+			}
+			else if (strcmp(tag, CIRCLE_TAG) == 0) {
+				size_t tagEndIndex = indexOf(fileBuffer, currentIndex, '>');
+				char* info = subStr(fileBuffer, indexOfLeftArrow + 1, tagEndIndex - 1);
+				shapesCollection->createShape(readCircleFromString(info));
+				delete[] info;
+				currentIndex = tagEndIndex;
+			}
+			else if (strcmp(tag, LINE_TAG) == 0) {
+				size_t tagEndIndex = indexOf(fileBuffer, currentIndex, '>');
+				char* info = subStr(fileBuffer, indexOfLeftArrow + 1, tagEndIndex - 1);
+				shapesCollection->createShape(readLineFromString(info));
+				delete[] info;
+				currentIndex = tagEndIndex;
+			}
 
 			delete[] tag;
 		}

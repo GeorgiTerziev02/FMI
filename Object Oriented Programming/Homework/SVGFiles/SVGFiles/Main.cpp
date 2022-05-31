@@ -27,7 +27,11 @@ int main() {
 		char input[INPUT_BUFFER];
 		std::cin.getline(input, INPUT_BUFFER);
 		
-		if (strcmp(input, PRINT_COMMAND) == 0)
+		if (strcmp(input, CREATE_COMMAND) == 0)
+		{
+			collection->createShape(nullptr);
+		}
+		else if (strcmp(input, PRINT_COMMAND) == 0)
 		{
 			collection->printShapes();
 		}

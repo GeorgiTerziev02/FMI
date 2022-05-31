@@ -30,3 +30,25 @@ char* subStr(const char* str, const int& startIndex, const int& endIndex) {
 
 	return result;
 }
+
+Vector<char*> split(const char* str, char separator) {
+	size_t length = strlen(str);
+
+	size_t currentIndex = 0;
+	Vector<char*> result;
+	while (currentIndex < length)
+	{
+		// we found first symbol
+		if (str[currentIndex] != separator)
+		{
+			size_t indexOfFirstSpace = indexOf(str, currentIndex, separator);
+			char* partial = subStr(str, currentIndex + 1, indexOfFirstSpace - 1);
+			currentIndex = indexOfFirstSpace;
+			result.pushBack(partial);
+		}
+
+		currentIndex++;
+	}
+
+	return result;
+}
