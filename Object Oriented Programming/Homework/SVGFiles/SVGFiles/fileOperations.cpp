@@ -5,7 +5,7 @@
 #include "Rectangle.h"
 #include "Circle.h"
 #include "Line.h"
-
+#include "parsers.h"
 
 Rectangle* readRectangleFromString(const char* str) {
 	Vector<char*> parts = split(str, ' ');
@@ -17,7 +17,23 @@ Rectangle* readRectangleFromString(const char* str) {
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
+		// test="123"
+		size_t equalsIndex = indexOf(parts[i], 0, '=');
+		char* test = parts[i];
+		char* prop = subStr(parts[i], 0, equalsIndex - 1);
+		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
 
+		if (strcmp(prop, "x") == 0)
+			x = intParse(value);
+		else if (strcmp(prop, "y") == 0)
+			y = intParse(value);
+		else if (strcmp(prop, "width") == 0)
+			width = doubleParse(value);
+		else if (strcmp(prop, "height") == 0)
+			height = doubleParse(value);
+
+		delete[] prop;
+		delete[] value;
 		delete[] parts[i];
 	}
 
@@ -33,7 +49,20 @@ Circle* readCircleFromString(const char* str) {
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
+		// test="123"
+		size_t equalsIndex = indexOf(parts[i], 0, '=');
+		char* prop = subStr(parts[i], 0, equalsIndex - 1);
+		char* value = subStr(parts[i], equalsIndex + 1, strlen(parts[i]) - 2); // -2 because of "
 
+		if (strcmp(prop, "cx") == 0)
+			x = intParse(value);
+		else if (strcmp(prop, "cy") == 0)
+			y = intParse(value);
+		else if (strcmp(prop, "r") == 0)
+			radius = doubleParse(value);
+
+		delete[] prop;
+		delete[] value;
 		delete[] parts[i];
 	}
 
@@ -48,7 +77,22 @@ Line* readLineFromString(const char* str) {
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
+		// test="123"
+		size_t equalsIndex = indexOf(parts[i], 0, '=');
+		char* prop = subStr(parts[i], 0, equalsIndex - 1);
+		char* value = subStr(parts[i], equalsIndex + 1, strlen(parts[i]) - 2); // -2 because of "
 
+		if (strcmp(prop, "x1") == 0)
+			x1 = intParse(value);
+		else if (strcmp(prop, "y1") == 0)
+			y1 = intParse(value);
+		else if (strcmp(prop, "x2") == 0)
+			x2 = doubleParse(value);
+		else if (strcmp(prop, "y2") == 0)
+			y2 = intParse(value);
+
+		delete[] prop;
+		delete[] value;
 		delete[] parts[i];
 	}
 
@@ -83,10 +127,11 @@ ShapesCollection* readFile(const char* fileName) {
 		if (indexOfLeftArrow != -1 && indexOfFirstSpace != -1)
 		{
 			char* tag = subStr(fileBuffer, indexOfLeftArrow + 1, indexOfFirstSpace - 1);
+			currentIndex = indexOfFirstSpace;
 
 			if (strcmp(tag, RECTANGLE_TAG) == 0) {
 				size_t tagEndIndex = indexOf(fileBuffer, currentIndex, '>');
-				char* info = subStr(fileBuffer, indexOfLeftArrow + 1, tagEndIndex - 1);
+				char* info = subStr(fileBuffer, indexOfLeftArrow + 1, tagEndIndex - 2); // -2 because of />
 				shapesCollection->createShape(readRectangleFromString(info));
 				delete[] info;
 				currentIndex = tagEndIndex;

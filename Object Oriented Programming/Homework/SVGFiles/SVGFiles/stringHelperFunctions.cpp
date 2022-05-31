@@ -3,8 +3,9 @@
 
 int indexOf(const char* str1, const int& fromIndex, const char& character) {
 	int index = fromIndex;
+	size_t length = strlen(str1);
 
-	while (str1[index] != '\0')
+	while (str1[index] != '\0' && index < length)
 	{
 		if (str1[index] == character)
 			return index;
@@ -42,7 +43,10 @@ Vector<char*> split(const char* str, char separator) {
 		if (str[currentIndex] != separator)
 		{
 			size_t indexOfFirstSpace = indexOf(str, currentIndex, separator);
-			char* partial = subStr(str, currentIndex + 1, indexOfFirstSpace - 1);
+			if (indexOfFirstSpace == -1)
+				indexOfFirstSpace = length;
+
+			char* partial = subStr(str, currentIndex, indexOfFirstSpace - 1);
 			currentIndex = indexOfFirstSpace;
 			result.pushBack(partial);
 		}
