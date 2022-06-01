@@ -11,6 +11,7 @@ public:
 
 	void translate(int x, int y) override;
 	bool isPointIn(int x, int y) const override;
+	bool isWithin(const Shape*) const override;
 	double getArea() const override;
 	double getPerimeter() const override;
 	void print() const override;

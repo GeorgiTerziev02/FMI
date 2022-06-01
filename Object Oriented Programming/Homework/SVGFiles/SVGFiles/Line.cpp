@@ -6,7 +6,7 @@ Line::Line(int x1, int y1, int x2, int y2, const String& stroke, int strokeWidth
 	p1.y = y1;
 	p2.x = x2;
 	p2.y = y2;
-	type = TypeOfShape::Line;
+	type = TypeOfShape::LINE;
 }
 
 Shape* Line::clone() const {
@@ -25,6 +25,10 @@ bool Line::isPointIn(int x, int y) const {
 	return p1.getDist(point) + p2.getDist(point) == p1.getDist(p2);
 }
 
+bool Line::isWithin(const Shape* shape) const {
+	return shape->isPointIn(p1.x, p1.y) && shape->isPointIn(p2.x, p2.y);
+}
+
 double Line::getArea() const {
 	return 0;
 }
@@ -38,8 +42,8 @@ const char* Line::getTypeString() const {
 }
 
 void Line::print() const {
-	std::cout << "line " << p1.x << " " << p1.y 
-		<< " " << p2.x << " " << p2.y << " " 
+	std::cout << "line " << p1.x << " " << p1.y
+		<< " " << p2.x << " " << p2.y << " "
 		<< "stroke: " << stroke << " stroke width: " << strokeWidth
 		<< std::endl;
 }

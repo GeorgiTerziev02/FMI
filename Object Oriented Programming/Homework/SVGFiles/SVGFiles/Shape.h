@@ -27,9 +27,9 @@ protected:
 
 	enum TypeOfShape
 	{
-		Rectangle,
-		Circle,
-		Line
+		RECTANGLE,
+		CIRCLE,
+		LINE
 	} type;
 
 	String stroke;
@@ -41,6 +41,7 @@ public:
 
 	virtual void translate(int x, int y) = 0;
 	virtual bool isPointIn(int x, int y) const = 0;
+	virtual bool isWithin(const Shape*) const = 0;
 	virtual double getArea() const = 0;
 	virtual double getPerimeter() const = 0;
 	virtual void print() const = 0;

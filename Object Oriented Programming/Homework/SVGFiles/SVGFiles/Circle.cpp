@@ -7,7 +7,7 @@ Circle::Circle(int x, int y, double radius, const String& fill, const String& st
 	center.y = y;
 	this->radius = radius;
 	this->fill = fill;
-	type = TypeOfShape::Circle;
+	type = TypeOfShape::CIRCLE;
 }
 
 Shape* Circle::clone() const {
@@ -20,6 +20,14 @@ void Circle::translate(int x, int y) {
 
 bool Circle::isPointIn(int x, int y) const {
 	return center.getDist(point(x, y)) <= radius;
+}
+
+bool Circle::isWithin(const Shape* shape) const {
+	return shape->isPointIn(center.x, center.y)
+		&& shape->isPointIn(center.x + radius, center.y)
+		&& shape->isPointIn(center.x, center.y + radius)
+		&& shape->isPointIn(center.x - radius, center.y)
+		&& shape->isPointIn(center.x, center.y - radius);
 }
 
 double Circle::getArea() const {

@@ -8,7 +8,7 @@ Rectangle::Rectangle(int x, int y, double width, double height, const String& fi
 	this->width = width;
 	this->height = height;
 	this->fill = fill;
-	type = TypeOfShape::Rectangle;
+	type = TypeOfShape::RECTANGLE;
 }
 
 Shape* Rectangle::clone() const {
@@ -22,6 +22,13 @@ void Rectangle::translate(int x, int y) {
 bool Rectangle::isPointIn(int x, int y) const {
 	return point.x <= x && x <= point.x + width
 		&& point.y <= y && y <= point.y + width;
+}
+
+bool Rectangle::isWithin(const Shape* shape) const {
+	return shape->isPointIn(point.x, point.y)
+		&& shape->isPointIn(point.x + width, point.y)
+		&& shape->isPointIn(point.x, point.y + height)
+		&& shape->isPointIn(point.x + width, point.y + height);
 }
 
 double Rectangle::getArea() const {

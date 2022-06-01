@@ -17,6 +17,7 @@ public:
 	void createShape(const Shape* shape);
 	void eraseShape(size_t index);
 	void translate(int x, int y, int index = -1);
+	void printWithin(const Shape*) const;
 	void printContainingPoint(int x, int y) const;
 	void printShapes() const;
 	void printPerimeters() const;

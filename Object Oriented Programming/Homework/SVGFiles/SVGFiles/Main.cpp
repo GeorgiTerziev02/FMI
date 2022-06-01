@@ -26,10 +26,42 @@ int main() {
 		std::cin.getline(input, INPUT_BUFFER);
 		
 		if (strcmp(input, CREATE_COMMAND) == 0) {
+			std::cout << "Enter type: ";
+			char type[INPUT_BUFFER];
+			std::cin.getline(type, INPUT_BUFFER);
 
+			Shape* shape = nullptr;
+			if (strcmp(type, "rectangle") == 0)
+			{
+				shape = new Rectangle(1, 1, 20, 20, "fill", "stroke", 20);
+			}
+			else if (strcmp(type, "circle") == 0)
+			{
+				shape = new Circle(1, 1, 5, "fill", "stroke", 20);
+			}
+			else if (strcmp(type, "line") == 0)
+			{
+				shape = new Line(1,1,1,1, "stroke", 20);
+			}
+
+			collection->createShape(shape);
 		}
 		else if (strcmp(input, WITHIN_COMMAND) == 0) {
+			std::cout << "Enter type: ";
+			char type[INPUT_BUFFER];
+			std::cin.getline(type, INPUT_BUFFER);
 
+			Shape* shape = nullptr;
+			if (strcmp(type, "rectangle") == 0)
+			{
+
+			}
+			else if (strcmp(type, "circle") == 0)
+			{
+
+			}
+
+			collection->printWithin(shape);
 		}
 		else if (strcmp(input, ERASE_COMMAND) == 0) {
 			size_t index;

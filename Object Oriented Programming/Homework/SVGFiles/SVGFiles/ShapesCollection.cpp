@@ -62,6 +62,12 @@ void ShapesCollection::translate(int x, int y, int index) {
 	shapes[index]->translate(x, y);
 }
 
+void ShapesCollection::printWithin(const Shape* circle) const {
+	for (size_t i = 0; i < shapes.getSize(); i++)
+		if (shapes[i]->isWithin(circle))
+			shapes[i]->print();
+}
+
 void ShapesCollection::printContainingPoint(int x, int y) const {
 	for (size_t i = 0; i < shapes.getSize(); i++)
 		if (shapes[i]->isPointIn(x, y))
