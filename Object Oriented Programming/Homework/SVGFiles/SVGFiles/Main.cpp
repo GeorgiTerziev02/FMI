@@ -108,6 +108,7 @@ int main() {
 				if (shape != nullptr) {
 					collection->createShape(shape);
 					delete shape;
+					clearInputBuffer();
 				}
 			}
 			else if (strcmp(input, WITHIN_COMMAND) == 0) {
@@ -149,6 +150,7 @@ int main() {
 				if (shape != nullptr) {
 					collection->printWithin(shape);
 					delete shape;
+					clearInputBuffer();
 				}
 			}
 			else if (strcmp(input, ERASE_COMMAND) == 0) {
@@ -157,6 +159,7 @@ int main() {
 				std::cin >> index;
 
 				collection->eraseShape(index - 1);
+				clearInputBuffer();
 			}
 			else if (strcmp(input, TRANSLATE_COMMAND) == 0) {
 				int x = 0, y = 0, index = -1;
@@ -168,6 +171,7 @@ int main() {
 				std::cin >> index;
 
 				collection->translate(x, y, index);
+				clearInputBuffer();
 			}
 			else if (strcmp(input, POINTIN_COMMAND) == 0) {
 				int x = 0, y = 0;
@@ -177,6 +181,7 @@ int main() {
 				std::cin >> y;
 
 				collection->printContainingPoint(x, y);
+				clearInputBuffer();
 			}
 			else if (strcmp(input, AREAS_COMMAND) == 0) {
 				collection->printAreas();
@@ -199,4 +204,6 @@ int main() {
 			std::cout << ex << std::endl;
 		}
 	}
+
+	delete collection;
 }
