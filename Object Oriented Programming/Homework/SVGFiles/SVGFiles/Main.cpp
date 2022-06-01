@@ -24,7 +24,7 @@ int main() {
 		std::cout << "Enter command: " << std::endl;
 		char input[INPUT_BUFFER];
 		std::cin.getline(input, INPUT_BUFFER);
-		
+
 		if (strcmp(input, CREATE_COMMAND) == 0) {
 			std::cout << "Enter type: ";
 			char type[INPUT_BUFFER];
@@ -33,18 +33,80 @@ int main() {
 			Shape* shape = nullptr;
 			if (strcmp(type, "rectangle") == 0)
 			{
-				shape = new Rectangle(1, 1, 20, 20, "fill", "stroke", 20);
+				int x = 0, y = 0;
+				std::cout << "Enter x: ";
+				std::cin >> x;
+				std::cout << "Enter y: ";
+				std::cin >> y;
+
+				double width = 0, height = 0;
+				std::cout << "Enter width: ";
+				std::cin >> width;
+				std::cout << "Enter height: ";
+				std::cin >> height;
+
+				String fill;
+				std::cout << "Enter fill: ";
+				std::cin >> fill;
+				String stroke;
+				std::cout << "Enter stroke: ";
+				std::cin >> stroke;
+				double strokeWidth = 0;
+				std::cout << "Enter stroke width: ";
+				std::cin >> strokeWidth;
+
+				shape = new Rectangle(x, y, width, height, fill, stroke, strokeWidth);
 			}
 			else if (strcmp(type, "circle") == 0)
 			{
-				shape = new Circle(1, 1, 5, "fill", "stroke", 20);
+				int x = 0, y = 0;
+				std::cout << "Enter x: ";
+				std::cin >> x;
+				std::cout << "Enter y: ";
+				std::cin >> y;
+
+				double radius = 0;
+				std::cout << "Enter radius: ";
+				std::cin >> radius;
+
+				String fill;
+				std::cout << "Enter fill: ";
+				std::cin >> fill;
+				String stroke;
+				std::cout << "Enter stroke: ";
+				std::cin >> stroke;
+				double strokeWidth = 0;
+				std::cout << "Enter stroke width: ";
+				std::cin >> strokeWidth;
+
+				shape = new Circle(x, y, radius, fill, stroke, strokeWidth);
 			}
 			else if (strcmp(type, "line") == 0)
 			{
-				shape = new Line(1,1,1,1, "stroke", 20);
+				int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+				std::cout << "Enter x1: ";
+				std::cin >> x1;
+				std::cout << "Enter y1: ";
+				std::cin >> y1;
+				std::cout << "Enter x2: ";
+				std::cin >> x2;
+				std::cout << "Enter y2: ";
+				std::cin >> y2;
+
+				String stroke;
+				std::cout << "Enter stroke: ";
+				std::cin >> stroke;
+				double strokeWidth = 0;
+				std::cout << "Enter stroke width: ";
+				std::cin >> strokeWidth;
+
+				shape = new Line(x1, y1, x2, y2, stroke, strokeWidth);
 			}
 
-			collection->createShape(shape);
+			if (shape != nullptr) {
+				collection->createShape(shape);
+				delete shape;
+			}
 		}
 		else if (strcmp(input, WITHIN_COMMAND) == 0) {
 			std::cout << "Enter type: ";
@@ -54,14 +116,38 @@ int main() {
 			Shape* shape = nullptr;
 			if (strcmp(type, "rectangle") == 0)
 			{
+				int x = 0, y = 0;
+				std::cout << "Enter x: ";
+				std::cin >> x;
+				std::cout << "Enter y: ";
+				std::cin >> y;
 
+				double width = 0, height = 0;
+				std::cout << "Enter width: ";
+				std::cin >> width;
+				std::cout << "Enter height: ";
+				std::cin >> height;
+
+				shape = new Rectangle(x, y, width, height, "", "", 0);
 			}
 			else if (strcmp(type, "circle") == 0)
 			{
+				int x = 0, y = 0;
+				std::cout << "Enter x: ";
+				std::cin >> x;
+				std::cout << "Enter y: ";
+				std::cin >> y;
 
+				double radius = 0;
+				std::cout << "Enter radius: ";
+				std::cin >> radius;
+				shape = new Circle(x, y, radius, "", "", 0);
 			}
 
-			collection->printWithin(shape);
+			if (shape != nullptr) {
+				collection->printWithin(shape);
+				delete shape;
+			}
 		}
 		else if (strcmp(input, ERASE_COMMAND) == 0) {
 			size_t index;
