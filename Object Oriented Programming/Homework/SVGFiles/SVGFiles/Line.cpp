@@ -21,8 +21,7 @@ void Line::translate(int x, int y) {
 bool Line::isPointIn(int x, int y) const {
 	point point(x, y);
 
-	// TODO: refactor
-	return p1.getDist(point) + p2.getDist(point) == p1.getDist(p2);
+	return p1.getDist(point) + p2.getDist(point) - p1.getDist(p2) <= std::numeric_limits<double>::epsilon();
 }
 
 bool Line::isWithin(const Shape* shape) const {
