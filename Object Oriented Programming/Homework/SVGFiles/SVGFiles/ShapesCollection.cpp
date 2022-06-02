@@ -82,12 +82,12 @@ void ShapesCollection::printShapes() const {
 }
 void ShapesCollection::printPerimeters() const {
 	for (size_t i = 0; i < shapes.getSize(); i++)
-		std::cout << i + 1 << " " << shapes[i]->getTypeString() << " " << shapes[i]->getPerimeter();
+		std::cout << i + 1 << " " << shapes[i]->getTypeString() << " " << shapes[i]->getPerimeter() << std::endl;
 }
 
 void ShapesCollection::printAreas() const {
 	for (size_t i = 0; i < shapes.getSize(); i++)
-		std::cout << i + 1 << " " << shapes[i]->getTypeString() << " " << shapes[i]->getArea();
+		std::cout << i + 1 << " " << shapes[i]->getTypeString() << " " << shapes[i]->getArea() << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const ShapesCollection& collection) {

@@ -17,7 +17,17 @@ int main() {
 	char fileName[INPUT_BUFFER];
 	std::cin.getline(fileName, INPUT_BUFFER);
 
-	ShapesCollection* collection = readFile(fileName);
+	ShapesCollection* collection = nullptr;
+	
+	try
+	{
+		collection = readFile(fileName);
+	}
+	catch (const char* ex)
+	{
+		std::cout << ex << std::endl;
+		return 0;
+	}
 
 	while (true)
 	{
@@ -155,7 +165,7 @@ int main() {
 			}
 			else if (strcmp(input, ERASE_COMMAND) == 0) {
 				size_t index;
-				std::cout << "Enter index:" << std::endl;
+				std::cout << "Enter index(not zero-based):" << std::endl;
 				std::cin >> index;
 
 				collection->eraseShape(index - 1);
@@ -167,10 +177,10 @@ int main() {
 				std::cin >> x;
 				std::cout << "Horizontal:" << std::endl;
 				std::cin >> y;
-				std::cout << "Index (enter -1 for all):" << std::endl;
+				std::cout << "Index (enter -1 for all, not zero-based):" << std::endl;
 				std::cin >> index;
 
-				collection->translate(x, y, index);
+				collection->translate(x, y, index - 1);
 				clearInputBuffer();
 			}
 			else if (strcmp(input, POINTIN_COMMAND) == 0) {
@@ -206,4 +216,5 @@ int main() {
 	}
 
 	delete collection;
+	return 0;
 }
