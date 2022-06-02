@@ -5,14 +5,10 @@
 #include "SavingsAccount.h"
 #include "PrivilegeAccount.h"
 
-// Remove all error flags and characters from the input buffer
 void clearInputBuffer() {
-	// because of using both getline and cin we have to cin.ignore;
-	// cin leaves the newline character in the stream which will be read as input from the getline
-
-	std::cin.clear();    // clears errors flags from the cin
-	std::cin.sync();        // discard unread characters from the input buffer
-	std::cin.ignore();    // discard characters from the input buffer
+	std::cin.clear();
+	std::cin.sync();
+	std::cin.ignore();
 }
 
 int main() {
@@ -29,14 +25,15 @@ int main() {
 				size_t id;
 				std::cout << "Enter id:" << std::endl;
 				std::cin >> id;
+				clearInputBuffer();
 
-				String name;
+				char name[INPUT_BUFFER];
 				std::cout << "Enter name:" << std::endl;
-				std::cin >> name;
+				std::cin.getline(name, INPUT_BUFFER);
 
-				String address;
+				char address[INPUT_BUFFER];
 				std::cout << "Enter address:" << std::endl;
-				std::cin >> address;
+				std::cin.getline(address, INPUT_BUFFER);
 
 				Customer* customer = new Customer(id, name, address);
 				bank.addCustomer(customer);
@@ -46,46 +43,50 @@ int main() {
 				size_t id;
 				std::cout << "Enter id:" << std::endl;
 				std::cin >> id;
+				clearInputBuffer();
 
 				bank.deleteCustomer(id);
 				std::cout << "Customer deleted" << std::endl;
 			}
 			else if (strcmp(input, ADD_ACCOUNT_COMMAND) == 0) {
 
-				String userName;
+				char userName[INPUT_BUFFER];
 				std::cout << "Enter username:" << std::endl;
-				std::cin >> userName;
+				std::cin.getline(userName, INPUT_BUFFER);
 
-				String password;
+				char password[INPUT_BUFFER];
 				std::cout << "Enter password:" << std::endl;
-				std::cin >> password;
+				std::cin.getline(password, INPUT_BUFFER);
 
-				String iBAN;
+				char iBAN[INPUT_BUFFER];
 				std::cout << "Enter IBAN:" << std::endl;
-				std::cin >> iBAN;
+				std::cin.getline(iBAN, INPUT_BUFFER);
 
 				size_t ownerId;
 				std::cout << "Enter owner id:" << std::endl;
 				std::cin >> ownerId;
+				clearInputBuffer();
 
-				String type;
+				char type[INPUT_BUFFER];
 				std::cout << "Enter account type:" << std::endl;
-				std::cin >> type;
+				std::cin.getline(type, INPUT_BUFFER);
 
 				Account* account = nullptr;
 
-				if (type == PRIVILEGE_ACCOUNT)
+				if (strcmp(type, PRIVILEGE_ACCOUNT) == 0)
 				{
 					double overdraft;
 					std::cout << "Enter overdraft:" << std::endl;
 					std::cin >> overdraft;
+					clearInputBuffer();
 					account = new PrivilegeAccount(userName, password, iBAN, ownerId, overdraft);
 				}
-				else if (type == SAVINGS_ACCOUNT) 
+				else if (strcmp(type, SAVINGS_ACCOUNT) == 0)
 				{
 					double interestRate;
 					std::cout << "Enter interest:" << std::endl;
 					std::cin >> interestRate;
+					clearInputBuffer();
 					account = new SavingsAccount(userName, password, iBAN, ownerId, interestRate);
 				}
 				else 
@@ -97,9 +98,9 @@ int main() {
 				std::cout << "Account created" << std::endl;
 			}
 			else if (strcmp(input, DELETE_ACCOUNT_COMMAND) == 0) {
-				String iBAN;
+				char iBAN[INPUT_BUFFER];
 				std::cout << "Enter IBAN:" << std::endl;
-				std::cin >> iBAN;
+				std::cin.getline(iBAN, INPUT_BUFFER);
 
 				bank.deleteAccount(iBAN);
 				std::cout << "Account deleted" << std::endl;
@@ -114,6 +115,7 @@ int main() {
 				size_t id;
 				std::cout << "Enter id:" << std::endl;
 				std::cin >> id;
+				clearInputBuffer();
 
 				bank.listCustomerAccount(id);
 			}
@@ -121,37 +123,40 @@ int main() {
 				bank.listLog();
 			}
 			else if (strcmp(input, WITHDRAW_COMMAND) == 0) {
-				String iBAN;
+				char iBAN[INPUT_BUFFER];
 				std::cout << "Enter IBAN:" << std::endl;
-				std::cin >> iBAN;
+				std::cin.getline(iBAN, INPUT_BUFFER);
 				std::cout << "Enter amount:" << std::endl;
 				double amount;
 				std::cin >> amount;
+				clearInputBuffer();
 
 				bank.withdraw(iBAN, amount);
 			}
 			else if (strcmp(input, DEPOSIT_COMMAND) == 0) {
-				String iBAN;
+				char iBAN[INPUT_BUFFER];
 				std::cout << "Enter IBAN:" << std::endl;
-				std::cin >> iBAN;
-				double amount;
+				std::cin.getline(iBAN, INPUT_BUFFER);
 				std::cout << "Enter amount:" << std::endl;
+				double amount;
 				std::cin >> amount;
+				clearInputBuffer();
 
 				bank.deposit(iBAN, amount);
 			}
 			else if (strcmp(input, TRANSFER_COMMAND) == 0) {
-				String fromIBAN;
+				char fromIBAN[INPUT_BUFFER];
 				std::cout << "Enter from IBAN:" << std::endl;
-				std::cin >> fromIBAN;
+				std::cin.getline(fromIBAN, INPUT_BUFFER);
 
-				String toIBAN;
+				char toIBAN[INPUT_BUFFER];
 				std::cout << "Enter to IBAN:" << std::endl;
-				std::cin >> toIBAN;
+				std::cin.getline(toIBAN, INPUT_BUFFER);
 
 				double amount;
 				std::cout << "Enter amount:" << std::endl;
 				std::cin >> amount;
+				clearInputBuffer();
 
 				bank.transfer(fromIBAN, toIBAN, amount);
 				std::cout << "Money transfered" << std::endl;
@@ -167,8 +172,6 @@ int main() {
 		{
 			std::cout << ex << std::endl;
 		}
-
-		clearInputBuffer();
 	}
 
 	bank.exportLog();

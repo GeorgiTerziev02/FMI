@@ -1,6 +1,6 @@
 #pragma once
 
-const short INPUT_BUFFER = 100;
+const short INPUT_BUFFER = 50;
 
 const char CUSTOMER_ALREADY_EXISTS[] = "Customer already exists!";
 const char CUSTOMER_DOES_NOT_EXIST[] = "Customer does not exist!";

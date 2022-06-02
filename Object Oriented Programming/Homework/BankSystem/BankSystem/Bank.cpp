@@ -140,10 +140,8 @@ void Bank::listCustomers() const {
 }
 
 void Bank::listAccounts() const {
-	for (size_t i = 0; i < accounts.getSize(); i++) {
-		std::cout << accounts[i] << std::endl;
-		std::cout << std::endl;
-	}
+	for (size_t i = 0; i < accounts.getSize(); i++)
+		accounts[i]->display();
 }
 
 void Bank::listCustomerAccount(size_t customerId) const {
