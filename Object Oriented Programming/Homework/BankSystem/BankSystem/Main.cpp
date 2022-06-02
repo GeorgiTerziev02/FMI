@@ -95,6 +95,7 @@ int main() {
 				}
 
 				bank.addAccount(account);
+				delete account;
 				std::cout << "Account created" << std::endl;
 			}
 			else if (strcmp(input, DELETE_ACCOUNT_COMMAND) == 0) {

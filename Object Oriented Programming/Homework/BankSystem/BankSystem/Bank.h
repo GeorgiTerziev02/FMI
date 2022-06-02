@@ -26,7 +26,7 @@ public:
 
 	void addCustomer(Customer* customer);
 	void deleteCustomer(size_t customerId);
-	void addAccount(Account* account);
+	void addAccount(const Account* account);
 	void deleteAccount(const String& iBAN);
 	void listCustomers() const;
 	void listAccounts() const;

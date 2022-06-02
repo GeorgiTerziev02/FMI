@@ -106,14 +106,14 @@ void Bank::deleteCustomer(size_t customerId) {
 	log.pushBack("Customer deleted ");
 }
 
-void Bank::addAccount(Account* account) {
+void Bank::addAccount(const Account* account) {
 	if (getAccountByIBAN(account->getIBAN()) != nullptr)
 		throw ACCOUNT_ALREADY_EXISTS;
 
 	if (getCustomer(account->getOwnerId()) == nullptr)
 		throw CUSTOMER_DOES_NOT_EXIST;
 
-	accounts.pushBack(account);
+	accounts.pushBack(account->clone());
 	log.pushBack("Account added ");
 }
 
