@@ -14,8 +14,8 @@ Rectangle* readRectangleFromString(const char* str) {
 	int y = 0;
 	double width = 0;
 	double height = 0;
-	String fill;
-	String stroke;
+	String fill = "";
+	String stroke = "";
 	double strokeWidth = 0;
 
 	for (size_t i = 0; i < parts.getSize(); i++)
@@ -23,6 +23,8 @@ Rectangle* readRectangleFromString(const char* str) {
 		// test="123"
 		size_t equalsIndex = indexOf(parts[i], 0, '=');
 		char* prop = subStr(parts[i], 0, equalsIndex - 1);
+		int a = equalsIndex + 2;
+		int b = strlen(parts[i]) - 2;
 		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
 
 		if (strcmp(prop, "x") == 0)
@@ -54,8 +56,8 @@ Circle* readCircleFromString(const char* str) {
 	int x = 0;
 	int y = 0;
 	double radius = 0;
-	String fill;
-	String stroke;
+	String fill = "";
+	String stroke = "";
 	double strokeWidth = 0;
 
 	for (size_t i = 0; i < parts.getSize(); i++)
@@ -91,7 +93,7 @@ Line* readLineFromString(const char* str) {
 
 	int x1 = 0, x2 = 0;
 	int y1 = 0, y2 = 0;
-	String stroke;
+	String stroke = "";
 	double strokeWidth = 0;
 
 	for (size_t i = 0; i < parts.getSize(); i++)

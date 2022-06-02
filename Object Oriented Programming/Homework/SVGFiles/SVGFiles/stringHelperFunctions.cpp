@@ -17,6 +17,13 @@ int indexOf(const char* str1, const int& fromIndex, const char& character) {
 }
 
 char* subStr(const char* str, const int& startIndex, const int& endIndex) {
+	if (startIndex > endIndex)
+	{
+		char* result = new char[1];
+		result[0] = '\0';
+		return result;
+	}
+
 	int resultSize = endIndex - startIndex + 2;
 	char* result = new char[resultSize];
 

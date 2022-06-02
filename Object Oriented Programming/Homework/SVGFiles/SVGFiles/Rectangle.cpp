@@ -21,7 +21,7 @@ void Rectangle::translate(int x, int y) {
 
 bool Rectangle::isPointIn(int x, int y) const {
 	return point.x <= x && x <= point.x + width
-		&& point.y <= y && y <= point.y + width;
+		&& point.y <= y && y <= point.y + height;
 }
 
 bool Rectangle::isWithin(const Shape* shape) const {
