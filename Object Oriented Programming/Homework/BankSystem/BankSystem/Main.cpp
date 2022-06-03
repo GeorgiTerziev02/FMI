@@ -12,6 +12,12 @@ void clearInputBuffer() {
 }
 
 int main() {
+	/*char bankName[INPUT_BUFFER], bankAddress[INPUT_BUFFER];
+	std::cout << "Enter bank name: " << std::endl;
+	std::cin.getline(bankName, INPUT_BUFFER);
+	std::cout << "Enter bank address: " << std::endl;
+	std::cin.getline(bankAddress, INPUT_BUFFER);
+	Bank bank(bankName, bankAddress);*/
 	Bank bank("BankName", "BankAddress");
 
 	while (true) {
@@ -133,6 +139,7 @@ int main() {
 				clearInputBuffer();
 
 				bank.withdraw(iBAN, amount);
+				std::cout << "Money withdrawn" << std::endl;
 			}
 			else if (strcmp(input, DEPOSIT_COMMAND) == 0) {
 				char iBAN[INPUT_BUFFER];
@@ -144,6 +151,7 @@ int main() {
 				clearInputBuffer();
 
 				bank.deposit(iBAN, amount);
+				std::cout << "Money deposited" << std::endl;
 			}
 			else if (strcmp(input, TRANSFER_COMMAND) == 0) {
 				char fromIBAN[INPUT_BUFFER];

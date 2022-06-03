@@ -32,6 +32,5 @@ std::ostream& operator<<(std::ostream& out, const Account& account) {
 	out << "Amount: " << account.amount << std::endl;
 	out << "Owner id: " << account.ownerId << std::endl;
 	out << "User name: " << account.userName << std::endl;
-	out << std::endl;
 	return out;
 }

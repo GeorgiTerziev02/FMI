@@ -24,4 +24,5 @@ bool PrivilegeAccount::withdraw(double toWithdraw) {
 void PrivilegeAccount::display() const {
 	std::cout << PRIVILEGE_ACCOUNT << std::endl;
 	std::cout << *this;
+	std::cout << "Overdraft: " << overdraft << std::endl;
 }

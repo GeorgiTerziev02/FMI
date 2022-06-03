@@ -20,4 +20,5 @@ bool SavingsAccount::withdraw(double toWithdraw) {
 void SavingsAccount::display() const {
 	std::cout << SAVINGS_ACCOUNT << std::endl;
 	std::cout << *this;
+	std::cout << "Interest rate: " << interestRate << std::endl;
 }
