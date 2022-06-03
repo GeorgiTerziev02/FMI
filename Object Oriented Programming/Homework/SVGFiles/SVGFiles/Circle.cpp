@@ -23,6 +23,12 @@ bool Circle::isPointIn(int x, int y) const {
 }
 
 bool Circle::isWithin(const Shape* shape) const {
+	if (strcmp(shape->getTypeString(), "Circle") == 0)
+	{
+		Circle* circle = (Circle*)shape;
+		return center.getDist(circle->center) + radius - circle->radius <= std::numeric_limits<double>::epsilon();
+	}
+
 	return shape->isPointIn(center.x, center.y)
 		&& shape->isPointIn(center.x + radius, center.y)
 		&& shape->isPointIn(center.x, center.y + radius)
