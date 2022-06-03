@@ -23,8 +23,6 @@ Rectangle* readRectangleFromString(const char* str) {
 		// test="123"
 		size_t equalsIndex = indexOf(parts[i], 0, '=');
 		char* prop = subStr(parts[i], 0, equalsIndex - 1);
-		int a = equalsIndex + 2;
-		int b = strlen(parts[i]) - 2;
 		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
 
 		if (strcmp(prop, "x") == 0)
@@ -53,8 +51,7 @@ Rectangle* readRectangleFromString(const char* str) {
 Circle* readCircleFromString(const char* str) {
 	Vector<char*> parts = split(str, ' ');
 
-	int x = 0;
-	int y = 0;
+	int x = 0, y = 0;
 	double radius = 0;
 	String fill = "";
 	String stroke = "";
@@ -62,7 +59,6 @@ Circle* readCircleFromString(const char* str) {
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
-		// test="123"
 		size_t equalsIndex = indexOf(parts[i], 0, '=');
 		char* prop = subStr(parts[i], 0, equalsIndex - 1);
 		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
@@ -98,7 +94,6 @@ Line* readLineFromString(const char* str) {
 
 	for (size_t i = 0; i < parts.getSize(); i++)
 	{
-		// test="123"
 		size_t equalsIndex = indexOf(parts[i], 0, '=');
 		char* prop = subStr(parts[i], 0, equalsIndex - 1);
 		char* value = subStr(parts[i], equalsIndex + 2, strlen(parts[i]) - 2); // -2 because of "
@@ -145,7 +140,6 @@ ShapesCollection* readFile(const char* fileName) {
 	int currentIndex = 0;
 	while (currentIndex < length)
 	{
-
 		int indexOfLeftArrow = indexOf(fileBuffer, currentIndex, '<');
 		int indexOfFirstSpace = indexOf(fileBuffer, indexOfLeftArrow, ' ');
 

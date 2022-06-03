@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-	<rect x="141" y="151" width="1198" height="398" fill="none" stroke="blue" stroke-width="2" />
-	<rect x="510" y="210" width="400" height="200" fill="yellow" stroke="navy" stroke-width="10" />
-	<circle cx="720" cy="320" r="100" fill="red" stroke="blue" stroke-width="10" />
-	<line x1="610" y1="410" x2="810" y2="210" stroke="purple" stroke-width="15" />
-	<rect x="5" y="5" width="10" height="10" fill="green" stroke="" stroke-width="0" />
-	<circle cx="5" cy="5" r="10" fill="blue" stroke="" stroke-width="0" />
-	<rect x="100" y="60" width="10" height="10" fill="red" stroke="" stroke-width="0" />
+	<rect x="143" y="153" width="1198" height="398" fill="none" stroke="blue" stroke-width="2" />
+	<rect x="511" y="211" width="400" height="200" fill="yellow" stroke="navy" stroke-width="10" />
+	<circle cx="721" cy="321" r="100" fill="red" stroke="blue" stroke-width="10" />
+	<line x1="611" y1="411" x2="811" y2="211" stroke="purple" stroke-width="15" />
+	<rect x="6" y="6" width="10" height="10" fill="green" stroke="" stroke-width="0" />
+	<circle cx="6" cy="6" r="10" fill="blue" stroke="" stroke-width="0" />
+	<rect x="101" y="61" width="10" height="10" fill="red" stroke="" stroke-width="0" />
 </svg>

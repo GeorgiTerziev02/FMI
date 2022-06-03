@@ -18,7 +18,7 @@ int main() {
 	std::cin.getline(fileName, INPUT_BUFFER);
 
 	ShapesCollection* collection = nullptr;
-	
+
 	try
 	{
 		collection = readFile(fileName);
@@ -180,7 +180,7 @@ int main() {
 				std::cout << "Index (enter -1 for all, not zero-based):" << std::endl;
 				std::cin >> index;
 
-				collection->translate(x, y, index - 1);
+				collection->translate(x, y, index == -1 ? index : index - 1);
 				clearInputBuffer();
 			}
 			else if (strcmp(input, POINTIN_COMMAND) == 0) {

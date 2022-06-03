@@ -51,8 +51,6 @@ void Rectangle::print() const {
 }
 
 std::ostream& operator<<(std::ostream& out, const Rectangle& rect) {
-	//<rect x = "1" y = "1" width = "1198" height = "398"
-	//fill = "none" stroke = "blue" stroke - width = "2" / >
 	return out << "<rect x=\"" << rect.point.x
 		<< "\" y=\"" << rect.point.y
 		<< "\" width=\"" << rect.width
