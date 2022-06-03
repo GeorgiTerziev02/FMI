@@ -10,6 +10,8 @@ class Customer
 public:
 	Customer(size_t id, const String& name, const String& address);
 
+	Customer* clone() const;
+
 	size_t getId() const;
 	const String& getName() const;
 	const String& getAddress() const;

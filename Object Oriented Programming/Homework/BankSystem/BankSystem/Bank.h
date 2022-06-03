@@ -24,7 +24,7 @@ public:
 	int getCustomerIndex(size_t customerId) const;
 	Account* getAccountByIBAN(const String& iBAN) const;
 
-	void addCustomer(Customer* customer);
+	void addCustomer(const Customer* customer);
 	void deleteCustomer(size_t customerId);
 	void addAccount(const Account* account);
 	void deleteAccount(const String& iBAN);

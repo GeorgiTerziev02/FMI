@@ -30,10 +30,7 @@ void Bank::copyFrom(const Bank& other) {
 	address = other.address;
 
 	for (size_t i = 0; i < other.customers.getSize(); i++)
-	{
-		Customer* customer = new Customer(*other.customers[i]);
-		customers.pushBack(customer);
-	}
+		customers.pushBack(other.customers[i]->clone());
 
 	for (size_t i = 0; i < other.accounts.getSize(); i++)
 		accounts.pushBack(other.accounts[i]->clone());
@@ -80,11 +77,11 @@ Account* Bank::getAccountByIBAN(const String& iBAN) const {
 	return nullptr;
 }
 
-void Bank::addCustomer(Customer* customer) {
+void Bank::addCustomer(const Customer* customer) {
 	if (getCustomer(customer->getId()) != nullptr)
 		throw CUSTOMER_ALREADY_EXISTS;
 
-	customers.pushBack(customer);
+	customers.pushBack(customer->clone());
 	log.pushBack("Customer added ");
 }
 

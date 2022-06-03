@@ -6,8 +6,7 @@ PrivilegeAccount::PrivilegeAccount(const String& userName, const String& passwor
 
 Account* PrivilegeAccount::clone() const
 {
-	Account* newObj = new PrivilegeAccount(*this);
-	return newObj;
+	return new PrivilegeAccount(*this);
 }
 
 double PrivilegeAccount::getOverdraft() const {

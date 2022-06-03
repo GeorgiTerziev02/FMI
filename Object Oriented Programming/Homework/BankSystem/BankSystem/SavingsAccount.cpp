@@ -6,8 +6,7 @@ SavingsAccount::SavingsAccount(const String& userName, const String& password, c
 
 Account* SavingsAccount::clone() const
 {
-	Account* newObj = new SavingsAccount(*this);
-	return newObj;
+	return new SavingsAccount(*this);
 }
 
 double SavingsAccount::getInterestRate() const {

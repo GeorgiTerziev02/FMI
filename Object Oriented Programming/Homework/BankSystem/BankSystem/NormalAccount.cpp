@@ -7,8 +7,7 @@ NormalAccount::NormalAccount(const String& userName, const String& password, con
 
 
 Account* NormalAccount::clone() const {
-	Account* newObj = new NormalAccount(*this);
-	return newObj;
+	return new NormalAccount(*this);
 }
 
 bool NormalAccount::withdraw(double toWithdraw) {

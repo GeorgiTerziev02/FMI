@@ -6,8 +6,8 @@ Account::Account(const String& userName, const String& password, const String& i
 	this->password = password;
 	this->iBAN = iBAN;
 	this->ownerId = ownerId;
-	amount = 0;
-	dateOfCreation = time(0);
+	this->amount = 0;
+	this->dateOfCreation = time(0);
 }
 
 const String& Account::getIBAN() const {
