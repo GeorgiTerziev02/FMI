@@ -82,7 +82,7 @@ void Bank::addCustomer(const Customer* customer) {
 		throw CUSTOMER_ALREADY_EXISTS;
 
 	customers.pushBack(customer->clone());
-	log.pushBack("Customer added ");
+	log.pushBack("Customer added");
 }
 
 void Bank::deleteCustomer(size_t customerId) {
@@ -98,9 +98,9 @@ void Bank::deleteCustomer(size_t customerId) {
 		}
 	}
 
-	Customer* customer = customers.popAt(getCustomerIndex(customerId));
+	Customer* customer = customers.popAt(customerIndex);
 	delete customer;
-	log.pushBack("Customer deleted ");
+	log.pushBack("Customer deleted");
 }
 
 void Bank::addAccount(const Account* account) {
@@ -111,7 +111,7 @@ void Bank::addAccount(const Account* account) {
 		throw CUSTOMER_DOES_NOT_EXIST;
 
 	accounts.pushBack(account->clone());
-	log.pushBack("Account added ");
+	log.pushBack("Account added");
 }
 
 void Bank::deleteAccount(const String& iBAN) {
@@ -122,9 +122,11 @@ void Bank::deleteAccount(const String& iBAN) {
 			Account* account = accounts.popAt(i);
 			delete account;
 			log.pushBack("Account deleted ");
-			break;
+			return;
 		}
 	}
+
+	throw ACCOUNT_DOES_NOT_EXIST;
 }
 
 void Bank::listCustomers() const {
