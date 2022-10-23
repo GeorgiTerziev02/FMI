@@ -231,6 +231,8 @@ _Pvt_Extensions
 .fake/
 /src/WebApi/logs
 
+.vscode/
+
 
 *.sln
 *.vcxproj
