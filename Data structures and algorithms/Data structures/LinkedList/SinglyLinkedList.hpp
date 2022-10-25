@@ -7,7 +7,7 @@ private:
 		T value;
 		Node* next;
 
-		Node(const T& value, Node<T>* next = nullptr) {
+		Node(const T& value, Node* next = nullptr) {
 			this->value = value;
 			this->next = next;
 		}
@@ -28,6 +28,9 @@ public:
 	void insert(const T&, size_t);
 	void remove(size_t);
 	bool contains(const T&);
+
+	const T& front() const;
+	const T& back() const;
 
 	void print() const;
 
@@ -86,7 +89,7 @@ void SinglyLinkedList<T>::free() {
 
 template <typename T>
 void SinglyLinkedList<T>::push_back(const T& value) {
-	Node* newNode = Node(value);
+	Node* newNode = new Node(value);
 
 	if (head == nullptr) {
 		head = tail = newNode;
@@ -99,7 +102,7 @@ void SinglyLinkedList<T>::push_back(const T& value) {
 
 template<typename T>
 void SinglyLinkedList<T>::push_front(const T& value) {
-	Node* newNode = Node(value);
+	Node* newNode = new Node(value);
 
 	if (head == nullptr) {
 		head = tail = newNode;
@@ -208,6 +211,21 @@ bool SinglyLinkedList<T>::contains(const T& value) {
 	}
 
 	return false;
+}
+
+template<typename T>
+const T& SinglyLinkedList<T>::front() const {
+	if (head == nullptr)
+		throw std::length_error("List is empty");
+
+	return head->value;
+}
+template<typename T>
+const T& SinglyLinkedList<T>::back() const {
+	if (tail == nullptr)
+		throw std::length_error("List is empty");
+
+	return tail->value;
 }
 
 template<typename T>
