@@ -93,11 +93,11 @@ void SinglyLinkedList<T>::push_back(const T& value) {
 
 	if (head == nullptr) {
 		head = tail = newNode;
+		return;
 	}
-	else {
-		tail->next = newNode;
-		tail = tail->next;
-	}
+	
+	tail->next = newNode;
+	tail = tail->next;
 }
 
 template<typename T>
@@ -106,11 +106,11 @@ void SinglyLinkedList<T>::push_front(const T& value) {
 
 	if (head == nullptr) {
 		head = tail = newNode;
+		return;
 	}
-	else {
-		newNode->next = head;
-		head = newNode;
-	}
+	
+	newNode->next = head;
+	head = newNode;
 }
 
 template<typename T>
