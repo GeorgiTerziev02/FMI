@@ -108,7 +108,7 @@ void SinglyLinkedList<T>::push_front(const T& value) {
 		head = tail = newNode;
 		return;
 	}
-	
+
 	newNode->next = head;
 	head = newNode;
 }
@@ -143,8 +143,7 @@ void SinglyLinkedList<T>::pop_back() {
 	}
 	else {
 		prev->next = nullptr;
-		if (prev == head)
-			tail = head;
+		tail = prev;
 	}
 
 	delete iter;
