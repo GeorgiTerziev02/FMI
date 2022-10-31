@@ -1,7 +1,7 @@
 #include <iostream>
 
 template<typename T>
-struct SinglyLinkedList {
+class SinglyLinkedList {
 private:
 	struct Node {
 		T value;
@@ -27,7 +27,7 @@ public:
 	void pop_back();
 	void insert(const T&, size_t);
 	void remove(size_t);
-	bool contains(const T&);
+	bool contains(const T&) const;
 
 	const T& front() const;
 	const T& back() const;
@@ -200,7 +200,7 @@ void SinglyLinkedList<T>::remove(size_t index) {
 }
 
 template<typename T>
-bool SinglyLinkedList<T>::contains(const T& value) {
+bool SinglyLinkedList<T>::contains(const T& value) const {
 	Node* iter = head;
 
 	while (iter != nullptr) {
