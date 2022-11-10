@@ -152,7 +152,7 @@ void SinglyLinkedList<T>::pop_back() {
 template<typename T>
 void SinglyLinkedList<T>::insert(const T& value, size_t index) {
 	if (index == 0) {
-		push_back(value);
+		push_front(value);
 		return;
 	}
 
