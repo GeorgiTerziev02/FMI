@@ -21,7 +21,7 @@ class BinarySearchTree {
 private:
 	Node<T>* root;
 
-	Node<T>* _insert(Node<T>* current, const T& data);
+	Node<T>* _insert(Node<T>* current, const T& value);
 	bool _contains(Node<T>* current, const T& value) const;
 	Node<T>* _remove(Node<T>* current, const T& value);
 
@@ -31,9 +31,9 @@ public:
 	//BinarySearchTree<T>& operator=(const BinarySearchTree<T>&);
 	~BinarySearchTree();
 
-	bool contains(const T&) const;
-	void insert(const T&);
-	void remove(const T&);
+	bool contains(const T& value) const;
+	void insert(const T& value);
+	void remove(const T& value);
 
 private:
 	//void copyFrom(const BinarySearchTree&);
@@ -77,16 +77,16 @@ void BinarySearchTree<T>::free() {
 }
 
 template <typename T>
-Node<T>* BinarySearchTree<T>::_insert(Node<T>* current, const T& data) {
+Node<T>* BinarySearchTree<T>::_insert(Node<T>* current, const T& value) {
 	if (!current) {
-		return new Node<T>(data);
+		return new Node<T>(value);
 	}
 
-	if (current->value < data) {
-		current->right = _insert(current->right, data);
+	if (current->value < value) {
+		current->right = _insert(current->right, value);
 	}
-	else if (data < current->value) {
-		current->left = _insert(current->left, data);
+	else if (value < current->value) {
+		current->left = _insert(current->left, value);
 	}
 
 	return current;
