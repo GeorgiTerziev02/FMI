@@ -2,12 +2,12 @@
 #include <queue>
 
 template <typename T>
-class Node {
+struct Node {
 	T value;
 	Node* left = nullptr;
 	Node* right = nullptr;
 
-	Node(const T& value, Node* left = nullptr, Node* right = nullptr) {
+	Node(const T& value) {
 		this->value = value;
 		this->left = left;
 		this->right = right;
@@ -40,11 +40,11 @@ private:
 	void copyFrom(const Node<T>& other) {
 		value = other.value;
 
-		if (other->right) {
+		if (other.right) {
 			right = new Node(*other.right);
 		}
 
-		if (other->left) {
+		if (other.left) {
 			left = new Node(*other.left);
 		}
 	}
@@ -213,7 +213,7 @@ void BinarySearchTree<T>::dfs() const {
 
 template <typename T>
 void BinarySearchTree<T>::bfs() const {
-	std::queue<Node*> container;
+	std::queue<Node<T>*> container;
 	container.push(root);
 
 	while (!container.empty()) {
