@@ -52,6 +52,8 @@ void Heap<T>::siftDown(size_t index) {
 	size_t leftChildIndex = leftChild(index);
 	size_t rightChildIndex = rightChild(index);
 
+    // if we have two children and atleast one of them
+    // is bigger than current => swap
 	if (leftChildIndex < dataContainer.size() && 
 		rightChildIndex < dataContainer.size() &&
 		(dataContainer[index] < dataContainer[leftChildIndex] || dataContainer[index] < dataContainer[rightChildIndex])) {
@@ -59,10 +61,10 @@ void Heap<T>::siftDown(size_t index) {
 		swap(dataContainer[index], dataContainer[swapWithIndex]);
 		siftDown(swapWithIndex);
 	}
+	// if we have only left child and is bigger than current
+	// impossible to have only right
 	else if(leftChildIndex < dataContainer.size() &&
 		dataContainer[index] < dataContainer[leftChildIndex]) {
-		// we have only left child
-		// impossible to have only right
 		swap(dataContainer[index], dataContainer[leftChildIndex]); // the left child has no more children
 	}
 }
