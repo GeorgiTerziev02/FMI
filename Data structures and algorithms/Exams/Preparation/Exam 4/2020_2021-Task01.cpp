@@ -78,13 +78,6 @@ int main() {
             currentIntervalEnds.pop();
         }
 
-        // catch up with query
-        while (intervalIndex < intervalsContainer.size() &&
-            intervalsContainer[intervalIndex].end < queries[queryIndex].time)
-        {
-            intervalIndex++;
-        }
-
         // while possible try to add to intervals or else move to next one
         while (intervalIndex < intervalsContainer.size() &&
             intervalsContainer[intervalIndex].start <= queries[queryIndex].time) {
