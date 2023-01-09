@@ -67,9 +67,13 @@ int main() {
 
     for (size_t i = 0; i < distances.size(); i++) {
         if (i != start) {
-            if(distances[i] == ULLONG_MAX) std::cout << -1 << " ";
-            else std::cout << distances[i] << " ";
-
+            // ternary operator didn't work lmao 
+            if(distances[i] == ULLONG_MAX) {
+                std::cout << -1 << " ";
+            }
+            else {
+                std::cout << distances[i] << " ";
+            }
         }
     }
 
