@@ -28,7 +28,7 @@ bool UnionFind::unionVertices(size_t first, size_t second) {
         return;
     }
     
-    if (sizes[parentOfFirst] < sizes[parentOfFirst]) {
+    if (sizes[parentOfFirst] < sizes[parentOfSecond]) {
         std::swap(parentOfFirst, parentOfSecond);
     }
     // second will have lower size
