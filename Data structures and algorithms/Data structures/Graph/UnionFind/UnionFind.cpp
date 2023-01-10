@@ -19,7 +19,7 @@ size_t UnionFind::getParent(size_t vertex) {
     return parentsContainer[vertex] = getParent(parentsContainer[vertex]);
 }
 
-bool UnionFind::unionVertices(size_t first, size_t second) {
+void UnionFind::unionVertices(size_t first, size_t second) {
     size_t parentOfFirst = getParent(first);
     size_t parentOfSecond = getParent(second);
 
