@@ -1,0 +1,13 @@
+HW01 - https://www.hackerrank.com/sda-hw-1-2022
+HW02 - https://www.hackerrank.com/sda-hw-2-2022
+HW03 - https://www.hackerrank.com/sda-hw-3-2022
+HW04 - https://www.hackerrank.com/sda-hw-4-2022
+HW05 - https://www.hackerrank.com/sda-hw-5-2022
+HW06 - https://www.hackerrank.com/sda-hw-6-2022
+HW07 - https://www.hackerrank.com/sda-hw-7-2022
+HW08 - https://www.hackerrank.com/sda-hw-8-2022
+HW09 - https://www.hackerrank.com/sda-hw-9-2022
+HW10 - https://www.hackerrank.com/sda-hw-10-2022
+HW11 - https://www.hackerrank.com/sda-hw-11-2022
+HW12 - https://www.hackerrank.com/sda-hw-12-2022
+HW13 - https://www.hackerrank.com/sda-hw-13-2022-1
