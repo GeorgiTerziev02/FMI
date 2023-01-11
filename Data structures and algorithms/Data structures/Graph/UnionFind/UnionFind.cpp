@@ -15,12 +15,11 @@ size_t UnionFind::getParent(size_t vertex) {
     if (parentsContainer[vertex] == vertex) {
         return vertex;
     }
-    size_t result = getParent(parentsContainer[vertex]);
-    parentsContainer[vertex] = result;
-    return result;
+    
+    return parentsContainer[vertex] = getParent(parentsContainer[vertex]);
 }
 
-bool UnionFind::unionVertices(size_t first, size_t second) {
+void UnionFind::unionVertices(size_t first, size_t second) {
     size_t parentOfFirst = getParent(first);
     size_t parentOfSecond = getParent(second);
 
