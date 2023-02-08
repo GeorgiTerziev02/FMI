@@ -159,22 +159,21 @@ Node<T>* BinarySearchTree<T>::_remove(Node<T>* current, const T& value) {
 		if (!current->left && !current->right) {
 			return nullptr;
 		}
-		else if (!current->left) {
+		if (!current->left) {
 			return current->right;
 		}
-		else if (!current->right) {
+		if (!current->right) {
 			return current->left;
 		}
-		else {
-			Node<T>* iter = current->right;
+		
+		Node<T>* iter = current->right;
 
-			while (iter->left) {
-				iter = iter->left;
-			}
-
-			current->value = iter->value;
-			current->right = _remove(current->right, current->value);
+		while (iter->left) {
+			iter = iter->left;
 		}
+
+		current->value = iter->value;
+		current->right = _remove(current->right, current->value);
 	}
 
 	return current;
