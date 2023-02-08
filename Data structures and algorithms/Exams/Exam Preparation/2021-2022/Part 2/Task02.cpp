@@ -33,8 +33,8 @@ size_t possibleCookedForTime(std::vector<size_t>& cookerTimes, size_t time) {
 }
 
 int main() {
-    size_t pancakesCount, cookersCount;
-    std::cin >> pancakesCount >> cookersCount;
+    size_t pancakesNeeded, cookersCount;
+    std::cin >> pancakesNeeded >> cookersCount;
     
     std::vector<size_t> cookerTimes(cookersCount);
     for(size_t i = 0; i < cookersCount; i++) {
@@ -42,18 +42,18 @@ int main() {
     }
     
     size_t min = 0;
-    size_t max = pancakesCount * cookerTimes[0];
+    size_t max = pancakesNeeded * cookerTimes[0];
     size_t solution = max;
     
     while(min <= max) {
         size_t mid = min + (max - min) / 2;
         size_t possibleCooked = possibleCookedForTime(cookerTimes, mid);
         
-        if(possibleCooked >= pancakesCount) {
+        if(possibleCooked >= pancakesNeeded) {
             max = mid - 1;
             solution = mid;
         }
-        else if(possibleCooked < pancakesCount) {
+        else if(possibleCooked < pancakesNeeded) {
             min = mid + 1;
         }
     }
