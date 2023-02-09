@@ -1,1 +1,1 @@
-https://www.hackerrank.com/contests/sda-test6-2022-2023-iythgbeu3/challenges/challenge-2351/submissions/code/1354750205
+https://www.hackerrank.com/contests/sda-test6-2022-2023-iythgbeu3/challenges
