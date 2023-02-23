@@ -1,8 +1,9 @@
 #include<iostream>
 
 void print(const int* arr, size_t length) {
-	for (size_t i = 0; i < length; i++)
+	for (size_t i = 0; i < length; i++) {
 		std::cout << arr[i]<< " ";
+	}
 }
 
 void swap(int& a, int& b) {
@@ -24,8 +25,9 @@ void bubbleSort(int* arr, size_t length) {
 			}
 		}
 
-		if (!hasSwaps) // if no swaps were made - array is ordered
+		if (!hasSwaps) {// if no swaps were made - array is ordered
 			break;
+		}
 	}
 }
 
