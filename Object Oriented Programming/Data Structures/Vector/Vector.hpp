@@ -221,7 +221,7 @@ template <typename T>
 size_t Vector<T>::calculateCapacity(const size_t number) const {
 	size_t result = DEFAULT_CAPACITY;
 	while (number > result) 
-		result *= 2;
+		result << 1;
 
 	return result;
 }
