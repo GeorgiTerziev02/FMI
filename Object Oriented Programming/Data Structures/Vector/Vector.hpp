@@ -143,7 +143,7 @@ T& Vector<T>::popBack() {
 
 template <typename T>
 T& Vector<T>::popAt(size_t index) {
-	if (index < 0 || index >= size)
+	if (index >= size)
 		throw "Invalid index";
 
 	T temp = data[index];
@@ -156,7 +156,7 @@ T& Vector<T>::popAt(size_t index) {
 
 template <typename T>
 T& Vector<T>::operator[](const size_t index) {
-	if (index < 0 || index >= size)
+	if (index >= size)
 		throw "Invalid index";
 
 	return data[index];
@@ -164,7 +164,7 @@ T& Vector<T>::operator[](const size_t index) {
 
 template <typename T>
 const T& Vector<T>::operator[](const size_t index) const {
-	if (index < 0 || index >= size)
+	if (index >= size)
 		throw "Invalid index";
 
 	return data[index];
@@ -221,7 +221,7 @@ template <typename T>
 size_t Vector<T>::calculateCapacity(const size_t number) const {
 	size_t result = DEFAULT_CAPACITY;
 	while (number > result) 
-		result *= 2;
+		result << 1;
 
 	return result;
 }
