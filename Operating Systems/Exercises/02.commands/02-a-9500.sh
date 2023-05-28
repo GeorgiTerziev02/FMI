@@ -1,3 +1,3 @@
 #!/bin/bash
 
-#TBA
+find /etc -type f -exec wc -l {} \;
